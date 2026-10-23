@@ -1,0 +1,130 @@
+/* CasWin Studios: night sea, neon glow and warm gold, like the logo. */
+:root {
+  --bg: #0b1030;
+  --bg-2: #121a46;
+  --card: #161f52;
+  --line: #2a3577;
+  --text: #eef1ff;
+  --muted: #b3bbe6;
+  --gold: #e9c46a;
+  --cyan: #5ce1e6;
+  --violet: #b48ad9;
+  --radius: 18px;
+  --max: 1080px;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    radial-gradient(1200px 600px at 50% -10%, rgba(92, 225, 230, 0.16), transparent 60%),
+    radial-gradient(900px 500px at 100% 30%, rgba(180, 138, 217, 0.14), transparent 60%),
+    radial-gradient(900px 500px at 0% 70%, rgba(233, 196, 106, 0.08), transparent 60%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+a { color: var(--cyan); text-underline-offset: 3px; }
+a:hover { color: #9ff2f5; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+
+/* Header */
+.top {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(11, 16, 48, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; gap: 16px; min-height: 64px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.02em; }
+.brand img { width: 40px; height: 40px; border-radius: 50%; }
+.top nav { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }
+.top nav a { color: var(--muted); text-decoration: none; padding: 8px 12px; border-radius: 999px; }
+.top nav a:hover, .top nav a[aria-current="page"] { color: var(--text); background: var(--bg-2); }
+
+/* Hero */
+.hero { text-align: center; padding: 56px 0 24px; }
+.hero .logo {
+  width: min(320px, 70vw); margin: 0 auto 24px; border-radius: 50%;
+  box-shadow: 0 0 60px rgba(92, 225, 230, 0.35), 0 0 120px rgba(180, 138, 217, 0.25);
+}
+h1, h2, h3 { line-height: 1.2; margin: 0 0 12px; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+h3 { font-size: 1.25rem; }
+.lead { font-size: 1.2rem; color: var(--muted); max-width: 680px; margin: 0 auto; }
+.gold { color: var(--gold); }
+
+section { padding: 40px 0; }
+.section-title { text-align: center; margin-bottom: 28px; }
+
+/* Cards */
+.card {
+  background: linear-gradient(180deg, var(--card), var(--bg-2));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.card .body { padding: 22px 24px 26px; }
+.game { display: grid; grid-template-columns: 1fr; }
+.game > img { background: #2f7f9a; }
+@media (min-width: 820px) { .game { grid-template-columns: 1.15fr 1fr; align-items: center; } }
+
+.badge {
+  display: inline-block; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em;
+  color: var(--bg); background: var(--gold); border-radius: 999px; padding: 3px 12px; margin-bottom: 10px;
+}
+
+.button {
+  display: inline-block; text-decoration: none; font-weight: 700;
+  color: var(--bg); background: var(--cyan); border-radius: 999px; padding: 12px 22px; margin-top: 8px;
+}
+.button:hover { background: #9ff2f5; color: var(--bg); }
+.button.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+.button.ghost:hover { background: var(--bg-2); }
+
+/* Promises: three short facts */
+.promises { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.promises .card { padding: 20px 22px; }
+.promises h3 { color: var(--gold); }
+.promises p { margin: 0; color: var(--muted); }
+
+/* About */
+.about { display: grid; gap: 28px; align-items: center; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .about { grid-template-columns: 1fr 1.6fr; } }
+.about img { border-radius: 50%; max-width: 280px; margin: 0 auto; }
+
+blockquote.poem {
+  margin: 18px 0 0; padding: 14px 20px; border-left: 3px solid var(--gold);
+  background: rgba(233, 196, 106, 0.06); border-radius: 0 12px 12px 0; font-style: italic; color: var(--text);
+}
+
+/* Screenshots */
+.shots { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.shots figure { margin: 0; }
+.shots img { border-radius: 12px; border: 1px solid var(--line); }
+.shots figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 6px; }
+
+ul.features { padding-left: 1.2em; }
+ul.features li { margin: 6px 0; }
+
+/* Text pages (privacy) */
+.prose { max-width: 760px; margin: 0 auto; }
+.prose h1 { font-size: 2.2rem; }
+.prose h2 { font-size: 1.4rem; margin-top: 28px; }
+
+/* Footer */
+footer { border-top: 1px solid var(--line); margin-top: 40px; padding: 28px 0 40px; color: var(--muted); font-size: 0.95rem; }
+footer .wrap { display: flex; gap: 12px 28px; flex-wrap: wrap; justify-content: space-between; }
+footer a { color: var(--muted); }

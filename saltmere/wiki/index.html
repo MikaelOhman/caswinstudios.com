@@ -119,6 +119,7 @@ td:first-child { font-weight: 600; }
       <a href="#trade">Trade and gold</a>
       <a href="#gear">Gear</a>
       <a href="#danger">Raids and monsters</a>
+      <a href="#travel">Getting about</a>
       <a href="#explore">Exploring</a>
       <b>The world</b>
       <a href="#island">The island</a>
@@ -132,10 +133,10 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.9.10</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.10.0</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
-        <div class="facts"><div><b>3</b> classes</div><div><b>64</b> buildings to order</div><div><b>54</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
+        <div class="facts"><div><b>3</b> classes</div><div><b>65</b> buildings to order</div><div><b>54</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
         <div class="spoilerbar">
           <p id="sp-state">Spoilers are hidden. Story secrets sit in purple boxes and stay hidden until you ask, with a warning first.</p>
           <button type="button" id="sp-all">Show all spoilers</button>
@@ -363,6 +364,7 @@ td:first-child { font-weight: 600; }
 <tr><td>Gate</td><td>A way through your walls. Put it in a gap you leave in a wall.</td><td>–</td><td>–</td><td>24 wood, 4 stone<br><span class="note">4 h to build; from the start</span></td></tr>
 <tr><td>Lantern post</td><td>Light at night. People feel safer near lanterns.</td><td>–</td><td>–</td><td>3 wood<br><span class="note">1 h to build; from the start</span></td></tr>
 <tr><td>Warehouse</td><td>Room for a lot of goods. Every chain needs somewhere to put things.</td><td>–<br>stores 500</td><td>–</td><td>40 wood, 10 planks, 10 stone<br><span class="note">12 h to build; 15 people</span></td></tr>
+<tr><td>Gilded Wheel waystation</td><td>The Gilded Wheel&#x27;s post-horses: ride to any other waystation you&#x27;ve been to (Askeby, Stenhamn) for a few gold. The hours pass on the road.<br><span class="note">one only</span></td><td>–</td><td>–</td><td>24 wood, 6 stone<br><span class="note">6 h to build; from the start</span></td></tr>
 <tr><td>Porters&#x27; yard</td><td>Porters empty the crates at the fishing huts, farms, woodcutters&#x27; and hunting lodges and carry the goods to the stores, so those workers can keep working. With nothing to carry they bring the builders their materials. Handcarts and ox carts let them carry far more.</td><td>2 porters</td><td>–</td><td>20 wood, 4 stone<br><span class="note">5 h to build; from the start</span></td></tr>
 <tr><td>Notice board</td><td>Where the village pins up news and requests. People like to know what&#x27;s going on.<br><span class="note">mood +1</span></td><td>–</td><td>–</td><td>4 wood<br><span class="note">1 h to build; from the start</span></td></tr>
 <tr><td>Market square</td><td>Traders sell what the village has too much of (everything above 12 of a kind) for gold.<br><span class="note">mood +2</span></td><td>2 traders</td><td>up to 6 goods per 2 h: about 27 goods sold</td><td>25 wood, 5 stone<br><span class="note">6 h to build; from the start</span></td></tr>
@@ -516,12 +518,22 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
+      <section id="travel">
+        <h2>Getting about</h2>
+        <p>The island is big: about 45 minutes on foot from Saltmere to Stenhamn. Two services carry you between places you've already been to. Stand at a stop and press the action button (E) to see where you can go, the fare (paid from Saltmere's stores) and the hours on the way. The trip is a short scene: the hours pass (the camps grow, the wells fill) and you step off at the other end.</p>
+        <ul>
+          <li><b>The Gilded Wheel's post-horses</b> run between its waystations: Askeby and Stenhamn have one, and Saltmere builds its own (Village tab: 24 wood, 6 stone). About 12 km an hour along the roads; about 3 gold plus 2 a km.</li>
+          <li><b>The Tidewrights' boat</b> sails along the coast between Saltmere's pier, Gullbo, Stenhamn's harbour and Hornvik. About 9 km an hour; about 2 gold plus 1.5 a km.</li>
+          <li>A stop opens the first time you reach it on foot. Not with monsters about, and not while Saltmere is under attack.</li>
+        </ul>
+      </section>
+
       <section id="explore">
         <h2>Exploring</h2>
         <ul>
           <li><b>The Old Barrow</b>, a burial mound by the road west of the crossroads: a crypt full of risen skeletons, with its king and his treasure at the far end. Once he's beaten, the dead rest for three days.</li>
           <li><b>Landmarks</b> to find, most with something to search once: a ruined watchtower, a hunter's lean-to and the Fallen Giant in the Old Forest; a shipwreck on the eastern beach and an old lighthouse on the western headland; a ring of stones and an abandoned farmstead in the Green Hills; the witch's hut in Mirefen; the Great Oak and elven ruins round a moonwell in Elderwood; waystones and shrines along the roads.</li>
-          <li><b>The island's towns</b> and the other peoples' homes are marked in the world and on the map. Their people and quests are coming in later versions.</li>
+          <li><b>Askeby</b>, the market town on the King's Road (about 3.7 km east), and <b>Stenhamn</b>, the capital on the east coast, are real towns: houses round a paved square with a fountain, an inn, a market, the Gilded Wheel's waystation; Stenhamn has its stone wall and gatehouse, a harbour, the guild hall and the Queen's palace. <b>Gullbo</b> and <b>Hornvik</b> are small harbours where the boat calls. The other peoples' homes are still banners: their towns come after 1.0.</li>
           <li><b>Hunting</b>: deer and stags bolt, boars fight back when hurt. Their kills give hide and meat.</li>
         </ul>
       </section>
@@ -681,7 +693,24 @@ td:first-child { font-weight: 600; }
       <section id="story">
         <h2>The story</h2>
         <p>The crown war between Queen Isolde in Stenhamn and Duke Corvin in Ravnsund splits the realm. Dwarves and orcs feud over the Ember Pass, elves keep their borders shut, mages and priests quarrel over magic, and the halflings starve in the middle. And the goblin camps keep growing until they march on Saltmere.</p>
-        <p>Who you are, why the curses are spreading, and how it all ends is for you to find out.</p>
+        <p>Who you are, why the curses are spreading, and how it all ends is for you to find out. <b>Chapter One</b> (version 1.0) takes you from the beach to the capital.</p>
+        <div class="spoiler" id="sp6">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp6-body">Show spoiler: how Chapter One goes, step by step</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp6-w">
+    <p id="sp6-w"><b>Spoiler warning.</b> This gives away how Chapter One goes, step by step. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp6-body" hidden>
+
+        <ul>
+          <li>The morning after the watchtower is ordered, <b>Elder Maren</b> sends for you: the raids grow too fast to be natural, and the Queen must hear it from someone who has fought them. She tells you to show the Queen the mark on your arm.</li>
+          <li>Follow the King's Road east from the crossroads to <b>Askeby</b> and talk to <b>Reeve Halvard</b>: goblins have been seen on the road east of Hollowbrook.</li>
+          <li>On the way to Stenhamn, goblins ambush you on the King's Road, far from their camps.</li>
+          <li>In <b>Stenhamn</b>, Queen Isolde receives you before her palace. She knows the mark: a Warden of the Veil's. A memory comes back: a tower in the snow, a broken gate, a woman calling your name. Chapter One is complete (+150 gold, +200 experience).</li>
+        </ul>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
         <div class="spoiler" id="sp4">
   <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp4-body">Show spoiler: the sides you can take and how the story can end</button>
   <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp4-w">
@@ -708,7 +737,7 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.9.10).</p>
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.10.0).</p>
     </main>
   </div>
 

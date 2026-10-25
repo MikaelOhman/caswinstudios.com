@@ -132,10 +132,10 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.9.8</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.9.9</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
-        <div class="facts"><div><b>3</b> classes</div><div><b>61</b> buildings to order</div><div><b>51</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
+        <div class="facts"><div><b>3</b> classes</div><div><b>63</b> buildings to order</div><div><b>53</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
         <div class="spoilerbar">
           <p id="sp-state">Spoilers are hidden. Story secrets sit in purple boxes and stay hidden until you ask, with a warning first.</p>
           <button type="button" id="sp-all">Show all spoilers</button>
@@ -256,6 +256,8 @@ td:first-child { font-weight: 600; }
 <tr><td>Saws and wedges</td><td>Woodcutter&#x27;s lodge</td><td>Smithy</td><td>1 iron tools, 1 planks</td><td>+1 wood a batch</td><td>150 hours of work</td></tr>
 <tr><td>Picks</td><td>Quarry, Mine, Clay pit</td><td>Smithy</td><td>1 iron tools, 1 ore</td><td>+1 stone, ore or clay a batch</td><td>150 hours of work</td></tr>
 </tbody></table></div>
+        <h3>Porters</h3>
+        <p>Build a <b>Porters' yard</b> and its porters take over the carrying: fishers, farmers, woodcutters and hunters leave what they make in a crate at their workplace (on the pier, by the field, at the lodge) and go straight back to work, and the porters carry the crates to the stores. With the crates empty they fetch the builders' materials. A porter on foot carries 6 a trip; a <b>handcart</b> (carpenter: 4 planks, 1 iron tools) carries 15, an <b>ox cart</b> (stables: a handcart, plough oxen and 6 grain) carries 30. The yard's card shows how much they should carry a day, and each building's card what's waiting in its crate.</p>
         <h3>Storehouses</h3>
         <p>The longhouse, storehouses and warehouses hold four kinds of goods: <b>food</b>, <b>water</b>, <b>materials</b> (wood, stone, ore, clay, hides…) and <b>goods</b> (planks, tools, cloth, ale…). Tap one and switch the kinds it takes on and off, for example a storehouse by the pier for food only. People carry things to the nearest store that takes them, and eat and drink at stores that take food and water. The Goods and mood window shows the room left for each kind. When there's no room for fish, the fishers have nowhere to put their catch, and their card says so.</p>
         <h3>Hurt and downed villagers</h3>
@@ -318,7 +320,7 @@ td:first-child { font-weight: 600; }
 </tbody></table></div>
 <h3 id="b-crafts">Crafts</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
 <tr><td>Sawmill</td><td>Saws logs into planks, for bigger buildings, boats and tools.</td><td>1 sawyer</td><td>3 planks from 2 wood per 1.5 h: about 18 planks</td><td>20 wood, 6 stone<br><span class="note">6 h to build; from the start</span></td></tr>
-<tr><td>Carpenter</td><td>Wooden tools: a worker who has them works 15% faster, for about 40 hours of work.</td><td>1 carpenter</td><td>1 wooden tools from 2 planks per 2 h: about 4.5 wooden tools</td><td>20 wood, 10 planks<br><span class="note">6 h to build; 25 people</span></td></tr>
+<tr><td>Carpenter</td><td>Wooden tools: a worker who has them works 15% faster, for about 40 hours of work.</td><td>1 carpenter</td><td>1 wooden tools from 2 planks per 2 h: about 4.5 wooden tools<br>or 1 handcarts from 4 planks, 1 iron tools per 3 h: about 3 handcarts</td><td>20 wood, 10 planks<br><span class="note">6 h to build; 25 people</span></td></tr>
 <tr><td>Smithy</td><td>Iron tools (a worker who has them works 30% faster, for about 120 hours of work), weapons for the guards, and saws and picks for woodcutters, quarries and mines.</td><td>1 smith</td><td>1 iron tools from 2 ore, 1 charcoal, 1 planks per 2 h: about 4.5 iron tools<br>or 1 weapons from 2 ore, 1 charcoal per 2 h: about 4.5 weapons<br>or 1 saws and wedges from 1 iron tools, 1 planks per 2 h: about 4.5 saws and wedges<br>or 1 picks from 1 iron tools, 1 ore per 2 h: about 4.5 picks</td><td>20 wood, 20 stone<br><span class="note">8 h to build; 15 people</span></td></tr>
 <tr><td>Armourer</td><td>Armour: guards and villagers take less harm in raids.</td><td>1 armourer</td><td>1 armour from 2 ore, 1 charcoal, 1 leather per 3 h: about 3 armour</td><td>20 stone, 10 planks, 10 bricks<br><span class="note">8 h to build; 40 people</span></td></tr>
 <tr><td>Bowyer</td><td>Bows and arrows: the guards in the watchtowers shoot further.</td><td>1 bowyer</td><td>1 bows from 2 wood per 2.5 h: about 3.6 bows</td><td>18 wood, 6 planks<br><span class="note">5 h to build; 25 people</span></td></tr>
@@ -344,12 +346,13 @@ td:first-child { font-weight: 600; }
 </tbody></table></div>
 <h3 id="b-defence">Defence</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
 <tr><td>Watchtower</td><td>A guard shoots at monsters from the top and rings the bell when raiders come.<br><span class="note">may stand outside the walls</span></td><td>1 guard</td><td>–</td><td>24 wood, 4 stone<br><span class="note">6 h to build; from the start</span></td></tr>
+<tr><td>Lookout tower</td><td>A tall, thin tower. From the top the lookout sees every wolf, boar and goblin within 450 m (they show on your map), and every few hours sends out quick runners, too fast for any goblin, who report every goblin camp within 1.2 km and how far it has grown. Raids are spotted a little earlier.<br><span class="note">boosts: warning +50%; may stand outside the walls</span></td><td>1 lookout</td><td>–</td><td>14 wood, 2 stone<br><span class="note">4 h to build; from the start</span></td></tr>
 <tr><td>Scout lodge</td><td>Scouts warn of raids earlier and sometimes find lost folk who want a home.<br><span class="note">boosts: warning +1, rescue +20%; may stand outside the walls</span></td><td>1 scout</td><td>–</td><td>14 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
 <tr><td>Armoury</td><td>Donate gear here (Gear screen). Guards and soldiers come and take whatever beats what they wear.<br><span class="note">one only</span></td><td>–</td><td>–</td><td>20 wood, 12 stone<br><span class="note">6 h to build; from the start</span></td></tr>
 <tr><td>Barracks</td><td>Trains the militia: the guards hit a quarter harder.<br><span class="note">boosts: guard damage +25%</span></td><td>2 soldiers<br>4 beds</td><td>–</td><td>30 wood, 15 stone, 10 planks<br><span class="note">10 h to build; 25 people</span></td></tr>
 <tr><td>Archery range</td><td>Practice makes the tower guards shoot a quarter further.<br><span class="note">boosts: guard range +25%</span></td><td>1 trainer</td><td>–</td><td>15 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
 <tr><td>Training yard</td><td>Wooden dummies and sparring. The guards get better; the youngsters love watching.<br><span class="note">boosts: guard damage +10%; mood +2</span></td><td>1 trainer</td><td>–</td><td>15 wood, 6 planks<br><span class="note">5 h to build; 40 people</span></td></tr>
-<tr><td>Stables</td><td>Oxen and carts: builders carry twice as much. The stablehand trains plough oxen for the farm fields.<br><span class="note">boosts: hauling +100%</span></td><td>1 stablehand</td><td>1 plough oxen from 1 iron tools, 4 grain per 4 h: about 2.2 plough oxen</td><td>25 wood, 8 planks<br><span class="note">8 h to build; 25 people</span></td></tr>
+<tr><td>Stables</td><td>Oxen and carts: builders carry twice as much. The stablehand trains plough oxen for the farm fields.<br><span class="note">boosts: hauling +100%</span></td><td>1 stablehand</td><td>1 plough oxen from 1 iron tools, 4 grain per 4 h: about 2.2 plough oxen<br>or 1 ox carts from 1 handcarts, 1 plough oxen, 6 grain per 4 h: about 2.2 ox carts</td><td>25 wood, 8 planks<br><span class="note">8 h to build; 25 people</span></td></tr>
 <tr><td>Kennel</td><td>Two village dogs patrol the streets. Everyone feels safer (and gets licked).<br><span class="note">mood +2</span></td><td>1 dog handler</td><td>–</td><td>15 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
 </tbody></table></div>
 <h3 id="b-village">Village</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
@@ -358,6 +361,7 @@ td:first-child { font-weight: 600; }
 <tr><td>Gate</td><td>A way through your walls. Put it in a gap you leave in a wall.</td><td>–</td><td>–</td><td>24 wood, 4 stone<br><span class="note">4 h to build; from the start</span></td></tr>
 <tr><td>Lantern post</td><td>Light at night. People feel safer near lanterns.</td><td>–</td><td>–</td><td>3 wood<br><span class="note">1 h to build; from the start</span></td></tr>
 <tr><td>Warehouse</td><td>Room for a lot of goods. Every chain needs somewhere to put things.</td><td>–<br>stores 500</td><td>–</td><td>40 wood, 10 planks, 10 stone<br><span class="note">12 h to build; 15 people</span></td></tr>
+<tr><td>Porters&#x27; yard</td><td>Porters empty the crates at the fishing huts, farms, woodcutters&#x27; and hunting lodges and carry the goods to the stores, so those workers can keep working. With nothing to carry they bring the builders their materials. Handcarts and ox carts let them carry far more.</td><td>2 porters</td><td>–</td><td>20 wood, 4 stone<br><span class="note">5 h to build; from the start</span></td></tr>
 <tr><td>Notice board</td><td>Where the village pins up news and requests. People like to know what&#x27;s going on.<br><span class="note">mood +1</span></td><td>–</td><td>–</td><td>4 wood<br><span class="note">1 h to build; from the start</span></td></tr>
 <tr><td>Market square</td><td>Traders sell what the village has too much of (everything above 12 of a kind) for gold.<br><span class="note">mood +2</span></td><td>2 traders</td><td>up to 6 goods per 2 h: about 27 goods sold</td><td>25 wood, 5 stone<br><span class="note">6 h to build; from the start</span></td></tr>
 <tr><td>Trading post</td><td>Caravans from other lands stop here: the market gets a quarter more for everything.<br><span class="note">boosts: prices +25%; one only</span></td><td>1 trader</td><td>–</td><td>20 planks, 20 stone, 30 gold<br><span class="note">12 h to build; 40 people</span></td></tr>
@@ -368,8 +372,10 @@ td:first-child { font-weight: 600; }
         <h2>Trade and gold</h2>
         <p>The <b>market</b>'s traders sell everything above 12 of a kind, 6 goods per trip, at these prices (a trading post adds a quarter). <b>The Gilded Wheel's caravan</b> comes from Askeby every two to four days and stops by the north gate for most of a day. It sells goods the village can't make yet, pays half again what the market does, and sells some gear.</p>
         <div class="two"><div class="scroll"><table class="narrow"><thead><tr><th>Good</th><th>Gold each</th></tr></thead><tbody>
+<tr><td>Ox carts</td><td>30</td></tr>
 <tr><td>Plough oxen</td><td>14</td></tr>
 <tr><td>Armour</td><td>14</td></tr>
+<tr><td>Handcarts</td><td>12</td></tr>
 <tr><td>Maps</td><td>12</td></tr>
 <tr><td>Saws and wedges</td><td>10</td></tr>
 <tr><td>Picks</td><td>10</td></tr>
@@ -382,8 +388,8 @@ td:first-child { font-weight: 600; }
 <tr><td>Furs</td><td>5</td></tr>
 <tr><td>Honey</td><td>4</td></tr>
 <tr><td>Cloth</td><td>4</td></tr>
-<tr><td>Leather</td><td>4</td></tr>
 </tbody></table></div><div class="scroll"><table class="narrow"><thead><tr><th>Good</th><th>Gold each</th></tr></thead><tbody>
+<tr><td>Leather</td><td>4</td></tr>
 <tr><td>Wooden tools</td><td>4</td></tr>
 <tr><td>Salt</td><td>3</td></tr>
 <tr><td>Smoked fish</td><td>3</td></tr>
@@ -474,6 +480,7 @@ td:first-child { font-weight: 600; }
 <tr><td>War camp</td><td>6 goblins under banners</td></tr>
 <tr><td>Warband</td><td>8 goblins and war drums: it marches on Saltmere the next night</td></tr>
 </tbody></table></div>
+        <p>A <b>lookout tower</b> (14 wood, 2 stone) shows you where the danger is: its lookout watches everything within 450 m from the top (wolves, boars and goblins show on your map), and every few hours sends out quick runners who report every goblin camp within 1.2 km, the whole area where camps grow, with how far each has grown. The tower's card lists what's out there, nearest first.</p>
         <p>A warband attacks at night. War drums sound about 19:00 (scouts or a lighthouse warn you earlier), and the raid comes at 21:30. Raids grow bigger every day. Watchtowers with guards, palisade walls, gates, barracks and an archery range all help.</p>
         <h3>Creatures</h3>
         <div class="scroll"><table class=""><thead><tr><th>Creature</th><th>Kind</th><th>Life</th><th>Hits for</th><th>Experience</th><th>Gold</th></tr></thead><tbody>
@@ -698,7 +705,7 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.9.8).</p>
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.9.9).</p>
     </main>
   </div>
 

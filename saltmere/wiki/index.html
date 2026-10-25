@@ -132,7 +132,7 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.9.6</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.9.7</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
         <div class="facts"><div><b>3</b> classes</div><div><b>61</b> buildings to order</div><div><b>51</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
@@ -230,7 +230,7 @@ td:first-child { font-weight: 600; }
           <li>Builders fetch materials from the stores and put up whatever you order, the oldest order first.</li>
         </ul>
         <h3>Work speed and mood</h3>
-        <p>All work goes at <b>75% to 125%</b> speed, by the village's mood (0 to 100), and a quarter faster again while there are <b>tools</b> in the stores. The mood starts from 45 and moves towards:</p>
+        <p>All work goes at <b>75% to 125%</b> speed, by the village's mood (0 to 100). The mood starts from 45 and moves towards:</p>
         <ul>
           <li>+ services (tavern, chapel, bard, inn…) up to +30; + varied food up to +10; + ale or wine at the tavern +6; + warm clothes for everyone +4</li>
           <li>− 4 for each person without a bed; − 3 for each person hungry or thirsty; − 8 while the village grieves a death</li>
@@ -242,6 +242,12 @@ td:first-child { font-weight: 600; }
         <p>It's worked out like this. Workers really work about <b>9 hours</b> a day (7:00 to 18:00, less meals, drinks and walks):</p>
         <p class="formula">batches a day = workers × 9 h × work speed ÷ (hours a batch + work speed × walk to the stores ÷ batches a trip)</p>
         <p>Only fishers, farmers and woodcutters carry what they make to the stores. Fishers and farmers fill a basket of 4 first. Everyone else puts it straight in the stores. When a building makes nothing, the card says why: no workers, paused, waiting for grain, the stores are full, burned by raiders.</p>
+        <h3>Tools</h3>
+        <p>Every worker carries their own tools, and works faster with them. They fetch the best tools in the stores by themselves; tools wear out with work, and then they fetch new ones. Workers at more important work (a higher priority) get the better tools first. A person's card shows their tools and the hours left; the Goods and mood window shows how many workers have none.</p>
+        <div class="scroll"><table class="narrow"><thead><tr><th>Tools</th><th>Made by</th><th>From</th><th>Works</th><th>Lasts</th></tr></thead><tbody>
+<tr><td>Wooden tools</td><td>Carpenter</td><td>2 planks</td><td>+15% faster</td><td>40 hours of work</td></tr>
+<tr><td>Iron tools</td><td>Smithy</td><td>2 ore, 1 charcoal, 1 planks</td><td>+30% faster</td><td>120 hours of work</td></tr>
+</tbody></table></div>
         <h3>Storehouses</h3>
         <p>The longhouse, storehouses and warehouses hold four kinds of goods: <b>food</b>, <b>water</b>, <b>materials</b> (wood, stone, ore, clay, hides…) and <b>goods</b> (planks, tools, cloth, ale…). Tap one and switch the kinds it takes on and off, for example a storehouse by the pier for food only. People carry things to the nearest store that takes them, and eat and drink at stores that take food and water. The Goods and mood window shows the room left for each kind. When there's no room for fish, the fishers have nowhere to put their catch, and their card says so.</p>
         <h3>Hurt and downed villagers</h3>
@@ -272,7 +278,7 @@ td:first-child { font-weight: 600; }
 
       <section id="buildings">
         <h2>Buildings</h2>
-        <p>Every building you can order, what it makes and what it costs. The day's output is for one worker at 100% work speed (a happy village with tools works up to about half as fast again). Buildings with "may stand outside the walls" can go anywhere; everything else must stand inside your walls, and raiders may burn what's outside.</p>
+        <p>Every building you can order, what it makes and what it costs. The day's output is for one worker at 100% work speed (a happy village whose workers have iron tools works up to about 60% faster). Buildings with "may stand outside the walls" can go anywhere; everything else must stand inside your walls, and raiders may burn what's outside.</p>
         <h3 id="b-homes">Homes</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
 <tr><td>Cottage</td><td>A home for four. Without beds, people sleep outside and get sick.</td><td>–<br>4 beds</td><td>–</td><td>20 wood, 4 stone<br><span class="note">6 h to build; from the start</span></td></tr>
 <tr><td>House</td><td>A bigger home: beds for eight.</td><td>–<br>8 beds</td><td>–</td><td>30 wood, 10 planks, 10 stone<br><span class="note">10 h to build; 15 people</span></td></tr>
@@ -304,8 +310,8 @@ td:first-child { font-weight: 600; }
 </tbody></table></div>
 <h3 id="b-crafts">Crafts</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
 <tr><td>Sawmill</td><td>Saws logs into planks, for bigger buildings, boats and tools.</td><td>1 sawyer</td><td>3 planks from 2 wood per 1.5 h: about 18 planks</td><td>20 wood, 6 stone<br><span class="note">6 h to build; from the start</span></td></tr>
-<tr><td>Carpenter</td><td>Wooden tools, handles and carts. Tools in the stores make every job faster.</td><td>1 carpenter</td><td>1 tools from 2 planks per 3 h: about 3 tools</td><td>20 wood, 10 planks<br><span class="note">6 h to build; 25 people</span></td></tr>
-<tr><td>Smithy</td><td>Iron tools (every job goes faster with tools) and weapons for the guards.</td><td>1 smith</td><td>2 tools from 2 ore, 1 charcoal per 2 h: about 9 tools<br>or 1 weapons from 2 ore, 1 charcoal per 2 h: about 4.5 weapons</td><td>20 wood, 20 stone<br><span class="note">8 h to build; 15 people</span></td></tr>
+<tr><td>Carpenter</td><td>Wooden tools: a worker who has them works 15% faster, for about 40 hours of work.</td><td>1 carpenter</td><td>1 wooden tools from 2 planks per 2 h: about 4.5 wooden tools</td><td>20 wood, 10 planks<br><span class="note">6 h to build; 25 people</span></td></tr>
+<tr><td>Smithy</td><td>Iron tools (a worker who has them works 30% faster, for about 120 hours of work) and weapons for the guards.</td><td>1 smith</td><td>1 iron tools from 2 ore, 1 charcoal, 1 planks per 2 h: about 4.5 iron tools<br>or 1 weapons from 2 ore, 1 charcoal per 2 h: about 4.5 weapons</td><td>20 wood, 20 stone<br><span class="note">8 h to build; 15 people</span></td></tr>
 <tr><td>Armourer</td><td>Armour: guards and villagers take less harm in raids.</td><td>1 armourer</td><td>1 armour from 2 ore, 1 charcoal, 1 leather per 3 h: about 3 armour</td><td>20 stone, 10 planks, 10 bricks<br><span class="note">8 h to build; 40 people</span></td></tr>
 <tr><td>Bowyer</td><td>Bows and arrows: the guards in the watchtowers shoot further.</td><td>1 bowyer</td><td>1 bows from 2 wood per 2.5 h: about 3.6 bows</td><td>18 wood, 6 planks<br><span class="note">5 h to build; 25 people</span></td></tr>
 <tr><td>Tannery</td><td>Turns hides into leather. It smells: build it away from homes.</td><td>1 tanner</td><td>2 leather from 2 hides per 2 h: about 9 leather</td><td>15 wood, 6 stone<br><span class="note">5 h to build; 25 people</span></td></tr>
@@ -357,17 +363,18 @@ td:first-child { font-weight: 600; }
 <tr><td>Armour</td><td>14</td></tr>
 <tr><td>Maps</td><td>12</td></tr>
 <tr><td>Weapons</td><td>9</td></tr>
+<tr><td>Iron tools</td><td>8</td></tr>
 <tr><td>Bows</td><td>7</td></tr>
 <tr><td>Clothes</td><td>6</td></tr>
-<tr><td>Tools</td><td>6</td></tr>
 <tr><td>Wine</td><td>5</td></tr>
 <tr><td>Furs</td><td>5</td></tr>
 <tr><td>Honey</td><td>4</td></tr>
 <tr><td>Cloth</td><td>4</td></tr>
 <tr><td>Leather</td><td>4</td></tr>
+<tr><td>Wooden tools</td><td>4</td></tr>
 <tr><td>Salt</td><td>3</td></tr>
-<tr><td>Smoked fish</td><td>3</td></tr>
 </tbody></table></div><div class="scroll"><table class="narrow"><thead><tr><th>Good</th><th>Gold each</th></tr></thead><tbody>
+<tr><td>Smoked fish</td><td>3</td></tr>
 <tr><td>Ale</td><td>3</td></tr>
 <tr><td>Pottery</td><td>3</td></tr>
 <tr><td>Bread</td><td>2</td></tr>
@@ -679,7 +686,7 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.9.6).</p>
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.9.7).</p>
     </main>
   </div>
 

@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saltmere Wiki · CasWin Studios</title>
+  <meta name="description" content="The Saltmere wiki: the isle of Caldra, the hero's classes and skills, every village building and what it makes, food and water, gear, monsters and the story (spoilers hidden).">
+  <meta property="og:title" content="Saltmere Wiki">
+  <meta property="og:description" content="Everything about Saltmere: the island, the village, the buildings, gear, monsters and the story. Spoilers hidden.">
+  <meta property="og:image" content="https://caswinstudios.com/img/saltmere-village.webp">
+  <meta property="og:url" content="https://caswinstudios.com/saltmere/wiki/">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/style.css">
+
+<style>
+[hidden] { display: none !important; }
+.wiki { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 40px; padding-top: 32px; padding-bottom: 64px; }
+.wiki nav.toc { position: sticky; top: 84px; align-self: start; display: grid; gap: 2px; font-size: 15px; max-height: calc(100vh - 100px); overflow-y: auto; }
+.wiki nav.toc b { color: var(--gold); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin: 10px 0 4px; }
+.wiki nav.toc a { color: var(--muted); text-decoration: none; padding: 3px 10px; border-left: 2px solid var(--line); }
+.wiki nav.toc a:hover { color: var(--text); border-left-color: var(--cyan); }
+.wiki main { min-width: 0; display: grid; gap: 48px; }
+.wiki section { padding: 0; display: grid; gap: 14px; scroll-margin-top: 84px; }
+.wiki section > p, .wiki section > ul { max-width: 72ch; margin: 0; }
+.wiki h1 { margin: 0; }
+.wiki h3 { margin: 18px 0 4px; color: var(--gold); scroll-margin-top: 84px; }
+.wiki h4 { margin: 0 0 4px; font-size: 1.05rem; }
+.wiki ul { padding-left: 1.2em; margin: 0; display: grid; gap: 6px; }
+.eyebrow { color: var(--cyan); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--muted); font-size: 15px; }
+.facts b { color: var(--text); }
+.note { color: var(--muted); font-size: .92em; }
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: rgba(22, 31, 82, .55); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 620px; }
+table.narrow { min-width: 0; }
+table.wide { min-width: 900px; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--bg-2); position: sticky; top: 0; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.branches { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.branch { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: rgba(22, 31, 82, .55); }
+.branch ul { list-style: none; padding: 0; gap: 10px; font-size: 15px; }
+.branch .meta { color: var(--muted); font-size: 12.5px; }
+.callout { border-left: 3px solid var(--gold); padding: 6px 0 6px 16px; display: grid; gap: 8px; max-width: 72ch; }
+.formula { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 14.5px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; overflow-x: auto; }
+/* The chart */
+.chart { position: relative; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #17384f; aspect-ratio: 680 / 460; }
+.chart img { width: 100%; height: 100%; }
+.pin { position: absolute; transform: translate(-50%, -50%); border: 0; padding: 0; background: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.pin i { display: block; width: 11px; height: 11px; border: 2px solid #111; background: #f6e6b8; border-radius: 50%; }
+.pin[data-kind="capital"] i { width: 15px; height: 15px; background: #ffd24a; box-shadow: 0 0 0 3px rgba(255, 210, 74, .35); }
+.pin[data-kind="city"] i, .pin[data-kind="village"] i { border-radius: 2px; background: #f3d7a0; }
+.pin[data-kind="folk"] i { transform: rotate(45deg); border-radius: 1px; background: #b7e3d2; }
+.pin[data-kind="place"] i { border-radius: 0; width: 0; height: 0; border: 7px solid transparent; border-bottom: 11px solid #e9b8ff; background: none; transform: translateY(-4px); }
+.pin b { font: 600 11px/1.1 system-ui, sans-serif; color: #fdf6e3; text-shadow: 0 1px 2px #000, 0 0 3px #000; white-space: nowrap; }
+.pin:focus-visible i, .pin:hover i { outline: 2px solid #fff; outline-offset: 2px; }
+.land { position: absolute; transform: translate(-50%, -50%); font-size: clamp(9px, 1.4vw, 14px); font-style: italic; color: rgba(255, 252, 240, .85); text-shadow: 0 1px 3px rgba(0, 0, 0, .9); pointer-events: none; white-space: nowrap; }
+.placecard { border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; background: rgba(22, 31, 82, .55); min-height: 88px; }
+.placecard .k { color: var(--cyan); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.placecard .n { font-size: 1.3rem; font-weight: 700; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--muted); font-size: 14px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.shots img { border-radius: 12px; border: 1px solid var(--line); }
+.endings { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.ending { border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; background: rgba(22, 31, 82, .55); }
+.ending b { color: var(--gold); display: block; }
+/* Spoilers */
+.spoilerbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; background: var(--bg-2); }
+.spoilerbar p { margin: 0; flex: 1 1 280px; color: var(--muted); }
+.spoiler { border: 1px dashed var(--violet); border-radius: 12px; padding: 12px 16px; background: rgba(180, 138, 217, .07); display: grid; gap: 10px; }
+.spoiler.open { border-style: solid; }
+.spoiler button, .spoilerbar button { font: inherit; font-size: 15px; cursor: pointer; border-radius: 999px; padding: 8px 16px; border: 1px solid var(--violet); background: transparent; color: var(--text); justify-self: start; }
+.spoiler button:hover, .spoilerbar button:hover { background: rgba(180, 138, 217, .2); }
+.spoiler .sp-yes { background: var(--violet); color: #12122a; font-weight: 700; }
+.sp-warn { display: grid; gap: 10px; }
+.sp-warn p { margin: 0; }
+.sp-warn b { color: var(--violet); }
+.sp-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.sp-body { display: grid; gap: 12px; }
+.sp-body[hidden], .sp-warn[hidden] { display: none; }
+.sp-body > p, .sp-body > ul { margin: 0; max-width: 72ch; }
+@media (max-width: 860px) {
+  .wiki { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .wiki nav.toc { position: static; max-height: none; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .wiki nav.toc b { grid-column: 1 / -1; }
+  .two { grid-template-columns: 1fr; }
+  .wiki section, .wiki h3 { scroll-margin-top: 130px; }
+  .pin b { display: none; }
+  .pin[data-kind="capital"] b, .pin[data-kind="city"] b, .pin[data-kind="village"] b { display: block; }
+}
+</style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/img/caswin-studios-logo-256.webp" alt="" width="40" height="40">CasWin Studios</a>
+      <nav aria-label="Main">
+        <a href="/#games">Games</a>
+        <a href="/saltmere/wiki/" aria-current="page">Saltmere wiki</a>
+        <a href="/#about">About us</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap wiki">
+    <nav class="toc" aria-label="Contents">
+      <b>The game</b>
+      <a href="#start">Getting started</a>
+      <a href="#hero">Your hero</a>
+      <a href="#skills">Skills</a>
+      <a href="#village">The village</a>
+      <a href="#food">Food and water</a>
+      <a href="#buildings">Buildings</a>
+      <a href="#trade">Trade and gold</a>
+      <a href="#gear">Gear</a>
+      <a href="#danger">Raids and monsters</a>
+      <a href="#explore">Exploring</a>
+      <b>The world</b>
+      <a href="#island">The island</a>
+      <a href="#map">Map</a>
+      <a href="#people">Rulers and peoples</a>
+      <a href="#guilds">Guilds</a>
+      <a href="#mentors">Mentors</a>
+      <a href="#curses">Curses</a>
+      <a href="#story">The story</a>
+    </nav>
+
+    <main>
+      <header class="hero-wiki" style="display:grid;gap:12px">
+        <div class="eyebrow">Saltmere · the wiki · game version 0.9.4</div>
+        <h1>Saltmere</h1>
+        <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
+        <div class="facts"><div><b>3</b> classes</div><div><b>61</b> buildings to order</div><div><b>51</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
+        <div class="spoilerbar">
+          <p id="sp-state">Spoilers are hidden. Story secrets sit in purple boxes and stay hidden until you ask, with a warning first.</p>
+          <button type="button" id="sp-all">Show all spoilers</button>
+          <div id="sp-all-warn" hidden style="display:grid;gap:8px;flex-basis:100%">
+            <p><b style="color:var(--violet)">Spoiler warning.</b> This opens every secret on the page: who the hero really is, who killed the king, the villain's reasons, how each curse is lifted, and how the story can end. Show them all?</p>
+            <div class="sp-buttons"><button type="button" id="sp-all-yes" style="background:var(--violet);color:#12122a;font-weight:700">Yes, show everything</button><button type="button" id="sp-all-no">Keep them hidden</button></div>
+          </div>
+          <noscript><p>Spoilers need JavaScript to open.</p></noscript>
+        </div>
+        <div class="shots">
+          <img src="/img/saltmere-village.webp" alt="Saltmere village from above: cottages, a well, the tavern and villagers at work" width="1024" height="576">
+          <img src="/img/saltmere-plan.webp" alt="The village plan: choosing a building to put up" width="1024" height="576" loading="lazy">
+          <img src="/img/saltmere-gear.webp" alt="The gear screen: the hero's equipment and bag" width="1024" height="576" loading="lazy">
+        </div>
+      </header>
+
+      <section id="start">
+        <h2>Getting started</h2>
+        <p>The opening walks you through the basics, one goal at a time (the goal is always at the top of the screen):</p>
+        <ul>
+          <li><b>Talk to Bram</b> the fisherman, who found you in his nets on the beach.</li>
+          <li><b>Find Elder Maren</b> in the longhouse up the path.</li>
+          <li><b>Walk Tomas the woodcutter</b> to the forest outside the north gate and keep the wolves off him.</li>
+          <li><b>Supper at the Salty Gull</b>, the tavern, with the whole village.</li>
+          <li><b>Goblins!</b> The first raid comes that night. Defend Saltmere.</li>
+          <li><b>Order a watchtower</b> from the village plan. From then on the island is yours to explore.</li>
+        </ul>
+        <h3>Controls (phone)</h3>
+        <ul>
+          <li>The <b>joystick</b> (left) walks; <b>Attack</b> aims itself at the nearest foe; four <b>skill buttons</b>; a <b>Potion</b> button.</li>
+          <li>The <b>action button</b> (E on a keyboard) talks, searches, trades, opens doors and trashes goblin camps.</li>
+          <li><b>Village plan</b> switches to the bird's-eye view: tap a building, then where it should go. Tap a building or a villager for their card.</li>
+          <li><b>Goods and mood</b> shows the stores, the mood, the people, and the ledger of what was made and eaten yesterday. <b>Map</b> shows where you've been.</li>
+          <li>The game saves by itself every five minutes and when you come home; <b>Save</b> saves now.</li>
+        </ul>
+        <h3>Day and night</h3>
+        <p>A day lasts 8 minutes. Night is 21:00 to 05:00: people sleep, and raiders come. Villagers work from 7:00 to 18:00, with meals around 7:00, 12:00 and 18:00, and spend evenings at the tavern.</p>
+        <h3>If you fall</h3>
+        <p>The villagers carry you to the healer's hut, and you wake up there. The village loses a tenth of its gold.</p>
+      </section>
+
+      <section id="hero">
+        <h2>Your hero</h2>
+        <p>Pick a class when you start a new game. Each class has its own skill tree, and gear made for it.</p>
+        <div class="scroll"><table class=""><thead><tr><th>Class</th><th>Plays like</th><th>Life and power</th><th>Speed</th><th>Basic attack</th></tr></thead><tbody>
+<tr><td>Warrior</td><td>Sword and shield. Stands in the middle of the fight and keeps everyone else alive.</td><td>170 life, 70 rage</td><td>5.6 m/s</td><td>Slash: 15 damage every 0.6 s, reach 2.6 m</td></tr>
+<tr><td>Wizard</td><td>Fire, frost and lightning. Fragile up close, devastating at range.</td><td>105 life, 130 mana</td><td>5.3 m/s</td><td>Magic Bolt: 12 damage every 0.5 s, reach 16 m</td></tr>
+<tr><td>Summoner</td><td>Never fights alone: spirit wolves, risen skeletons and clockwork turrets do the work.</td><td>115 life, 130 mana</td><td>5.3 m/s</td><td>Spirit Lash: 9 damage every 0.5 s, reach 11 m</td></tr>
+</tbody></table></div>
+        <div class="spoiler" id="sp1">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp1-body">Show spoiler: who the hero really is</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp1-w">
+    <p id="sp1-w"><b>Spoiler warning.</b> This gives away who the hero really is. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp1-body" hidden>
+
+    <div class="callout">
+      <p>The truth comes back piece by piece as you lift the island's curses:</p>
+      <ul>
+        <li>You are <b>the last Warden of the Veil</b>, of an old order sworn to keep <em>the Hollow</em> shut: the grey realm between death and rest.</li>
+        <li>Three years ago the order fell at <b>Veilwatch</b> in one night. Its own High Warden, <b>Veyra</b>, betrayed it.</li>
+        <li>You were Veyra's second and her apprentice. You carry <b>the Veil Key</b>, the last seal on the Hollow, bound into your blood.</li>
+        <li>Your ship, <em>the Grey Gull</em>, carried the last Wardens south. Veyra's storm sank it.</li>
+        <li><b>The Forgetting</b>, Veyra's curse, took your memory so you would not remember how to stop her.</li>
+        <li>That is why goblins grow bolder near you, the dead stir in the barrows, and the sea gives back drowned men on moonless nights. The Hollow is calling the Key.</li>
+      </ul>
+      <p>Your class is the kind of Warden you were: a <b>Shield of the Veil</b> (warrior), a <b>Lantern-bearer</b> (wizard) or a <b>Speaker</b> (summoner), who talks with the dead and the wild.</p>
+    </div>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
+        <p>Kill monsters for experience. Every level gives a skill point. Levels need 40, 110, 210, 340, 500, 700… experience in total.</p>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <p>Every class has three or four branches. <b>Actives</b> go on the four skill buttons (up to 5 ranks: more damage); <b>passives</b> are always on (up to 3 or 5 ranks). A branch's tier 2 opens after 3 points in it, tier 3 after 6.</p>
+        <h3 id="skills-warrior">Warrior</h3><div class="branches"><div class="branch"><h4>Blade</h4><p class="note">Big swings and bleeding foes.</p><ul><li><b>Cleave</b> <span class="meta">active · tier 1 · 20 rage, 3 s</span><br>A great swing all around you.</li><li><b>Sharp Edge</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>+6% damage per rank.</li><li><b>Fury</b> <span class="meta">passive · tier 1 · up to 3 ranks</span><br>Build rage 20% faster per rank.</li><li><b>Leap Strike</b> <span class="meta">active · tier 2 · 25 rage, 6 s</span><br>Leap onto an enemy and crash down around it.</li><li><b>Bloodlust</b> <span class="meta">passive · tier 2 · up to 3 ranks</span><br>Heal for 3% of the damage you deal, per rank.</li><li><b>Whirlwind</b> <span class="meta">active · tier 3 · 40 rage, 10 s</span><br>Spin through the crowd, hitting everything around you again and again.</li><li><b>Executioner</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>+5% chance per rank to strike for double damage.</li></ul></div><div class="branch"><h4>Shield</h4><p class="note">Stand firm and protect the others.</p><ul><li><b>Shield Bash</b> <span class="meta">active · tier 1 · 15 rage, 5 s</span><br>Stuns the enemies in front of you.</li><li><b>Iron Skin</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>Take 4% less damage per rank.</li><li><b>Toughness</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>+8% life per rank.</li><li><b>Charge</b> <span class="meta">active · tier 2 · 15 rage, 7 s</span><br>Rush at an enemy and knock everything near it senseless.</li><li><b>Spiked Shield</b> <span class="meta">passive · tier 2 · up to 3 ranks</span><br>Enemies that hit you take 15% of it back, per rank.</li><li><b>Shield Wall</b> <span class="meta">active · tier 3 · 30 rage, 18 s</span><br>Take 60% less damage for a while; every enemy nearby comes for you.</li><li><b>Last Stand</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>Harder to bring down: less damage and more life.</li></ul></div><div class="branch"><h4>Battle</h4><p class="note">Lead the village into the fight.</p><ul><li><b>War Cry</b> <span class="meta">active · tier 1 · 30 rage, 15 s</span><br>You and your allies hit harder and take less damage; nearby enemies turn on you.</li><li><b>Leader</b> <span class="meta">passive · tier 1 · up to 3 ranks</span><br>Villagers and allies near you hit 10% harder per rank.</li><li><b>Second Wind</b> <span class="meta">passive · tier 1 · up to 3 ranks</span><br>Potions and healing work 20% better per rank.</li><li><b>Rally</b> <span class="meta">active · tier 2 · 30 rage, 14 s</span><br>Heals you and everyone on your side nearby; the downed get up sooner.</li><li><b>Forced March</b> <span class="meta">passive · tier 2 · up to 3 ranks</span><br>Move 5% faster per rank.</li><li><b>Ground Slam</b> <span class="meta">active · tier 3 · 35 rage, 9 s</span><br>Smash the ground: everything around you reels.</li><li><b>Veteran</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>Skills ready 6% sooner per rank.</li></ul></div></div>
+<h3 id="skills-wizard">Wizard</h3><div class="branches"><div class="branch"><h4>Fire</h4><p class="note">Burn it all.</p><ul><li><b>Fireball</b> <span class="meta">active · tier 1 · 25 mana, 2.5 s</span><br>Explodes and burns everything nearby.</li><li><b>Pyromancy</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>+8% fire damage per rank.</li><li><b>Ignite</b> <span class="meta">passive · tier 1 · up to 3 ranks</span><br>Fire sets foes alight: they burn for 10% more per rank.</li><li><b>Flame Wave</b> <span class="meta">active · tier 2 · 30 mana, 6 s</span><br>A ring of fire bursts out around you.</li><li><b>Combustion</b> <span class="meta">passive · tier 2 · up to 3 ranks</span><br>Explosions and areas 12% bigger per rank.</li><li><b>Meteor</b> <span class="meta">active · tier 3 · 50 mana, 12 s</span><br>Calls a burning rock down on your enemies.</li><li><b>Inferno</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>More fire damage and longer burns.</li></ul></div><div class="branch"><h4>Frost</h4><p class="note">Slow them, freeze them, shatter them.</p><ul><li><b>Frost Nova</b> <span class="meta">active · tier 1 · 30 mana, 8 s</span><br>Freezes every enemy around you in place.</li><li><b>Biting Cold</b> <span class="meta">passive · tier 1 · up to 3 ranks</span><br>Frost slows enemies by 15% more per rank.</li><li><b>Ice Armor</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>A shell of ice: less damage taken, more life.</li><li><b>Ice Lance</b> <span class="meta">active · tier 2 · 18 mana, 1.5 s</span><br>A spear of ice that goes through several enemies.</li><li><b>Shatter</b> <span class="meta">passive · tier 2 · up to 3 ranks</span><br>+25% damage per rank against frozen enemies.</li><li><b>Blizzard</b> <span class="meta">active · tier 3 · 45 mana, 14 s</span><br>A storm of ice over your enemies: it hurts, slows and sometimes freezes.</li><li><b>Winter&#x27;s Heart</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>+12% frost damage per rank.</li></ul></div><div class="branch"><h4>Storm</h4><p class="note">Fast, jumping lightning.</p><ul><li><b>Chain Lightning</b> <span class="meta">active · tier 1 · 35 mana, 5 s</span><br>Leaps from enemy to enemy.</li><li><b>Overload</b> <span class="meta">passive · tier 1 · up to 3 ranks</span><br>Lightning jumps to one more enemy per rank.</li><li><b>Mana Flow</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>+12% mana regeneration per rank.</li><li><b>Static Field</b> <span class="meta">active · tier 2 · 25 mana, 5 s</span><br>A crackling burst that jolts everything near you.</li><li><b>Teleport</b> <span class="meta">active · tier 2 · 20 mana, 6 s</span><br>Vanish and appear further ahead (or away from danger).</li><li><b>Conductor</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>More lightning damage and more critical strikes.</li><li><b>Thunderstorm</b> <span class="meta">active · tier 3 · 50 mana, 16 s</span><br>Lightning strikes the area again and again.</li><li><b>Arcane Focus</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>Skills ready sooner, and mana back from every kill.</li></ul></div></div>
+<h3 id="skills-summoner">Summoner</h3><div class="branches"><div class="branch"><h4>Spirits</h4><p class="note">Spirit beasts that hunt beside you.</p><ul><li><b>Spirit Wolves</b> <span class="meta">active · tier 1 · 30 mana, 6 s</span><br>Calls spirit wolves to hunt beside you.</li><li><b>Pack Leader</b> <span class="meta">passive · tier 1 · up to 3 ranks</span><br>One more spirit wolf per rank.</li><li><b>Feral Bond</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>Your allies hit 8% harder per rank.</li><li><b>Spirit Mend</b> <span class="meta">active · tier 2 · 25 mana, 10 s</span><br>Heals your allies (and you) with spirit light.</li><li><b>Long Call</b> <span class="meta">passive · tier 2 · up to 3 ranks</span><br>Summoned allies stay 25% longer per rank.</li><li><b>Spirit Bear</b> <span class="meta">active · tier 3 · 50 mana, 20 s</span><br>A great spirit warg that tears through the enemy line.</li><li><b>Wild Heart</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>Tougher allies and stronger spirit magic.</li></ul></div><div class="branch"><h4>Necromancy</h4><p class="note">Raise the fallen; bone and curses.</p><ul><li><b>Raise Skeleton</b> <span class="meta">active · tier 1 · 20 mana, 1.5 s</span><br>Raises a skeleton from a fallen enemy nearby. It stays until destroyed.</li><li><b>Bone Army</b> <span class="meta">passive · tier 1 · up to 3 ranks</span><br>One more skeleton per rank.</li><li><b>Grave Strength</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>Your allies have 10% more life per rank.</li><li><b>Bone Spear</b> <span class="meta">active · tier 2 · 20 mana, 2 s</span><br>A spear of bone that passes through a whole line of enemies.</li><li><b>Soul Harvest</b> <span class="meta">passive · tier 2 · up to 3 ranks</span><br>Mana back from every enemy that dies near you.</li><li><b>Corpse Blast</b> <span class="meta">active · tier 3 · 25 mana, 4 s</span><br>Makes a body explode, hurting everything around it.</li><li><b>Bone Mastery</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>Stronger bone magic and harder-hitting dead.</li></ul></div><div class="branch"><h4>Tinkering</h4><p class="note">Clockwork turrets and bombs.</p><ul><li><b>Clockwork Turret</b> <span class="meta">active · tier 1 · 35 mana, 12 s</span><br>Sets down a turret that shoots whatever comes close.</li><li><b>Overclock</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>Turrets shoot 10% faster per rank.</li><li><b>Spare Cogs</b> <span class="meta">passive · tier 1 · up to 2 ranks</span><br>One more turret per rank.</li><li><b>Blast Bomb</b> <span class="meta">active · tier 2 · 25 mana, 4 s</span><br>Throws a bomb that blows up on impact.</li><li><b>Reinforced Plates</b> <span class="meta">passive · tier 2 · up to 3 ranks</span><br>Turrets and allies last longer.</li><li><b>Mortar Barrage</b> <span class="meta">active · tier 3 · 45 mana, 15 s</span><br>Shells rain down on an area.</li><li><b>Master Engineer</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>Better turrets, faster tinkering.</li></ul></div><div class="branch"><h4>Companions</h4><p class="note">Lead the people of Saltmere into battle.</p><ul><li><b>Call the Militia</b> <span class="meta">active · tier 1 · 30 mana, 12 s</span><br>Villagers with spears answer your horn and fight beside you.</li><li><b>Drill</b> <span class="meta">passive · tier 1 · up to 3 ranks</span><br>One more militia fighter per rank.</li><li><b>Inspiring Presence</b> <span class="meta">passive · tier 1 · up to 5 ranks</span><br>Villagers and allies near you hit 8% harder per rank.</li><li><b>Command</b> <span class="meta">active · tier 2 · 25 mana, 14 s</span><br>Your allies fight harder and stand firmer for a while.</li><li><b>Field Medic</b> <span class="meta">passive · tier 2 · up to 3 ranks</span><br>Healing works better; allies are tougher.</li><li><b>Rallying Horn</b> <span class="meta">active · tier 3 · 40 mana, 20 s</span><br>Everyone on your side nearby is healed and back on their feet.</li><li><b>Captain</b> <span class="meta">passive · tier 3 · up to 3 ranks</span><br>Your companions hit harder and stay longer.</li></ul></div></div>
+      </section>
+
+      <section id="village">
+        <h2>The village</h2>
+        <p>Saltmere starts with twelve people: two fishers, two woodcutters, the elder, the cook, the healer, two builders, a farmer with no farm yet, and two looking for work. Everyone has a name, a job, hunger, thirst and health.</p>
+        <h3>Work and priorities</h3>
+        <ul>
+          <li>The village gives out the work by itself: people without a job take whatever needs hands, food first.</li>
+          <li>Every building with workers has a <b>work priority</b>: Paused, Low, Normal or High. When food runs low, food buildings count one step higher.</li>
+          <li><b>Bring a worker here</b> (on a building's card) fetches someone from the least important work. They stay there: <b>Stays at this job</b> on a person's card keeps the village from moving them.</li>
+          <li>Builders fetch materials from the stores and put up whatever you order, the oldest order first.</li>
+        </ul>
+        <h3>Work speed and mood</h3>
+        <p>All work goes at <b>75% to 125%</b> speed, by the village's mood (0 to 100), and a quarter faster again while there are <b>tools</b> in the stores. The mood starts from 45 and moves towards:</p>
+        <ul>
+          <li>+ services (tavern, chapel, bard, inn…) up to +30; + varied food up to +10; + ale or wine at the tavern +6; + warm clothes for everyone +4</li>
+          <li>− 4 for each person without a bed; − 3 for each person hungry or thirsty; − 8 while the village grieves a death</li>
+        </ul>
+        <p>Newcomers settle when there are free beds, the mood is 45 or better, and there's food for everyone. An inn and a scout lodge bring more.</p>
+        <h3>What a building should make, and who makes it</h3>
+        <p>Every building that makes something shows its <b>Expected</b> output on its card, next to what it really <b>made yesterday</b>, for example:</p>
+        <p class="formula">Expected: about 12 fish a day: Bram and Ylva, 1 fish per 1.2 h each at 100% work speed, and 1.4 h to carry each basket to the stores and come back</p>
+        <p>It's worked out like this. Workers really work about <b>9 hours</b> a day (7:00 to 18:00, less meals, drinks and walks):</p>
+        <p class="formula">batches a day = workers × 9 h × work speed ÷ (hours a batch + work speed × walk to the stores ÷ batches a trip)</p>
+        <p>Only fishers, farmers and woodcutters carry what they make to the stores. Fishers and farmers fill a basket of 4 first. Everyone else puts it straight in the stores. When a building makes nothing, the card says why: no workers, paused, waiting for grain, the stores are full, burned by raiders.</p>
+        <h3>Hurt and downed villagers</h3>
+        <p>A villager at zero health is <b>down</b>: you have 30 seconds to reach them and stand by them to help them up (a red arrow points the way). Otherwise they're carried to the healer, badly hurt, for a day. With no food or water for too long, people die.</p>
+      </section>
+
+      <section id="food">
+        <h2>Food and water</h2>
+        <ul>
+          <li>Hunger runs out in 36 hours, thirst in 24. People eat and drink at mealtimes, and whenever they get low.</li>
+          <li>A person uses about 66.7 hunger a day: about <b>1 hot meal</b>, or 1.5 fish. The cook at the Salty Gull turns fish and grain into meals one for one, so cooking makes food go about half as far again.</li>
+          <li>Each person drinks 3 buckets a day. A well holds 40 and refills 2 an hour (48 a day): one well for about 15 people. The water carrier takes the extra to the stores.</li>
+          <li>The <b>Goods and mood</b> window shows the expected food a day against what the village needs, and yesterday's food made and eaten, by building.</li>
+        </ul>
+        <div class="scroll"><table class="narrow"><thead><tr><th>Food</th><th>Fills (hunger)</th><th>Eaten in this order</th><th>A person needs about this many a day</th></tr></thead><tbody>
+<tr><td>Meals</td><td>70</td><td>1</td><td>1</td></tr>
+<tr><td>Smoked fish</td><td>65</td><td>2</td><td>1</td></tr>
+<tr><td>Bread</td><td>60</td><td>3</td><td>1.1</td></tr>
+<tr><td>Meat</td><td>50</td><td>4</td><td>1.3</td></tr>
+<tr><td>Fish</td><td>45</td><td>5</td><td>1.5</td></tr>
+<tr><td>Milk</td><td>30</td><td>6</td><td>2.2</td></tr>
+<tr><td>Fruit</td><td>30</td><td>7</td><td>2.2</td></tr>
+<tr><td>Grain</td><td>35</td><td>8</td><td>1.9</td></tr>
+<tr><td>Honey</td><td>25</td><td>9</td><td>2.7</td></tr>
+</tbody></table></div>
+        <p class="note">Tip: two fishers catch about 12 to 14 fish a day, about what the twelve people you start with eat as hot meals. Build a farm for your farmer early, and a second fishing hut as the village grows.</p>
+      </section>
+
+      <section id="buildings">
+        <h2>Buildings</h2>
+        <p>Every building you can order, what it makes and what it costs. The day's output is for one worker at 100% work speed (a happy village with tools works up to about half as fast again). Buildings with "may stand outside the walls" can go anywhere; everything else must stand inside your walls, and raiders may burn what's outside.</p>
+        <h3 id="b-homes">Homes</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
+<tr><td>Cottage</td><td>A home for four. Without beds, people sleep outside and get sick.</td><td>–<br>4 beds</td><td>–</td><td>20 wood, 4 stone<br><span class="note">6 h to build; from the start</span></td></tr>
+<tr><td>House</td><td>A bigger home: beds for eight.</td><td>–<br>8 beds</td><td>–</td><td>30 wood, 10 planks, 10 stone<br><span class="note">10 h to build; 15 people</span></td></tr>
+</tbody></table></div>
+<h3 id="b-food">Food</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
+<tr><td>Fishing hut</td><td>Two fishers catch fish from the pier. Must stand by the shore.<br><span class="note">by the shore</span></td><td>2 fishers</td><td>1 fish per 1.2 h: up to 7.5 fish (less the walks to the stores: about 7 for one fisher, 12 to 14 for two)</td><td>18 wood<br><span class="note">5 h to build; from the start</span></td></tr>
+<tr><td>Farm field</td><td>Grain for bread and porridge. Two farmers tend it.<br><span class="note">may stand outside the walls</span></td><td>2 farmers</td><td>2 grain per 2 h: up to 9 grain (less the walks to the stores: about 8 for one farmer, 17 for two)</td><td>12 wood<br><span class="note">4 h to build; from the start</span></td></tr>
+<tr><td>Salt pans</td><td>Sea water dries into salt: it keeps fish and meat, and it&#x27;s Saltmere&#x27;s famous trade good. Must stand by the shore.<br><span class="note">may stand outside the walls; by the shore</span></td><td>2 salters</td><td>2 salt per 2 h: about 9 salt</td><td>10 wood, 6 stone<br><span class="note">4 h to build; from the start</span></td></tr>
+<tr><td>Smokehouse</td><td>Salted, smoked fish: better food that keeps, and sells well.</td><td>1 smoker</td><td>3 smoked fish from 2 fish, 1 salt per 1.5 h: about 18 smoked fish</td><td>15 wood, 10 stone<br><span class="note">5 h to build; 15 people</span></td></tr>
+<tr><td>Windmill</td><td>Grinds grain into flour for the bakery.<br><span class="note">may stand outside the walls</span></td><td>1 miller</td><td>3 flour from 3 grain per 1.5 h: about 18 flour</td><td>30 wood, 10 stone<br><span class="note">8 h to build; 15 people</span></td></tr>
+<tr><td>Bakery</td><td>Fresh bread every morning. Good food, and the whole street smells of it.</td><td>1 baker</td><td>3 bread from 2 flour per 1.5 h: about 18 bread</td><td>20 wood, 15 stone<br><span class="note">6 h to build; 15 people</span></td></tr>
+<tr><td>Hunting lodge</td><td>Hunters go out with bows after deer and boar and carry the kill home for the butcher. Can stand outside the walls.<br><span class="note">may stand outside the walls</span></td><td>2 hunters</td><td>2 game per 2.2 h of hunting: about 8.2 game, if deer and boar are about</td><td>18 wood<br><span class="note">5 h to build; 15 people</span></td></tr>
+<tr><td>Butcher</td><td>Turns the hunters&#x27; game into meat, and hides for the tannery.</td><td>1 butcher</td><td>3 meat, 1 hides from 1 game per 1.5 h: about 18 meat, 6 hides</td><td>15 wood, 6 stone<br><span class="note">5 h to build; 15 people</span></td></tr>
+<tr><td>Orchard</td><td>Apple and pear trees: fruit to eat, and for the winery.<br><span class="note">may stand outside the walls</span></td><td>2 farmers</td><td>3 fruit per 3 h: about 9 fruit</td><td>10 wood<br><span class="note">5 h to build; 25 people</span></td></tr>
+<tr><td>Apiary</td><td>Straw beehives. Honey is a treat, and it sells.<br><span class="note">may stand outside the walls</span></td><td>1 beekeeper</td><td>2 honey per 3 h: about 6 honey</td><td>12 wood<br><span class="note">3 h to build; 25 people</span></td></tr>
+<tr><td>Pasture and barn</td><td>Sheep and goats: wool for the weaver and milk to drink.<br><span class="note">may stand outside the walls</span></td><td>2 herders</td><td>2 wool, 2 milk per 3 h: about 6 wool, 6 milk</td><td>30 wood, 6 planks<br><span class="note">8 h to build; 25 people</span></td></tr>
+<tr><td>Brewery</td><td>Ale for the tavern: evenings are merrier when there&#x27;s ale.</td><td>1 brewer</td><td>3 ale from 2 grain per 2 h: about 13.5 ale</td><td>25 wood, 10 stone, 6 planks<br><span class="note">8 h to build; 25 people</span></td></tr>
+<tr><td>Winery</td><td>Fruit wine. Fine for feasts, finer for selling.</td><td>1 vintner</td><td>2 wine from 3 fruit per 2.5 h: about 7.2 wine</td><td>20 wood, 15 stone, 10 planks<br><span class="note">8 h to build; 40 people</span></td></tr>
+</tbody></table></div>
+<h3 id="b-materials">Materials</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
+<tr><td>Woodcutter&#x27;s lodge</td><td>Two woodcutters fell trees in the forest outside the walls. Wolves like to wait there.<br><span class="note">may stand outside the walls</span></td><td>2 woodcutters</td><td>3 wood per 1.6 h: up to 16.9 wood (less the walks: about 15 for one woodcutter)</td><td>14 wood, 2 stone<br><span class="note">5 h to build; from the start</span></td></tr>
+<tr><td>Quarry</td><td>Cuts stone. Can stand outside the walls.<br><span class="note">may stand outside the walls</span></td><td>2 quarriers</td><td>3 stone per 2 h: about 13.5 stone</td><td>15 wood<br><span class="note">5 h to build; from the start</span></td></tr>
+<tr><td>Mine</td><td>Iron ore for the smithy. Can stand outside the walls.<br><span class="note">may stand outside the walls</span></td><td>2 miners</td><td>2 ore per 2.5 h: about 7.2 ore</td><td>25 wood, 10 stone<br><span class="note">8 h to build; 15 people</span></td></tr>
+<tr><td>Clay pit</td><td>Clay for the potter&#x27;s bricks and pots.<br><span class="note">may stand outside the walls</span></td><td>1 clay digger</td><td>3 clay per 2 h: about 13.5 clay</td><td>8 wood<br><span class="note">3 h to build; 15 people</span></td></tr>
+<tr><td>Charcoal kiln</td><td>Slow-burns wood into charcoal for hot forges.<br><span class="note">may stand outside the walls</span></td><td>1 charcoal burner</td><td>2 charcoal from 3 wood per 2 h: about 9 charcoal</td><td>12 stone<br><span class="note">3 h to build; 15 people</span></td></tr>
+<tr><td>Forester&#x27;s hut</td><td>Plants new trees where the woodcutters have been, so the forest never runs out.<br><span class="note">may stand outside the walls</span></td><td>1 forester</td><td>plants a tree every 3 h</td><td>12 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
+<tr><td>Herbalist&#x27;s hut</td><td>Grows and gathers herbs: the healer and the barber need them.<br><span class="note">may stand outside the walls</span></td><td>1 herbalist</td><td>2 herbs per 2.5 h: about 7.2 herbs</td><td>14 wood<br><span class="note">4 h to build; 15 people</span></td></tr>
+<tr><td>Trapper&#x27;s cabin</td><td>Traps in the forest: furs to sell, and a little game. Can stand outside the walls.<br><span class="note">may stand outside the walls</span></td><td>1 trapper</td><td>1 furs, 1 game per 3 h: about 3 furs, 3 game</td><td>12 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
+</tbody></table></div>
+<h3 id="b-crafts">Crafts</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
+<tr><td>Sawmill</td><td>Saws logs into planks, for bigger buildings, boats and tools.</td><td>1 sawyer</td><td>3 planks from 2 wood per 1.5 h: about 18 planks</td><td>20 wood, 6 stone<br><span class="note">6 h to build; from the start</span></td></tr>
+<tr><td>Carpenter</td><td>Wooden tools, handles and carts. Tools in the stores make every job faster.</td><td>1 carpenter</td><td>1 tools from 2 planks per 3 h: about 3 tools</td><td>20 wood, 10 planks<br><span class="note">6 h to build; 25 people</span></td></tr>
+<tr><td>Smithy</td><td>Iron tools (every job goes faster with tools) and weapons for the guards.</td><td>1 smith</td><td>2 tools from 2 ore, 1 charcoal per 2 h: about 9 tools<br>or 1 weapons from 2 ore, 1 charcoal per 2 h: about 4.5 weapons</td><td>20 wood, 20 stone<br><span class="note">8 h to build; 15 people</span></td></tr>
+<tr><td>Armourer</td><td>Armour: guards and villagers take less harm in raids.</td><td>1 armourer</td><td>1 armour from 2 ore, 1 charcoal, 1 leather per 3 h: about 3 armour</td><td>20 stone, 10 planks, 10 bricks<br><span class="note">8 h to build; 40 people</span></td></tr>
+<tr><td>Bowyer</td><td>Bows and arrows: the guards in the watchtowers shoot further.</td><td>1 bowyer</td><td>1 bows from 2 wood per 2.5 h: about 3.6 bows</td><td>18 wood, 6 planks<br><span class="note">5 h to build; 25 people</span></td></tr>
+<tr><td>Tannery</td><td>Turns hides into leather. It smells: build it away from homes.</td><td>1 tanner</td><td>2 leather from 2 hides per 2 h: about 9 leather</td><td>15 wood, 6 stone<br><span class="note">5 h to build; 25 people</span></td></tr>
+<tr><td>Weaver</td><td>Weaves wool into cloth, rope and sails.</td><td>1 weaver</td><td>2 cloth from 2 wool per 2 h: about 9 cloth</td><td>18 wood, 6 planks<br><span class="note">5 h to build; 25 people</span></td></tr>
+<tr><td>Tailor</td><td>Warm clothes: people are happier, and they&#x27;ll need them in winter.</td><td>1 tailor</td><td>2 clothes from 2 cloth per 2.5 h: about 7.2 clothes</td><td>15 wood, 6 planks<br><span class="note">5 h to build; 25 people</span></td></tr>
+<tr><td>Potter and brickworks</td><td>Bricks for strong buildings, and pots to sell.</td><td>1 potter</td><td>3 bricks from 3 clay per 2 h: about 13.5 bricks<br>or 2 pottery from 2 clay per 2 h: about 9 pottery</td><td>15 wood, 10 stone<br><span class="note">6 h to build; 15 people</span></td></tr>
+<tr><td>Shipwright</td><td>Builds fishing boats: each boat (up to three) makes the fishers catch half as much again. By the shore.<br><span class="note">by the shore</span></td><td>2 shipwrights</td><td>1 boats from 6 planks, 2 cloth per 8 h: about 1.1 boats</td><td>30 wood, 20 planks<br><span class="note">10 h to build; 40 people</span></td></tr>
+</tbody></table></div>
+<h3 id="b-services">Services</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
+<tr><td>Inn</td><td>Travellers stay and pay; some of them like it here and stay for good.<br><span class="note">boosts: newcomers +1, gold day +4; mood +4</span></td><td>1 innkeeper<br>6 beds</td><td>–</td><td>35 wood, 10 stone, 10 planks<br><span class="note">12 h to build; 15 people</span></td></tr>
+<tr><td>Barber-surgeon</td><td>Haircuts, shaves and small cuts mended: the wounded get well faster (with herbs).<br><span class="note">boosts: healing +50%; mood +2</span></td><td>1 barber-surgeon</td><td>–</td><td>12 wood, 4 stone<br><span class="note">4 h to build; 15 people</span></td></tr>
+<tr><td>Bard&#x27;s hall</td><td>Songs, stories and festivals. A big lift for everyone.<br><span class="note">mood +8; one only</span></td><td>1 bard</td><td>–</td><td>30 wood, 20 planks, 10 bricks<br><span class="note">14 h to build; 40 people</span></td></tr>
+<tr><td>Shrine</td><td>A quiet place for a candle and a wish.<br><span class="note">mood +2</span></td><td>–</td><td>–</td><td>8 stone<br><span class="note">2 h to build; from the start</span></td></tr>
+<tr><td>Chapel</td><td>Blessings, weddings and a bell to ring. Comfort for the village.<br><span class="note">mood +5; one only</span></td><td>1 priest</td><td>–</td><td>20 wood, 30 stone<br><span class="note">12 h to build; 25 people</span></td></tr>
+<tr><td>Bathhouse</td><td>Hot water and steam (it burns a little wood). Happier, healthier people.<br><span class="note">mood +6</span></td><td>1 bath attendant</td><td>burns 1 wood per 2 h (about 4.5 wood)</td><td>25 stone, 15 bricks, 10 planks<br><span class="note">12 h to build; 40 people</span></td></tr>
+<tr><td>Graveyard</td><td>A garden of rest where the village remembers its dead.<br><span class="note">mood +2</span></td><td>–</td><td>–</td><td>10 stone, 6 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
+<tr><td>Infirmary</td><td>Many beds for the wounded: they get well twice as fast.<br><span class="note">boosts: healing +100%</span></td><td>1 healer</td><td>–</td><td>20 stone, 15 planks<br><span class="note">10 h to build; 40 people</span></td></tr>
+<tr><td>Dovecote</td><td>Doves bring news and requests from other villages: send what they ask for and they pay well.<br><span class="note">mood +1</span></td><td>1 dovekeeper</td><td>a dove with a request every 6 h</td><td>12 wood, 4 stone<br><span class="note">4 h to build; 15 people</span></td></tr>
+<tr><td>Mapmaker&#x27;s house</td><td>Draws maps from travellers&#x27; tales. Maps sell for a lot.</td><td>1 mapmaker</td><td>1 maps per 4 h: about 2.2 maps</td><td>15 wood, 4 planks<br><span class="note">5 h to build; 15 people</span></td></tr>
+<tr><td>Library</td><td>Old books and new ideas. You learn a tenth faster while a scholar works here.<br><span class="note">boosts: xp +10%; mood +3; one only</span></td><td>1 scholar</td><td>–</td><td>20 bricks, 15 planks<br><span class="note">12 h to build; 40 people</span></td></tr>
+<tr><td>Lighthouse</td><td>Guides the boats home (more fish) and spots raiders early. By the shore.<br><span class="note">boosts: fishing +25%, warning +1; mood +1; by the shore; one only</span></td><td>1 lighthouse keeper</td><td>–</td><td>30 stone, 10 wood<br><span class="note">10 h to build; 25 people</span></td></tr>
+</tbody></table></div>
+<h3 id="b-defence">Defence</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
+<tr><td>Watchtower</td><td>A guard shoots at monsters from the top and rings the bell when raiders come.<br><span class="note">may stand outside the walls</span></td><td>1 guard</td><td>–</td><td>24 wood, 4 stone<br><span class="note">6 h to build; from the start</span></td></tr>
+<tr><td>Scout lodge</td><td>Scouts warn of raids earlier and sometimes find lost folk who want a home.<br><span class="note">boosts: warning +1, rescue +20%; may stand outside the walls</span></td><td>1 scout</td><td>–</td><td>14 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
+<tr><td>Armoury</td><td>Donate gear here (Gear screen). Guards and soldiers come and take whatever beats what they wear.<br><span class="note">one only</span></td><td>–</td><td>–</td><td>20 wood, 12 stone<br><span class="note">6 h to build; from the start</span></td></tr>
+<tr><td>Barracks</td><td>Trains the militia: the guards hit a quarter harder.<br><span class="note">boosts: guard damage +25%</span></td><td>2 soldiers<br>4 beds</td><td>–</td><td>30 wood, 15 stone, 10 planks<br><span class="note">10 h to build; 25 people</span></td></tr>
+<tr><td>Archery range</td><td>Practice makes the tower guards shoot a quarter further.<br><span class="note">boosts: guard range +25%</span></td><td>1 trainer</td><td>–</td><td>15 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
+<tr><td>Training yard</td><td>Wooden dummies and sparring. The guards get better; the youngsters love watching.<br><span class="note">boosts: guard damage +10%; mood +2</span></td><td>1 trainer</td><td>–</td><td>15 wood, 6 planks<br><span class="note">5 h to build; 40 people</span></td></tr>
+<tr><td>Stables</td><td>Oxen and carts: builders carry twice as much.<br><span class="note">boosts: hauling +100%</span></td><td>1 stablehand</td><td>–</td><td>25 wood, 8 planks<br><span class="note">8 h to build; 25 people</span></td></tr>
+<tr><td>Kennel</td><td>Two village dogs patrol the streets. Everyone feels safer (and gets licked).<br><span class="note">mood +2</span></td><td>1 dog handler</td><td>–</td><td>15 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
+</tbody></table></div>
+<h3 id="b-village">Village</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
+<tr><td>Well</td><td>Fresh water: holds 40 buckets and fills up again by itself (2 an hour). Its water carrier takes the extra to the stores. People drink three times a day: one well for about 15 people.</td><td>1 water carrier</td><td>fills 48 buckets a day by itself</td><td>6 wood, 10 stone<br><span class="note">4 h to build; from the start</span></td></tr>
+<tr><td>Storehouse</td><td>Keeps food, wood and stone. People fetch their meals here.</td><td>–<br>stores 200</td><td>–</td><td>30 wood, 6 stone<br><span class="note">8 h to build; from the start</span></td></tr>
+<tr><td>Gate</td><td>A way through your walls. Put it in a gap you leave in a wall.</td><td>–</td><td>–</td><td>24 wood, 4 stone<br><span class="note">4 h to build; from the start</span></td></tr>
+<tr><td>Lantern post</td><td>Light at night. People feel safer near lanterns.</td><td>–</td><td>–</td><td>3 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Warehouse</td><td>Room for a lot of goods. Every chain needs somewhere to put things.</td><td>–<br>stores 500</td><td>–</td><td>40 wood, 10 planks, 10 stone<br><span class="note">12 h to build; 15 people</span></td></tr>
+<tr><td>Notice board</td><td>Where the village pins up news and requests. People like to know what&#x27;s going on.<br><span class="note">mood +1</span></td><td>–</td><td>–</td><td>4 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Market square</td><td>Traders sell what the village has too much of (everything above 12 of a kind) for gold.<br><span class="note">mood +2</span></td><td>2 traders</td><td>up to 6 goods per 2 h: about 27 goods sold</td><td>25 wood, 5 stone<br><span class="note">6 h to build; from the start</span></td></tr>
+<tr><td>Trading post</td><td>Caravans from other lands stop here: the market gets a quarter more for everything.<br><span class="note">boosts: prices +25%; one only</span></td><td>1 trader</td><td>–</td><td>20 planks, 20 stone, 30 gold<br><span class="note">12 h to build; 40 people</span></td></tr>
+</tbody></table></div>
+      </section>
+
+      <section id="trade">
+        <h2>Trade and gold</h2>
+        <p>The <b>market</b>'s traders sell everything above 12 of a kind, 6 goods per trip, at these prices (a trading post adds a quarter). <b>The Gilded Wheel's caravan</b> comes from Askeby every two to four days and stops by the north gate for most of a day. It sells goods the village can't make yet, pays half again what the market does, and sells some gear.</p>
+        <div class="two"><div class="scroll"><table class="narrow"><thead><tr><th>Good</th><th>Gold each</th></tr></thead><tbody>
+<tr><td>Armour</td><td>14</td></tr>
+<tr><td>Maps</td><td>12</td></tr>
+<tr><td>Weapons</td><td>9</td></tr>
+<tr><td>Bows</td><td>7</td></tr>
+<tr><td>Clothes</td><td>6</td></tr>
+<tr><td>Tools</td><td>6</td></tr>
+<tr><td>Wine</td><td>5</td></tr>
+<tr><td>Furs</td><td>5</td></tr>
+<tr><td>Honey</td><td>4</td></tr>
+<tr><td>Cloth</td><td>4</td></tr>
+<tr><td>Leather</td><td>4</td></tr>
+<tr><td>Salt</td><td>3</td></tr>
+<tr><td>Smoked fish</td><td>3</td></tr>
+</tbody></table></div><div class="scroll"><table class="narrow"><thead><tr><th>Good</th><th>Gold each</th></tr></thead><tbody>
+<tr><td>Ale</td><td>3</td></tr>
+<tr><td>Pottery</td><td>3</td></tr>
+<tr><td>Bread</td><td>2</td></tr>
+<tr><td>Meat</td><td>2</td></tr>
+<tr><td>Wool</td><td>2</td></tr>
+<tr><td>Herbs</td><td>2</td></tr>
+<tr><td>Hides</td><td>2</td></tr>
+<tr><td>Planks</td><td>1</td></tr>
+<tr><td>Bricks</td><td>1</td></tr>
+<tr><td>Fish</td><td>1</td></tr>
+<tr><td>Fruit</td><td>1</td></tr>
+<tr><td>Milk</td><td>1</td></tr>
+</tbody></table></div></div>
+      </section>
+
+      <section id="gear">
+        <h2>Gear</h2>
+        <p>Monsters, camps, chests and landmarks drop gear. Wear it, sell it, salvage it, or <b>donate it to the armoury</b>: guards and soldiers come and take whatever beats what they wear.</p>
+        <h3>Rarities</h3><p>Common · Magic · Rare · Legendary: the rarer, the more bonuses. Bonuses grow with the level of the monster that dropped it.</p><h3>Kinds of gear</h3><div class="scroll"><table class=""><thead><tr><th>Item</th><th>Slot</th><th>Base stats</th><th>Who can use it</th></tr></thead><tbody>
+<tr><td>Sword</td><td>Weapon</td><td>attack 10</td><td>Warrior</td></tr>
+<tr><td>Axe</td><td>Weapon</td><td>attack 12, crit 2%</td><td>Warrior</td></tr>
+<tr><td>Greatsword</td><td>Weapon</td><td>attack 16</td><td>Warrior</td></tr>
+<tr><td>Great Axe</td><td>Weapon</td><td>attack 17, crit 2%</td><td>Warrior</td></tr>
+<tr><td>Dagger</td><td>Weapon</td><td>attack 7, crit 4%</td><td>anyone</td></tr>
+<tr><td>Staff</td><td>Weapon</td><td>attack 12, regen 6%</td><td>Wizard, Summoner</td></tr>
+<tr><td>Wand</td><td>Weapon</td><td>attack 9, cdr 2%</td><td>Wizard, Summoner</td></tr>
+<tr><td>Round Shield</td><td>Off hand</td><td>armour 14</td><td>Warrior</td></tr>
+<tr><td>Kite Shield</td><td>Off hand</td><td>armour 18</td><td>Warrior</td></tr>
+<tr><td>Spiked Shield</td><td>Off hand</td><td>armour 12, thorns 8%</td><td>Warrior</td></tr>
+<tr><td>Tower Shield</td><td>Off hand</td><td>armour 22</td><td>Warrior</td></tr>
+<tr><td>Tome</td><td>Off hand</td><td>regen 10%</td><td>Wizard, Summoner</td></tr>
+<tr><td>Grimoire</td><td>Off hand</td><td>minion dmg 8%</td><td>Summoner</td></tr>
+<tr><td>Helm</td><td>Head</td><td>armour 10</td><td>anyone</td></tr>
+<tr><td>Hood</td><td>Head</td><td>armour 5, regen 5%</td><td>anyone</td></tr>
+<tr><td>Mail Coat</td><td>Body</td><td>armour 20</td><td>anyone</td></tr>
+<tr><td>Leather Tunic</td><td>Body</td><td>armour 12, speed 3%</td><td>anyone</td></tr>
+<tr><td>Robe</td><td>Body</td><td>armour 6, regen 8%</td><td>anyone</td></tr>
+<tr><td>Gloves</td><td>Hands</td><td>armour 5</td><td>anyone</td></tr>
+<tr><td>Gauntlets</td><td>Hands</td><td>armour 8</td><td>anyone</td></tr>
+<tr><td>Boots</td><td>Feet</td><td>armour 5, speed 2%</td><td>anyone</td></tr>
+<tr><td>Greaves</td><td>Feet</td><td>armour 8</td><td>anyone</td></tr>
+<tr><td>Ring</td><td>Ring</td><td>–</td><td>anyone</td></tr>
+<tr><td>Amulet</td><td>Amulet</td><td>–</td><td>anyone</td></tr>
+</tbody></table></div><h3>Bonuses (magic and rare items)</h3><div class="scroll"><table class="narrow"><thead><tr><th>Prefix</th><th>Bonus</th><th>Range</th><th>Rolls for</th></tr></thead><tbody>
+<tr><td>Sharp</td><td>dmg</td><td>4–8%</td><td>anyone</td></tr>
+<tr><td>Sturdy</td><td>life</td><td>10–25</td><td>anyone</td></tr>
+<tr><td>Hardened</td><td>armour</td><td>6–12</td><td>anyone</td></tr>
+<tr><td>Flowing</td><td>regen</td><td>6–12%</td><td>anyone</td></tr>
+<tr><td>Vampiric</td><td>lifesteal</td><td>1–2.5%</td><td>Warrior</td></tr>
+<tr><td>Keen</td><td>crit</td><td>2–4%</td><td>anyone</td></tr>
+<tr><td>Swift</td><td>cdr</td><td>2–4%</td><td>anyone</td></tr>
+<tr><td>Fleet</td><td>speed</td><td>3–6%</td><td>anyone</td></tr>
+<tr><td>Thorned</td><td>thorns</td><td>5–10%</td><td>Warrior</td></tr>
+<tr><td>Burning</td><td>fire</td><td>6–12%</td><td>Wizard</td></tr>
+<tr><td>Frozen</td><td>frost</td><td>6–12%</td><td>Wizard</td></tr>
+<tr><td>Crackling</td><td>storm</td><td>6–12%</td><td>Wizard</td></tr>
+<tr><td>Haunted</td><td>spirit</td><td>6–12%</td><td>Summoner</td></tr>
+<tr><td>Bone</td><td>bone</td><td>6–12%</td><td>Summoner</td></tr>
+<tr><td>Commanding</td><td>minion dmg</td><td>6–12%</td><td>Summoner</td></tr>
+<tr><td>Guarding</td><td>minion hp</td><td>6–12%</td><td>Summoner</td></tr>
+<tr><td>Wide</td><td>radius</td><td>4–8%</td><td>Wizard, Summoner, Warrior</td></tr>
+<tr><td>Soul-eating</td><td>mana kill</td><td>1–3</td><td>anyone</td></tr>
+<tr><td>Blessed</td><td>heal power</td><td>8–15%</td><td>anyone</td></tr>
+</tbody></table></div><h3>Legendaries</h3><div class="scroll"><table class=""><thead><tr><th>Name</th><th>Item</th><th>Power</th></tr></thead><tbody>
+<tr><td>Grubnak&#x27;s Cleaver</td><td>Great Axe</td><td>Every kill heals you</td></tr>
+<tr><td>The Salt Wall</td><td>Tower Shield</td><td>Hurt back half the damage you take</td></tr>
+<tr><td>Emberheart</td><td>Staff</td><td>Fire burns far longer</td></tr>
+<tr><td>Winter&#x27;s Grip</td><td>Wand</td><td>Frost slows to a crawl and shatters</td></tr>
+<tr><td>Stormcaller&#x27;s Ring</td><td>Ring</td><td>Lightning jumps three more times</td></tr>
+<tr><td>Crown of the Pack</td><td>Hood</td><td>Two more wolves and skeletons</td></tr>
+<tr><td>Captain&#x27;s Horn</td><td>Amulet</td><td>Allies near you hit far harder</td></tr>
+<tr><td>Crown of the Barrow King</td><td>Helm</td><td>The dead serve you better</td></tr>
+<tr><td>Boots of the Tide</td><td>Boots</td><td>Fast as the turning tide</td></tr>
+</tbody></table></div>
+      </section>
+
+      <section id="danger">
+        <h2>Raids and monsters</h2>
+        <h3>Goblin camps</h3>
+        <p>Up to four goblin camps grow out on the island, a stage about every day. Kill a camp's goblins and trash it (the action button) to get its stolen goods, gold and gear; a new camp turns up somewhere else a day or two later.</p>
+        <div class="scroll"><table class="narrow"><thead><tr><th>Stage</th><th>What's there</th></tr></thead><tbody>
+<tr><td>Scout camp</td><td>2 goblins, two tents</td></tr>
+<tr><td>Goblin camp</td><td>3 goblins and a totem</td></tr>
+<tr><td>Fortified camp</td><td>5 goblins behind stakes</td></tr>
+<tr><td>War camp</td><td>6 goblins under banners</td></tr>
+<tr><td>Warband</td><td>8 goblins and war drums: it marches on Saltmere the next night</td></tr>
+</tbody></table></div>
+        <p>A warband attacks at night. War drums sound about 19:00 (scouts or a lighthouse warn you earlier), and the raid comes at 21:30. Raids grow bigger every day. Watchtowers with guards, palisade walls, gates, barracks and an archery range all help.</p>
+        <h3>Creatures</h3>
+        <div class="scroll"><table class=""><thead><tr><th>Creature</th><th>Kind</th><th>Life</th><th>Hits for</th><th>Experience</th><th>Gold</th></tr></thead><tbody>
+<tr><td>Wolf</td><td>melee</td><td>40</td><td>6</td><td>8</td><td>0–1</td></tr>
+<tr><td>Deer</td><td>game (flees)</td><td>30</td><td>–</td><td>4</td><td>–</td></tr>
+<tr><td>Stag</td><td>game (flees)</td><td>45</td><td>6</td><td>6</td><td>–</td></tr>
+<tr><td>Wild boar</td><td>game (fights back when hurt)</td><td>60</td><td>8</td><td>10</td><td>–</td></tr>
+<tr><td>Fox</td><td>game (flees)</td><td>22</td><td>–</td><td>3</td><td>–</td></tr>
+<tr><td>Skeleton</td><td>melee</td><td>55</td><td>8</td><td>14</td><td>1–4</td></tr>
+<tr><td>Skeleton warrior</td><td>melee</td><td>115</td><td>12</td><td>26</td><td>2–8</td></tr>
+<tr><td>Skeleton mage</td><td>ranged</td><td>45</td><td>9</td><td>18</td><td>2–6</td></tr>
+<tr><td>Goblin</td><td>melee</td><td>45</td><td>7</td><td>10</td><td>2–6</td></tr>
+<tr><td>Goblin archer</td><td>ranged</td><td>35</td><td>6</td><td>12</td><td>3–7</td></tr>
+<tr><td>Goblin brute</td><td>melee</td><td>160</td><td>12</td><td>35</td><td>6–14</td></tr>
+</tbody></table></div>
+        <div class="spoiler" id="sp5">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp5-body">Show spoiler: the bosses: their names and how strong they are</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp5-w">
+    <p id="sp5-w"><b>Spoiler warning.</b> This gives away the bosses: their names and how strong they are. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp5-body" hidden>
+<div class="scroll"><table class=""><thead><tr><th>Creature</th><th>Kind</th><th>Life</th><th>Hits for</th><th>Experience</th><th>Gold</th></tr></thead><tbody>
+<tr><td>Morvane, the Hollow King</td><td>ranged</td><td>1500</td><td>30</td><td>600</td><td>150–220</td></tr>
+<tr><td>The Barrow King</td><td>melee</td><td>680</td><td>22</td><td>220</td><td>60–90</td></tr>
+<tr><td>Goblin chief Grubnak</td><td>melee</td><td>420</td><td>18</td><td>120</td><td>50–70</td></tr>
+</tbody></table></div>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
+      </section>
+
+      <section id="explore">
+        <h2>Exploring</h2>
+        <ul>
+          <li><b>The Old Barrow</b>, a burial mound by the road west of the crossroads: a crypt full of risen skeletons, with its king and his treasure at the far end. Once he's beaten, the dead rest for three days.</li>
+          <li><b>Landmarks</b> to find, most with something to search once: a ruined watchtower, a hunter's lean-to and the Fallen Giant in the Old Forest; a shipwreck on the eastern beach and an old lighthouse on the western headland; a ring of stones and an abandoned farmstead in the Green Hills; the witch's hut in Mirefen; the Great Oak and elven ruins round a moonwell in Elderwood; waystones and shrines along the roads.</li>
+          <li><b>The island's towns</b> and the other peoples' homes are marked in the world and on the map. Their people and quests are coming in later versions.</li>
+          <li><b>Hunting</b>: deer and stags bolt, boars fight back when hurt. Their kills give hide and meat.</li>
+        </ul>
+      </section>
+
+      <section id="island">
+        <h2>The island of Caldra</h2>
+        <p>An island kingdom ringed by open sea, where a dead king's crown is fought over, old curses rot the land, and a fisherman has just pulled a stranger out of his nets. It takes about 69 minutes to walk from Hornvik in the west to Stenhamn in the east.</p>
+        <div class="scroll"><table class=""><thead><tr><th>Land</th><th>Where</th><th>Landscape</th><th>People</th><th>Danger</th></tr></thead><tbody>
+<tr><td>Saltmere coast and the Old Forest</td><td>south</td><td>pine and oak woods down to sandy shores</td><td>fisherfolk</td><td>goblins, wolves, the barrow dead</td></tr>
+<tr><td>The Green Hills</td><td>east of Saltmere</td><td>rolling meadows, hedges, lone trees, boulders</td><td>halflings, farmers</td><td>rat swarms, goblin raiders, boars</td></tr>
+<tr><td>The Crownlands</td><td>east coast</td><td>farmland and hedgerows round the capital</td><td>humans</td><td>bandits, deserters</td></tr>
+<tr><td>Mirefen</td><td>west of Saltmere</td><td>olive bog, peat pools, dead trees, reeds, mist</td><td>bog trolls, some friendly</td><td>troll warbands, leeches, hags</td></tr>
+<tr><td>The Greyfells</td><td>far west</td><td>windswept heath and high moor, scattered pines</td><td>hunters, shepherds</td><td>wolves, wargs, werewolves</td></tr>
+<tr><td>Elderwood</td><td>middle north</td><td>deep old forest with glowing moonwells</td><td>elves</td><td>corrupted treants, spiders, wisps</td></tr>
+<tr><td>The Barrow Downs</td><td>north-west</td><td>grey moor, burial mounds, dead trees</td><td>none living</td><td>skeletons, wights</td></tr>
+<tr><td>The Lindholm Lakes</td><td>north</td><td>a great lake and birch woods</td><td>humans, mages</td><td>drowners, lake spirits</td></tr>
+<tr><td>The Northmarch</td><td>north of Elderwood</td><td>dark pine forests, the Duke's lands</td><td>soldiers, loggers</td><td>the Duke's patrols, ravens</td></tr>
+<tr><td>Ironpeak</td><td>north-east</td><td>grey crags, stone spires, mines</td><td>dwarves</td><td>kobolds, golems, cave trolls</td></tr>
+<tr><td>The Ember Steppes</td><td>east, beyond the Crownlands</td><td>dry orange grass, ash, wide open sky</td><td>orc clans</td><td>orc raiders, war boars, fire spirits</td></tr>
+<tr><td>The Dragonspine</td><td>far north</td><td>snowy spires and old ruins</td><td>none</td><td>drakes, a pale dragon</td></tr>
+</tbody></table></div>
+      </section>
+
+      <section id="map">
+        <h2>Map</h2>
+        <p>The island as it stands in the game today. Tap a mark to see who holds it.</p>
+        <div class="chart" id="chart"><img src="/img/saltmere-caldra-map.webp" alt="Map of Caldra: the island's lands in colour, roads in brown, the Lindholm lake in the north" width="680" height="460"></div>
+        <div class="legend"><span>● town</span><span>■ city</span><span>◆ another people's home</span><span>▲ place of power or ruin</span><span>gold ● the capital</span></div>
+        <div class="placecard" aria-live="polite"><div class="k" id="pc-kind">The capital</div><div class="n" id="pc-name">Stenhamn</div><div id="pc-text">Queen Isolde Varr. The harbour, the palace, and the Gilded Wheel's guild hall.</div></div>
+      </section>
+
+      <section id="people">
+        <h2>Rulers and peoples</h2>
+        <h3>The House of Varr</h3>
+        <ul>
+          <li><b>King Aldric Varr</b> drowned a year ago when his barge sank on a calm lake. No one believes it was an accident.</li>
+          <li><b>Queen Isolde Varr</b>, 22, his daughter: clever and stubborn, untested, crowned in a hurry.</li>
+          <li><b>Duke Corvin Varr</b>, Aldric's younger brother, beloved by the army, and sure the crown should be his.</li>
+          <li><b>Rafe, "the Magpie"</b>, who leads the Velvet Hand thieves in Hornvik.</li>
+          <li><b>Lady Brenna Varr</b>, Corvin's daughter.</li>
+        </ul>
+        <h3>The other peoples</h3>
+        <ul>
+          <li><b>Moonmother Sylwen</b> rules the elves of Lirael, whose borders are closed to humans since soldiers burned the eastern Elderwood sixty years ago.</li>
+          <li><b>High Thane Brakka Stonehand</b> rules the dwarves of Durnhold, in the mountain.</li>
+          <li><b>Khan Varrok Ashmane</b> leads the orc clans of Ashkar. His father Torgal was murdered at the Ember Pass, and the orcs blame the dwarves.</li>
+          <li><b>Burrowmother Tansy Applegate</b> leads the halflings of Hollowbrook, the island's breadbasket.</li>
+          <li><b>Chief Grumm Mossback</b> leads the bog trolls of Gnarlroot, in Mirefen.</li>
+        </ul>
+        <h3>Saltmere's own</h3>
+        <p><b>Bram</b> the fisherman found you. <b>Elder Maren</b> runs the village. <b>Tomas</b> is the woodcutter you escorted. <b>Hedda</b> cooks at the Salty Gull. <b>Signe</b> is the healer.</p>
+        <div class="spoiler" id="sp2">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp2-body">Show spoiler: the rulers&#x27; secrets: who killed the king, who is related to whom, and who serves the villain</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp2-w">
+    <p id="sp2-w"><b>Spoiler warning.</b> This gives away the rulers&#x27; secrets: who killed the king, who is related to whom, and who serves the villain. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp2-body" hidden>
+
+    <ul>
+      <li><b>Duke Corvin</b> arranged his brother's drowning with a curse bought from <b>Veyra</b>, who promised him the crown. He does not know what she wants in return.</li>
+      <li><b>Rafe "the Magpie"</b> is King Aldric's illegitimate son, Isolde's half-brother, and secretly her spymaster.</li>
+      <li><b>Lady Brenna Varr</b>, Corvin's daughter, loves her cousin Isolde: she is the key to ending the crown war without blood.</li>
+      <li><b>Veyra the Unmade</b>, once High Warden: her daughter Liesl died of the grey plague, and Veyra opened the Hollow to bring her back. She is not cruel for its own sake. She is grieving, and willing to let the world rot to get her child back.</li>
+      <li><b>Edric Thorne</b> left the Wardens years before they fell and founded the Grey Hounds. He knows who you are.</li>
+      <li><b>Elder Maren</b>'s husband was a Warden. She recognises the order's mark on your arm and keeps quiet to protect you.</li>
+      <li><b>Caelith</b>, Moonmother Sylwen's brother, lost his wife when human soldiers burned the eastern Elderwood sixty years ago. Now he serves Veyra and spreads the Withering.</li>
+      <li><b>High Thane Brakka</b>'s grandfather Odvar broke an oath to the Wardens and opened a vein that touched the Hollow.</li>
+      <li><b>Khan Torgal</b>, Varrok's father, was murdered at the Ember Pass. The orcs blame the dwarves; in truth Duke Corvin's men did it. Varrok's sister <b>Shara</b>, a shaman, doubts the story.</li>
+      <li><b>Burrowmother Tansy</b> bargained with the Mire Hag to save a famine harvest. The price is coming due.</li>
+      <li><b>Signe</b>, Saltmere's healer, was once a novice of the Lantern Order, and left it.</li>
+      <li>A faction inside <b>the Azure Conclave</b> secretly helps Veyra.</li>
+    </ul>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
+      </section>
+
+      <section id="guilds">
+        <h2>Guilds</h2>
+        <div class="scroll"><table class=""><thead><tr><th>Guild</th><th>Seat</th><th>Leader</th><th>What they do</th><th>Want</th><th>At odds with</th></tr></thead><tbody>
+<tr><td>The Gilded Wheel <span class='note'>merchants</span></td><td>Stenhamn</td><td>Ottoline Vance</td><td>caravans, trade, loans</td><td>open roads, low tariffs, a trading post in every village</td><td>the dwarves (tariffs), the Velvet Hand; lends to both sides of the crown war</td></tr>
+<tr><td>The Azure Conclave <span class='note'>mages</span></td><td>the Spire, Lindholm</td><td>Elias Wren</td><td>magic and scholarship</td><td>to study the Hollow "safely"</td><td>the Lantern Order</td></tr>
+<tr><td>The Iron Oath <span class='note'>knights</span></td><td>Ravnsund</td><td>Hilde Brannock</td><td>soldiers for hire, the realm's best fighters</td><td>honour, and pay</td><td>itself: sworn to the Duke, loyal at heart to the Queen</td></tr>
+<tr><td>The Order of the Lantern <span class='note'>priests, healers</span></td><td>Lantern Abbey</td><td>High Lantern Maelis</td><td>healing, burying the dead, fighting undead</td><td>every curse burned, and the Conclave with it</td><td>the Conclave, necromancers</td></tr>
+<tr><td>The Grey Hounds <span class='note'>monster hunters</span></td><td>Wolfscar</td><td>Edric Thorne</td><td>bounties and contracts</td><td>coin</td><td>no one, trusted by no one</td></tr>
+<tr><td>The Velvet Hand <span class='note'>thieves</span></td><td>Hornvik</td><td>Rafe "the Magpie"</td><td>smuggling, secrets, spies</td><td>the Duke ruined</td><td>the Gilded Wheel, the Duke's watch</td></tr>
+<tr><td>The Anvil Brotherhood <span class='note'>smiths</span></td><td>Durnhold, Fjallmark</td><td>Dagny Ironvein</td><td>the island's finest weapons and armour</td><td>the ore trade on dwarven terms</td><td>the Gilded Wheel, the orcs</td></tr>
+<tr><td>The Tidewrights <span class='note'>fishers, shipwrights</span></td><td>Gullbo, Saltmere</td><td>Ylva Strand</td><td>boats, fishing rights, the sea lanes</td><td>safe seas and fair prices</td><td>the Hornvik smugglers</td></tr>
+</tbody></table></div>
+        <p class="note">The Gilded Wheel is already in the game: its caravan trades at Saltmere's north gate.</p>
+      </section>
+
+      <section id="mentors">
+        <h2>Mentors</h2>
+        <p>Where each class will learn special skills and earn unique items (coming in later versions).</p>
+        <div class="scroll"><table class=""><thead><tr><th>Class</th><th>Mentor</th><th>Where</th><th>What they teach</th></tr></thead><tbody>
+<tr><td>Warrior</td><td>Marshal Hilde Brannock</td><td>Ravnsund</td><td>Oathkeeper stance skills (guard, counter) and the Iron Oath's plate</td></tr>
+<tr><td>Warrior</td><td>Khan Varrok Ashmane</td><td>Ashkar</td><td>Ash Roar, a War Cry that sets foes ablaze, if you win his respect in the Pit</td></tr>
+<tr><td>Warrior</td><td>Forge-master Dagny Ironvein</td><td>Durnhold</td><td>Stoneheart, armour that turns curses away</td></tr>
+<tr><td>Warrior</td><td>Queen Isolde</td><td>Stenhamn</td><td>Tidecutter, her father's sword, if you take her side</td></tr>
+<tr><td>Wizard</td><td>Archmagister Elias Wren</td><td>the Spire</td><td>storm magic and the Lantern of Wren staff</td></tr>
+<tr><td>Wizard</td><td>Moonmother Sylwen</td><td>Lirael</td><td>moon and frost magic, and the Moonwell Tear</td></tr>
+<tr><td>Wizard</td><td>Old Mother Gristle</td><td>the Hag's Hollow</td><td>hexes and fire curses, at a price (the dark path)</td></tr>
+<tr><td>Wizard</td><td>High Lantern Maelis</td><td>Lantern Abbey</td><td>holy light against the undead</td></tr>
+<tr><td>Summoner</td><td>Old Ysolde of the Antlers</td><td>the Antler Circle</td><td>spirit beasts and the Antler Crown</td></tr>
+<tr><td>Summoner</td><td>Quillon Graves</td><td>Wolfscar</td><td>the raised dead and the Bone Choir (the dark path)</td></tr>
+<tr><td>Summoner</td><td>Tinker Nella Gearwright</td><td>Fjallmark</td><td>turrets and clockwork companions</td></tr>
+<tr><td>Summoner</td><td>Kennelmaster Bryn</td><td>Wolfscar</td><td>animal companions and the Houndmaster's Whistle</td></tr>
+<tr><td>Anyone</td><td>Edric Thorne · Rafe · the Gilded Wheel</td><td></td><td>monster lore and the Hunter's Sign · secrets, shortcuts and black-market gear · the first gear you can buy at home</td></tr>
+</tbody></table></div>
+      </section>
+
+      <section id="curses">
+        <h2>Curses</h2>
+        <p>Old curses rot the island. What you see of them:</p>
+        <div class="scroll"><table class=""><thead><tr><th>Curse</th><th>Where</th><th>What it does</th></tr></thead><tbody>
+<tr><td>The Forgetting</td><td>you</td><td>took your memory</td></tr>
+<tr><td>The Drowning Tide</td><td>Saltmere coast</td><td>on moonless nights the sea gives back drowned sailors</td></tr>
+<tr><td>Goblin Madness</td><td>the south</td><td>the goblin camps grow bold and endless</td></tr>
+<tr><td>The Restless Dead</td><td>Barrow Downs, the Old Barrow</td><td>the dead rise again and again</td></tr>
+<tr><td>The Hag's Bargains</td><td>Mirefen and beyond</td><td>wishes granted, prices taken</td></tr>
+<tr><td>The Long Hunger</td><td>the Green Hills</td><td>crops rot, rats swarm, halflings starve</td></tr>
+<tr><td>The Withering</td><td>Elderwood</td><td>ash-grey trees, mad treants, dimming moonwells</td></tr>
+<tr><td>The Stonesleep</td><td>Ironpeak</td><td>miners turn to stone, golems wake</td></tr>
+<tr><td>The Ashfire</td><td>Ember Steppes</td><td>grass fires that never die</td></tr>
+<tr><td>The Raven Plague</td><td>Ravnsund</td><td>ravens everywhere, sickness among the Duke's men</td></tr>
+<tr><td>The Chain of Ysmirr</td><td>the Dragonspine</td><td>storms off the mountains, and a dragon's cry</td></tr>
+<tr><td>The Drowned King</td><td>Stenhamn</td><td>King Aldric's ghost walks the palace</td></tr>
+</tbody></table></div>
+        <div class="spoiler" id="sp3">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp3-body">Show spoiler: who made each curse, and how it&#x27;s lifted</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp3-w">
+    <p id="sp3-w"><b>Spoiler warning.</b> This gives away who made each curse, and how it&#x27;s lifted. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp3-body" hidden>
+<div class="scroll"><table class=""><thead><tr><th>Curse</th><th>Made by</th><th>How it's lifted</th></tr></thead><tbody>
+<tr><td>The Forgetting</td><td>Veyra</td><td>lift the others; each gives memories back</td></tr>
+<tr><td>The Drowning Tide</td><td>Veyra</td><td>find the wreck of the Grey Gull and lay the Wardens' dead to rest</td></tr>
+<tr><td>Goblin Madness</td><td>the Goblin King Skarn, maddened by the Hollow</td><td>kill or free Skarn in the Goblin Warren</td></tr>
+<tr><td>The Restless Dead</td><td>Morvane, the Hollow King</td><td>break his phylactery in the Barrow of Kings</td></tr>
+<tr><td>The Hag's Bargains</td><td>Old Mother Gristle, Veyra's teacher</td><td>outbargain her, or burn her hollow</td></tr>
+<tr><td>The Long Hunger</td><td>the Hag's bargain with Tansy</td><td>Tansy confesses; you choose who pays</td></tr>
+<tr><td>The Withering</td><td>Caelith, the exiled elf</td><td>reconcile him with Sylwen, or kill him</td></tr>
+<tr><td>The Stonesleep</td><td>Thane Odvar's broken oath</td><td>seal the deep vein with the Wardens' rite</td></tr>
+<tr><td>The Ashfire</td><td>Veyra, through the Duke's agents</td><td>prove who killed Khan Torgal</td></tr>
+<tr><td>The Raven Plague</td><td>the price of Corvin's pact</td><td>expose the pact, or bargain it away</td></tr>
+<tr><td>The Chain of Ysmirr</td><td>Veyra</td><td>break the chain (an ally), or slay the dragon</td></tr>
+<tr><td>The Drowned King</td><td>Veyra, bought by Corvin</td><td>prove the murder</td></tr>
+</tbody></table></div><p>Veyra is behind most of it, but not all: the Hag and the Stonesleep are older. Not every curse-maker is evil in the same way. Caelith grieves, the Hag bargains, and Skarn is a victim too.</p>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
+      </section>
+
+      <section id="story">
+        <h2>The story</h2>
+        <p>The crown war between Queen Isolde in Stenhamn and Duke Corvin in Ravnsund splits the realm. Dwarves and orcs feud over the Ember Pass, elves keep their borders shut, mages and priests quarrel over magic, and the halflings starve in the middle. And the goblin camps keep growing until they march on Saltmere.</p>
+        <p>Who you are, why the curses are spreading, and how it all ends is for you to find out.</p>
+        <div class="spoiler" id="sp4">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp4-body">Show spoiler: the sides you can take and how the story can end</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp4-w">
+    <p id="sp4-w"><b>Spoiler warning.</b> This gives away the sides you can take and how the story can end. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp4-body" hidden>
+
+    <ul>
+      <li><b>The crown.</b> Back the Queen: Tidecutter and the Velvet Hand, but the Iron Oath splits and Ravnsund burns. Back the Duke: the Iron Oath's armies, but you have helped a murderer. Or unite them through Lady Brenna, the hardest path: Corvin abdicates and the realm stays whole.</li>
+      <li><b>The Ember Pass.</b> Expose the Duke's lie, and dwarves and orcs make peace and march together.</li>
+      <li><b>Elderwood.</b> Reconcile Caelith and the elves join you; kill him and they join, but never forgive humans.</li>
+      <li><b>The Hag.</b> Bargain with her and she helps against Veyra, at a price you learn later.</li>
+    </ul>
+    <p>Every people and guild you win over joins <b>the Lantern Pact</b>. The more who stand at Veilwatch for the last battle, the more endings open:</p>
+    <div class="endings">
+      <div class="ending"><b>The Mended Veil</b>You seal the Hollow with the Key. Veyra is lost in it with her daughter's shade, at peace at last.</div>
+      <div class="ending"><b>The Open Door</b>You let Veyra take Liesl back. The Hollow stays open, and the dead walk with the living forever.</div>
+      <div class="ending"><b>The Last Warden</b>You take Veyra's place, and become what she was.</div>
+      <div class="ending"><b>The Pale Dragon</b>Freed, Ysmirr carries you to the last battle. Slain, its heart forges the final seal.</div>
+    </div>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
+      </section>
+
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.9.4).</p>
+    </main>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 CasWin Studios</span>
+      <span><a href="/">Home</a> · <a href="/privacy/">Website privacy</a></span>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  // Spoilers: each block asks first. "Show all" asks once for the whole page.
+  function open(sp) { sp.querySelector(".sp-warn").hidden = true; sp.querySelector(".sp-show").hidden = true;
+    sp.querySelector(".sp-body").hidden = false; sp.querySelector(".sp-show").setAttribute("aria-expanded", "true"); sp.classList.add("open"); }
+  function shut(sp) { sp.querySelector(".sp-warn").hidden = true; sp.querySelector(".sp-body").hidden = true;
+    var b = sp.querySelector(".sp-show"); b.hidden = false; b.setAttribute("aria-expanded", "false"); sp.classList.remove("open"); }
+  document.querySelectorAll(".spoiler").forEach(function (sp) {
+    sp.querySelector(".sp-show").addEventListener("click", function () { this.hidden = true; sp.querySelector(".sp-warn").hidden = false; sp.querySelector(".sp-yes").focus(); });
+    sp.querySelector(".sp-yes").addEventListener("click", function () { open(sp); });
+    sp.querySelector(".sp-no").addEventListener("click", function () { shut(sp); sp.querySelector(".sp-show").focus(); });
+    sp.querySelector(".sp-hide").addEventListener("click", function () { shut(sp); });
+  });
+  var all = document.getElementById("sp-all"), warn = document.getElementById("sp-all-warn"), state = document.getElementById("sp-state");
+  all.addEventListener("click", function () {
+    if (all.dataset.open === "1") { document.querySelectorAll(".spoiler").forEach(shut); all.dataset.open = ""; all.textContent = "Show all spoilers"; state.textContent = "Spoilers are hidden."; return; }
+    warn.hidden = false; all.hidden = true; document.getElementById("sp-all-yes").focus();
+  });
+  document.getElementById("sp-all-yes").addEventListener("click", function () {
+    document.querySelectorAll(".spoiler").forEach(open); warn.hidden = true; all.hidden = false; all.dataset.open = "1";
+    all.textContent = "Hide all spoilers again"; state.textContent = "Spoilers are shown.";
+  });
+  document.getElementById("sp-all-no").addEventListener("click", function () { warn.hidden = true; all.hidden = false; all.focus(); });
+
+  // The chart of Caldra.
+  var places = [
+    ["Saltmere", "village", 50.0, 96.73, "Elder Maren. Your village on the south coast."],
+    ["Stenhamn", "capital", 91.91, 66.3, "Queen Isolde Varr. The harbour, the palace, and the Gilded Wheel's guild hall."],
+    ["Ravnsund", "city", 61.03, 32.61, "Duke Corvin Varr. Fortress city and home of the Iron Oath."],
+    ["Askeby", "town", 61.76, 86.96, "Reeve Halvard Ask. Market town, the caravans' halfway house."],
+    ["Gullbo", "town", 43.78, 95.76, "Headwoman Ylva Strand. Fishing village, Saltmere's neighbour, seat of the Tidewrights."],
+    ["Hornvik", "town", 7.88, 64.89, "A free port, run by Rafe 'the Magpie'. Smugglers and the Velvet Hand."],
+    ["Fjallmark", "town", 75.0, 41.3, "Mine-reeve Osric Fell. Human mining town trading with the dwarves."],
+    ["Lindholm", "town", 46.69, 41.58, "Mayor Edda Lind. Lake town under the mages' Spire."],
+    ["Lirael", "folk", 51.1, 61.96, "Moonmother Sylwen. The elven city in the trees, closed to humans."],
+    ["Durnhold", "folk", 82.35, 32.61, "High Thane Brakka Stonehand. The great dwarf hold, deep in the mountain."],
+    ["Hollowbrook", "folk", 69.12, 79.35, "Burrowmother Tansy Applegate. The halfling town and the island's breadbasket."],
+    ["Gnarlroot", "folk", 32.35, 78.26, "Chief Grumm Mossback. The bog trolls' village on stilts."],
+    ["Ashkar", "folk", 86.76, 52.17, "Khan Varrok Ashmane. The orc clans' moving camp-city."],
+    ["Wolfscar", "place", 17.65, 57.61, "Master Edric Thorne. Lodge-town of the Grey Hounds, the monster hunters."],
+    ["The Spire", "place", 43.93, 35.05, "Archmagister Elias Wren. The Azure Conclave's tower on its lake isle."],
+    ["Lantern Abbey", "place", 65.44, 59.78, "High Lantern Maelis. Monastery and hospital of the Order of the Lantern."],
+    ["The Antler Circle", "place", 44.49, 71.74, "Old Ysolde of the Antlers. A stone circle on Elderwood's edge."],
+    ["The Hag's Hollow", "place", 27.21, 73.37, "Old Mother Gristle, the Mire Hag. The oldest curse-maker on the island."],
+    ["The Barrow of Kings", "place", 28.68, 36.96, "A lich's tomb-city on the Barrow Downs. Nobody who went in has come back."],
+    ["Veilwatch", "place", 47.79, 17.39, "Ruins of an old keep high in the Dragonspine."]
+  ];
+  var kinds = { village: "Your village", capital: "The capital", city: "City", town: "Town", folk: "Another people's home", place: "A place of power or ruin" };
+  var chart = document.getElementById("chart");
+  places.forEach(function (p) {
+    var b = document.createElement("button");
+    b.className = "pin"; b.type = "button"; b.dataset.kind = p[1];
+    b.style.left = p[2] + "%"; b.style.top = p[3] + "%";
+    b.setAttribute("aria-label", p[0]);
+    b.innerHTML = "<i></i><b>" + p[0] + "</b>";
+    b.addEventListener("click", function () {
+      document.getElementById("pc-kind").textContent = kinds[p[1]];
+      document.getElementById("pc-name").textContent = p[0];
+      document.getElementById("pc-text").textContent = p[4];
+    });
+    chart.appendChild(b);
+  });
+  [["The Old Forest", 50, 89], ["The Green Hills", 69, 85.5], ["Mirefen", 31, 85], ["Elderwood", 52, 67], ["The Crownlands", 84, 77],
+   ["The Ember Steppes", 86, 46], ["Ironpeak", 78, 25], ["The Barrow Downs", 23, 30], ["The Greyfells", 14, 51],
+   ["The Dragonspine", 50, 8], ["The Lindholm Lakes", 41, 47], ["The Northmarch", 63, 45]].forEach(function (l) {
+    var s = document.createElement("div");
+    s.className = "land"; s.style.left = l[1] + "%"; s.style.top = l[2] + "%"; s.textContent = l[0];
+    chart.appendChild(s);
+  });
+})();
+</script>
+</body>
+</html>

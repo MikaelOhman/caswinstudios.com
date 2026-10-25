@@ -132,7 +132,7 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.9.7</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.9.8</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
         <div class="facts"><div><b>3</b> classes</div><div><b>61</b> buildings to order</div><div><b>51</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
@@ -248,6 +248,14 @@ td:first-child { font-weight: 600; }
 <tr><td>Wooden tools</td><td>Carpenter</td><td>2 planks</td><td>+15% faster</td><td>40 hours of work</td></tr>
 <tr><td>Iron tools</td><td>Smithy</td><td>2 ore, 1 charcoal, 1 planks</td><td>+30% faster</td><td>120 hours of work</td></tr>
 </tbody></table></div>
+        <h3>Gear for the trades</h3>
+        <p>Next to their tools, some workers can carry gear for their trade that gives more each time they finish: a catch, a harvest, a tree. The workshops make it only while someone needs it (and a couple spare), and workers fetch it from the stores like tools.</p>
+        <div class="scroll"><table class="narrow"><thead><tr><th>Gear</th><th>For</th><th>Made by</th><th>From</th><th>Gives</th><th>Lasts</th></tr></thead><tbody>
+<tr><td>Fishing nets</td><td>Fishing hut</td><td>Weaver</td><td>2 wool, 1 cloth</td><td>+1 fish a batch</td><td>120 hours of work</td></tr>
+<tr><td>Plough oxen</td><td>Farm field</td><td>Stables</td><td>1 iron tools, 4 grain</td><td>+1 grain a batch</td><td>200 hours of work</td></tr>
+<tr><td>Saws and wedges</td><td>Woodcutter&#x27;s lodge</td><td>Smithy</td><td>1 iron tools, 1 planks</td><td>+1 wood a batch</td><td>150 hours of work</td></tr>
+<tr><td>Picks</td><td>Quarry, Mine, Clay pit</td><td>Smithy</td><td>1 iron tools, 1 ore</td><td>+1 stone, ore or clay a batch</td><td>150 hours of work</td></tr>
+</tbody></table></div>
         <h3>Storehouses</h3>
         <p>The longhouse, storehouses and warehouses hold four kinds of goods: <b>food</b>, <b>water</b>, <b>materials</b> (wood, stone, ore, clay, hides…) and <b>goods</b> (planks, tools, cloth, ale…). Tap one and switch the kinds it takes on and off, for example a storehouse by the pier for food only. People carry things to the nearest store that takes them, and eat and drink at stores that take food and water. The Goods and mood window shows the room left for each kind. When there's no room for fish, the fishers have nowhere to put their catch, and their card says so.</p>
         <h3>Hurt and downed villagers</h3>
@@ -311,11 +319,11 @@ td:first-child { font-weight: 600; }
 <h3 id="b-crafts">Crafts</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
 <tr><td>Sawmill</td><td>Saws logs into planks, for bigger buildings, boats and tools.</td><td>1 sawyer</td><td>3 planks from 2 wood per 1.5 h: about 18 planks</td><td>20 wood, 6 stone<br><span class="note">6 h to build; from the start</span></td></tr>
 <tr><td>Carpenter</td><td>Wooden tools: a worker who has them works 15% faster, for about 40 hours of work.</td><td>1 carpenter</td><td>1 wooden tools from 2 planks per 2 h: about 4.5 wooden tools</td><td>20 wood, 10 planks<br><span class="note">6 h to build; 25 people</span></td></tr>
-<tr><td>Smithy</td><td>Iron tools (a worker who has them works 30% faster, for about 120 hours of work) and weapons for the guards.</td><td>1 smith</td><td>1 iron tools from 2 ore, 1 charcoal, 1 planks per 2 h: about 4.5 iron tools<br>or 1 weapons from 2 ore, 1 charcoal per 2 h: about 4.5 weapons</td><td>20 wood, 20 stone<br><span class="note">8 h to build; 15 people</span></td></tr>
+<tr><td>Smithy</td><td>Iron tools (a worker who has them works 30% faster, for about 120 hours of work), weapons for the guards, and saws and picks for woodcutters, quarries and mines.</td><td>1 smith</td><td>1 iron tools from 2 ore, 1 charcoal, 1 planks per 2 h: about 4.5 iron tools<br>or 1 weapons from 2 ore, 1 charcoal per 2 h: about 4.5 weapons<br>or 1 saws and wedges from 1 iron tools, 1 planks per 2 h: about 4.5 saws and wedges<br>or 1 picks from 1 iron tools, 1 ore per 2 h: about 4.5 picks</td><td>20 wood, 20 stone<br><span class="note">8 h to build; 15 people</span></td></tr>
 <tr><td>Armourer</td><td>Armour: guards and villagers take less harm in raids.</td><td>1 armourer</td><td>1 armour from 2 ore, 1 charcoal, 1 leather per 3 h: about 3 armour</td><td>20 stone, 10 planks, 10 bricks<br><span class="note">8 h to build; 40 people</span></td></tr>
 <tr><td>Bowyer</td><td>Bows and arrows: the guards in the watchtowers shoot further.</td><td>1 bowyer</td><td>1 bows from 2 wood per 2.5 h: about 3.6 bows</td><td>18 wood, 6 planks<br><span class="note">5 h to build; 25 people</span></td></tr>
 <tr><td>Tannery</td><td>Turns hides into leather. It smells: build it away from homes.</td><td>1 tanner</td><td>2 leather from 2 hides per 2 h: about 9 leather</td><td>15 wood, 6 stone<br><span class="note">5 h to build; 25 people</span></td></tr>
-<tr><td>Weaver</td><td>Weaves wool into cloth, rope and sails.</td><td>1 weaver</td><td>2 cloth from 2 wool per 2 h: about 9 cloth</td><td>18 wood, 6 planks<br><span class="note">5 h to build; 25 people</span></td></tr>
+<tr><td>Weaver</td><td>Weaves wool into cloth, rope and sails, and fishing nets for the fishers (2 fish a catch).</td><td>1 weaver</td><td>2 cloth from 2 wool per 2 h: about 9 cloth<br>or 1 fishing nets from 2 wool, 1 cloth per 2 h: about 4.5 fishing nets</td><td>18 wood, 6 planks<br><span class="note">5 h to build; 25 people</span></td></tr>
 <tr><td>Tailor</td><td>Warm clothes: people are happier, and they&#x27;ll need them in winter.</td><td>1 tailor</td><td>2 clothes from 2 cloth per 2.5 h: about 7.2 clothes</td><td>15 wood, 6 planks<br><span class="note">5 h to build; 25 people</span></td></tr>
 <tr><td>Potter and brickworks</td><td>Bricks for strong buildings, and pots to sell.</td><td>1 potter</td><td>3 bricks from 3 clay per 2 h: about 13.5 bricks<br>or 2 pottery from 2 clay per 2 h: about 9 pottery</td><td>15 wood, 10 stone<br><span class="note">6 h to build; 15 people</span></td></tr>
 <tr><td>Shipwright</td><td>Builds fishing boats: each boat (up to three) makes the fishers catch half as much again. By the shore.<br><span class="note">by the shore</span></td><td>2 shipwrights</td><td>1 boats from 6 planks, 2 cloth per 8 h: about 1.1 boats</td><td>30 wood, 20 planks<br><span class="note">10 h to build; 40 people</span></td></tr>
@@ -341,7 +349,7 @@ td:first-child { font-weight: 600; }
 <tr><td>Barracks</td><td>Trains the militia: the guards hit a quarter harder.<br><span class="note">boosts: guard damage +25%</span></td><td>2 soldiers<br>4 beds</td><td>–</td><td>30 wood, 15 stone, 10 planks<br><span class="note">10 h to build; 25 people</span></td></tr>
 <tr><td>Archery range</td><td>Practice makes the tower guards shoot a quarter further.<br><span class="note">boosts: guard range +25%</span></td><td>1 trainer</td><td>–</td><td>15 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
 <tr><td>Training yard</td><td>Wooden dummies and sparring. The guards get better; the youngsters love watching.<br><span class="note">boosts: guard damage +10%; mood +2</span></td><td>1 trainer</td><td>–</td><td>15 wood, 6 planks<br><span class="note">5 h to build; 40 people</span></td></tr>
-<tr><td>Stables</td><td>Oxen and carts: builders carry twice as much.<br><span class="note">boosts: hauling +100%</span></td><td>1 stablehand</td><td>–</td><td>25 wood, 8 planks<br><span class="note">8 h to build; 25 people</span></td></tr>
+<tr><td>Stables</td><td>Oxen and carts: builders carry twice as much. The stablehand trains plough oxen for the farm fields.<br><span class="note">boosts: hauling +100%</span></td><td>1 stablehand</td><td>1 plough oxen from 1 iron tools, 4 grain per 4 h: about 2.2 plough oxen</td><td>25 wood, 8 planks<br><span class="note">8 h to build; 25 people</span></td></tr>
 <tr><td>Kennel</td><td>Two village dogs patrol the streets. Everyone feels safer (and gets licked).<br><span class="note">mood +2</span></td><td>1 dog handler</td><td>–</td><td>15 wood<br><span class="note">4 h to build; 25 people</span></td></tr>
 </tbody></table></div>
 <h3 id="b-village">Village</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
@@ -360,20 +368,24 @@ td:first-child { font-weight: 600; }
         <h2>Trade and gold</h2>
         <p>The <b>market</b>'s traders sell everything above 12 of a kind, 6 goods per trip, at these prices (a trading post adds a quarter). <b>The Gilded Wheel's caravan</b> comes from Askeby every two to four days and stops by the north gate for most of a day. It sells goods the village can't make yet, pays half again what the market does, and sells some gear.</p>
         <div class="two"><div class="scroll"><table class="narrow"><thead><tr><th>Good</th><th>Gold each</th></tr></thead><tbody>
+<tr><td>Plough oxen</td><td>14</td></tr>
 <tr><td>Armour</td><td>14</td></tr>
 <tr><td>Maps</td><td>12</td></tr>
+<tr><td>Saws and wedges</td><td>10</td></tr>
+<tr><td>Picks</td><td>10</td></tr>
 <tr><td>Weapons</td><td>9</td></tr>
 <tr><td>Iron tools</td><td>8</td></tr>
 <tr><td>Bows</td><td>7</td></tr>
 <tr><td>Clothes</td><td>6</td></tr>
+<tr><td>Fishing nets</td><td>6</td></tr>
 <tr><td>Wine</td><td>5</td></tr>
 <tr><td>Furs</td><td>5</td></tr>
 <tr><td>Honey</td><td>4</td></tr>
 <tr><td>Cloth</td><td>4</td></tr>
 <tr><td>Leather</td><td>4</td></tr>
+</tbody></table></div><div class="scroll"><table class="narrow"><thead><tr><th>Good</th><th>Gold each</th></tr></thead><tbody>
 <tr><td>Wooden tools</td><td>4</td></tr>
 <tr><td>Salt</td><td>3</td></tr>
-</tbody></table></div><div class="scroll"><table class="narrow"><thead><tr><th>Good</th><th>Gold each</th></tr></thead><tbody>
 <tr><td>Smoked fish</td><td>3</td></tr>
 <tr><td>Ale</td><td>3</td></tr>
 <tr><td>Pottery</td><td>3</td></tr>
@@ -686,7 +698,7 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.9.7).</p>
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.9.8).</p>
     </main>
   </div>
 

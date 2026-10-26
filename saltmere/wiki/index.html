@@ -135,7 +135,7 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.18.0</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.19.0</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
         <div class="facts"><div><b>3</b> classes</div><div><b>65</b> buildings to order</div><div><b>54</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
@@ -695,12 +695,16 @@ td:first-child { font-weight: 600; }
       </section>
 
       <section id="friends">
-        <h2>Winning friends: the peoples' and guilds' tasks</h2>
-        <p>Each people and guild has tasks for you, given by their own people: talk to them where they stand. Accept a task,
-        do it (it shows under the goal at the top of the screen and as a gold diamond on your map), then go back to them. Each
-        task done raises their trust; the last makes you their friend: closed gates open, trade starts (their goods come to
-        Saltmere's stores every morning) and they give you something of theirs.</p>
-        <table><tr><th>Who</th><th>Tasks</th><th>As their friend</th></tr>
+        <h2>Winning friends: standing with the peoples and guilds</h2>
+        <p>Each people and guild has a standing with you from 0 to 100. You start a <b>Stranger</b>. A short chain of tasks
+        from their own people (talk to them where they stand; the tasks show at the top of the screen and as gold diamonds on your map)
+        makes you <b>Trusted</b> (30): you can <b>trade</b> with them once a day (their goods for some of Saltmere's), and the guilds'
+        favours start (half fares, the free troll bridge, the hideout map). Every trade adds a little standing (0.4), so trade alone
+        would take many months to make a friend. To become their <b>Friend</b> (100) you help them with something bigger: a long
+        questline of many stages. As friends, their closed gates open, their goods come to Saltmere every morning, and they give you
+        something of theirs.</p>
+        <h3>The first tasks (to be Trusted)</h3>
+        <table><tr><th>Who</th><th>Tasks</th><th>As their friend (after their questline)</th></tr>
         <tr><td><b>The dwarves</b> (Dagny, Osric in Fjallmark, Brakka)</td><td>bring 40 ore; break the Hollow Golem that woke in the deep mine above Fjallmark; search the Ember Pass, where Khan Torgal fell</td><td>Durnhold's doors open; 12 ore a morning; Stoneheart armour</td></tr>
         <tr><td><b>The orcs</b> (Shara, Varrok)</td><td>put out the Ember Mother and her fire spirits; beat Grakk, the Pit-champion; bring the arrows of the Pass</td><td>Ashkar's gate opens; 12 hides a morning; Ashmane's Roar</td></tr>
         <tr><td><b>The elves</b> (Sylwen)</td><td>end the Ashen Elder, a withered treant; find Warden Faelan among the spiders; gather five silverbloom for the moonwells</td><td>Lirael's vines part; 12 herbs a morning; the Moonwell Staff</td></tr>
@@ -714,6 +718,21 @@ td:first-child { font-weight: 600; }
         <tr><td><b>The Iron Oath</b> (Hilde)</td><td>beat Sir Aldous, the Oath's champion</td><td>100 gold; Oathkeeper, a shield</td></tr>
         <tr><td><b>The Velvet Hand</b> (Rafe)</td><td>60 gold, for a favour</td><td>every hideout marked on your map</td></tr>
         </table>
+        <h3>The questlines (to become a Friend)</h3>
+        <ul>
+          <li><b>The Stonesleep</b> (Brakka): find old Haldis, turning to stone in the mine above Fjallmark; frostcaps from the cold heights and his apprentice's lost journal; a Warden's lantern from the ruins of Veilwatch; and, by night, the Deep Vein itself.</li>
+          <li><b>Ash in the night</b> (Shara): herders killed on the steppe, only at night. Read the bodies, wait by the herd's fire after dark, and find out who sent the killer.</li>
+          <li><b>The exile's sorrow</b> (Sylwen): find her brother Caelith, whose grief is the Withering: moon-dew gathered by night, a grey grove, and what he asks of you (the Queen's own word, and wood to replant what burned).</li>
+          <li><b>Bring Wilmot home</b> (Tansy): her cousin, the best farmer Hollowbrook ever had, lives alone by the sea. He won't come back till his debt to the Hornvik smugglers is settled (pay it, or deal with the collectors), his plough is mended and his old dog Pip is found.</li>
+          <li><b>What walks in the mist</b> (Grumm): mist-moss by night, the Mire Hag's word, and the thing that breathes the mist out.</li>
+          <li><b>Greyhide</b> (Edric): read the signs, then hunt the beast at its lair by night.</li>
+          <li><b>The crypt in the hills</b> (Maelis): two lost novices, and what woke in the crypt.</li>
+          <li><b>The stolen book</b> (Wren): a thief from the Conclave's own ranks, who moves by night.</li>
+          <li><b>The calm sea</b> (Ylva): boats that sank on a flat sea, and what climbs out of it at night.</li>
+          <li><b>The lost caravan</b> (Ottoline): an ambush on the King's Road, a survivor, and Red-Hand Joss.</li>
+          <li><b>The Oath's banner</b> (Hilde): a deserter who wants to come home, and the banner Voss's men stole.</li>
+          <li><b>The little bird</b> (Rafe): keep his informant alive through the night, and hear what she knows.</li>
+        </ul>
         <div class="spoiler" id="sp1">
   <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp1-body">Show spoiler: who killed Khan Torgal</button>
   <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp1-w">
@@ -729,6 +748,15 @@ td:first-child { font-weight: 600; }
     <button type="button" class="sp-hide">Hide this again</button>
   </div>
 </div>
+        <h3>People in great need</h3>
+        <p>Now and then word reaches Saltmere of someone in trouble (a gold diamond on your map marks where). Help them and they may
+        come to live in Saltmere, or send you a shipment that boosts what you can build:</p>
+        <ul>
+          <li><b>The burned farm</b>: goblins burned the Brandts' farm and their boy ran into the forest. Help, and the family moves to Saltmere.</li>
+          <li><b>The broken raft</b>: a timber raft broke on the rocks along the coast, and the drowned come up the beach at night. Protect the rafters: 250 logs.</li>
+          <li><b>The stonemason's widow</b> in Askeby: pay her debt and clear the wolves from her husband's quarry, and she moves to Saltmere with 150 dressed stone.</li>
+          <li><b>The wreck of the Seawren</b>: castaways beyond Hornvik, hungry and haunted at night. Feed and protect them, and four of them come to fish for you.</li>
+        </ul>
       </section>
 
       <section id="guilds">
@@ -856,7 +884,7 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.18.0).</p>
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.19.0).</p>
     </main>
   </div>
 

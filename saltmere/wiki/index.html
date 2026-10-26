@@ -133,7 +133,7 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.12.0</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.12.1</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
         <div class="facts"><div><b>3</b> classes</div><div><b>65</b> buildings to order</div><div><b>54</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
@@ -483,10 +483,10 @@ td:first-child { font-weight: 600; }
 <tr><td>Goblin camp</td><td>3 goblins and a totem</td></tr>
 <tr><td>Fortified camp</td><td>5 goblins behind stakes</td></tr>
 <tr><td>War camp</td><td>6 goblins under banners</td></tr>
-<tr><td>Warband</td><td>8 goblins and war drums: it marches on Saltmere the next night</td></tr>
+<tr><td>Warband</td><td>8 goblins and war drums: it marches on Saltmere the next night (unless Saltmere was attacked in the last two or three days: then it waits)</td></tr>
 </tbody></table></div>
         <p>A <b>lookout tower</b> (14 wood, 2 stone) shows you where the danger is: its lookout watches everything within 450 m from the top (wolves, boars and goblins show on your map), and every few hours sends out quick runners who report every goblin camp within 1.2 km, the whole area where camps grow, with how far each has grown. The tower's card lists what's out there, nearest first.</p>
-        <p>A warband attacks at night. War drums sound about 19:00 (scouts or a lighthouse warn you earlier), and the raid comes at 21:30. Raids grow bigger every day. Watchtowers with guards, palisade walls, gates, barracks and an archery range all help.</p>
+        <p>A warband attacks at night. War drums sound about 19:00 (scouts or a lighthouse warn you earlier), and the raid comes at 21:30. Raids grow bigger every day. A camp takes about a day and a half (28 to 46 hours) to grow each stage, so a new camp is a warband after about six days; there are at most three camps at a time, a trashed camp is replaced after 36 to 72 hours, and after any attack on Saltmere (goblins or rats) there is a quiet spell of two to three days (40 to 76 hours) before the next warband marches. Watchtowers with guards, palisade walls, gates, barracks and an archery range all help.</p>
         <h3>Creatures</h3>
         <div class="scroll"><table class=""><thead><tr><th>Creature</th><th>Kind</th><th>Life</th><th>Hits for</th><th>Experience</th><th>Gold</th></tr></thead><tbody>
 <tr><td>Wolf</td><td>melee</td><td>40</td><td>6</td><td>8</td><td>0–1</td></tr>
@@ -534,7 +534,7 @@ td:first-child { font-weight: 600; }
           <li><b>Wolves</b> roam the woods; out in the forest a <b>black wolf</b> leads some packs (wolves near it hit harder; badly hurt, it runs and the pack scatters). A <b>warg</b> roams the deep forest far from Saltmere, and its bite throws you back.</li>
           <li>A <b>lynx</b> lies still in the undergrowth and springs when you come close: its first strike hits twice as hard.</li>
           <li><b>Bandits</b> hold up travellers on the King's Road beyond Askeby, in bands of three or four with an archer. Their chief has a camp off the road between Hollowbrook and Stenhamn (on your map once seen); break it for its loot, and it stands empty for three days.</li>
-          <li><b>Rats</b> swarm in the Green Hills, and every few nights, when the stores hold grain, a swarm makes for Saltmere's stores and eats it.</li>
+          <li><b>Rats</b> swarm in the Green Hills, and on about one night in five, when the stores hold grain and Saltmere isn't resting after an attack, a swarm makes for Saltmere's stores and eats it.</li>
           <li>On a <b>moonless night</b> (every sixth) <b>drowned sailors</b> rise from the surf below Saltmere and walk the beach till dawn; their grip slows you.</li>
           <li><b>The lands beyond</b> have creatures of their own. <b>Mirefen</b>: bog trolls (they mend as they fight), leeches and Mire hags with their hexes. <b>The Greyfells</b>: werewolves, only by night, drinking the life they take. <b>Elderwood</b>: corrupted treants, giant spiders whose webs slow you, and wisps. <b>The Barrow Downs</b>: wights. <b>The Lindholm Lakes</b>: drowners and lake spirits. <b>The Northmarch</b>: the Duke's patrols and flocks of ravens. <b>Ironpeak</b>: kobold packs, cave trolls and stone golems. <b>The Ember Steppes</b>: orc raiders, war boars and fire spirits. <b>The Crownlands</b>: deserters. <b>The Dragonspine</b>: drakes, and a lair east of Veilwatch (on your map once seen).</li>
           <li>Bigger goblin camps and later raids bring <b>goblin shamans</b>, who mend the goblins round them (kill them first), and <b>wolf riders</b>, who go for villagers caught outside the walls.</li>
@@ -562,7 +562,7 @@ td:first-child { font-weight: 600; }
         <h2>Getting about</h2>
         <p>The island is big: about 45 minutes on foot from Saltmere to Stenhamn. Two services carry you between places you've already been to. Stand at a stop and press the action button (E) to see where you can go, the fare (paid from Saltmere's stores) and the hours on the way. The trip is a short scene: the hours pass (the camps grow, the wells fill) and you step off at the other end.</p>
         <ul>
-          <li><b>The Gilded Wheel's post-horses</b> run between its waystations: Askeby and Stenhamn have one, and Saltmere builds its own (Village tab: 24 wood, 6 stone). About 12 km an hour along the roads; about 3 gold plus 2 a km.</li>
+          <li><b>The Gilded Wheel's post-horses</b> run between its waystations: Askeby and Stenhamn have one, and Saltmere builds its own (Village tab: 24 wood, 6 stone). To ride home from a town, Saltmere needs its own waystation. About 12 km an hour along the roads; about 3 gold plus 2 a km.</li>
           <li><b>The Tidewrights' boat</b> sails along the coast between Saltmere's pier, Gullbo, Stenhamn's harbour and Hornvik. About 9 km an hour; about 2 gold plus 1.5 a km.</li>
           <li>A stop opens the first time you reach it on foot. Not with monsters about, and not while Saltmere is under attack.</li>
         </ul>
@@ -573,7 +573,7 @@ td:first-child { font-weight: 600; }
         <ul>
           <li><b>The Old Barrow</b>, a burial mound by the road west of the crossroads: a crypt full of risen skeletons, with its king and his treasure at the far end. Once he's beaten, the dead rest for three days.</li>
           <li><b>Landmarks</b> to find, most with something to search once: a ruined watchtower, a hunter's lean-to and the Fallen Giant in the Old Forest; a shipwreck on the eastern beach and an old lighthouse on the western headland; a ring of stones and an abandoned farmstead in the Green Hills; the witch's hut in Mirefen; the Great Oak and elven ruins round a moonwell in Elderwood; waystones and shrines along the roads.</li>
-          <li><b>Askeby</b>, the market town on the King's Road (about 3.7 km east), and <b>Stenhamn</b>, the capital on the east coast, are real towns: houses round a paved square with a fountain, an inn, a market, the Gilded Wheel's waystation; Stenhamn has its stone wall and gatehouse, a harbour, the guild hall and the Queen's palace. <b>Gullbo</b> and <b>Hornvik</b> are small harbours where the boat calls. The other peoples' homes are still banners: their towns come after 1.0.</li>
+          <li><b>Askeby</b>, the market town on the King's Road (about 3.7 km east), and <b>Stenhamn</b>, the capital on the east coast, are real towns: a wall round each (a timber palisade, at Stenhamn grey stone with towers) with a gate on every road, the roads straight through to a paved square with a fountain, the houses round it between the streets, an inn and a market; the Gilded Wheel's waystation stands just inside the gate on the Saltmere road (look for the gold banner; it's on your map too). Stenhamn has a harbour, the guild hall and the Queen's palace. <b>Gullbo</b> and <b>Hornvik</b> are small harbours where the boat calls. The other peoples' homes are still banners: their towns come after 1.0.</li>
           <li><b>Hunting</b>: deer and stags bolt, boars fight back when hurt. Their kills give hide and meat.</li>
         </ul>
       </section>
@@ -777,7 +777,7 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.12.0).</p>
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.12.1).</p>
     </main>
   </div>
 

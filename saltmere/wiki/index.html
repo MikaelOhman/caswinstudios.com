@@ -136,10 +136,10 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.27.0</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.28.0</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
-        <div class="facts"><div><b>3</b> classes</div><div><b>81</b> buildings to order</div><div><b>58</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
+        <div class="facts"><div><b>3</b> classes</div><div><b>90</b> buildings to order</div><div><b>58</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
         <div class="spoilerbar">
           <p id="sp-state">Spoilers are hidden. Story secrets sit in purple boxes and stay hidden until you ask, with a warning first.</p>
           <button type="button" id="sp-all">Show all spoilers</button>
@@ -320,6 +320,8 @@ td:first-child { font-weight: 600; }
 <tr><td><b>Stone golem</b><br><span class="small">shaped at the rune forge: slow and mighty, works day and night; sinks like a stone</span></td><td>large</td><td>mining, masonry, guarding, hauling</td><td>fishing, tailoring, tinkering, cooking, brewing, music, lore, healing, trade</td><td>built or raised (see below)</td><td>a cottage or house<br>no food, drink, bed or mood</td></tr>
 <tr><td><b>Bound skeleton</b><br><span class="small">raised in the bone crypt: never tires; the living find it a bit creepy</span></td><td>medium</td><td>hauling, mining, guarding</td><td>healing, cooking, music, trade, lore</td><td>built or raised (see below)</td><td>a cottage or house<br>no food, drink, bed or mood</td></tr>
 </tbody></table></div>
+        <h3>Districts</h3>
+        <p>A <b>district stone</b> (the Districts tab in the village plan) marks the land within 20 m as one kind of quarter: Harbor, Fields, Greenwood, Stonedeep, Fen, Arcane, Hallowed, Steppe or Undercroft; everywhere else is Commons. A building whose trade fits its district works a tenth faster (a fishing dock in the Harbor, a mine in Stonedeep, a farm in the Fields), and its card tells you which district would suit it. The peoples are happier living in the districts they like, and less happy in those they'd rather avoid (dwarves love Stonedeep, elves the Greenwood and would rather not live in Stonedeep). The districts' land shows in their colours in the village plan.</p>
         <h3>The made</h3>
         <p>Clockwork automatons, stone golems and bound skeletons aren't born: a gnome's <b>clockwork forge</b> builds an automaton, a dwarf's <b>rune forge</b> wakes a golem, a <b>bone crypt</b> raises a skeleton, each from a couple of days' work and their materials (up to a few of each). They never eat, drink or sleep, need no bed, work day and night and don't count for mood. The living find skeletons a bit creepy.</p>
       </section>
@@ -443,6 +445,17 @@ td:first-child { font-weight: 600; }
 <tr><td>Notice board</td><td>Where the village pins up news and requests. People like to know what&#x27;s going on.<br><span class="note">mood +1</span></td><td>–</td><td>–</td><td>4 wood<br><span class="note">1 h to build; from the start</span></td></tr>
 <tr><td>Market square</td><td>Traders sell what the village has too much of for gold: what&#x27;s above 12 of a kind, or what you set in the Goods window. Never what a building site still needs.<br><span class="note">mood +2</span></td><td>2 traders</td><td>up to 6 goods per 2 h: about 27 goods sold</td><td>25 wood, 5 stone<br><span class="note">6 h to build; from the start</span></td></tr>
 <tr><td>Trading post</td><td>Caravans from other lands stop here: the market gets a quarter more for everything.<br><span class="note">boosts: prices +25%; one only</span></td><td>1 trader</td><td>–</td><td>20 planks, 20 stone, 30 gold<br><span class="note">12 h to build; 40 people</span></td></tr>
+</tbody></table></div>
+<h3 id="b-districts">Districts</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
+<tr><td>Harbor stone</td><td>Marks the land within 20 m as the Harbor district: fishing docks, salt pans, smokehouses and shipwrights there work a tenth faster, and merfolk, selkies, lizardfolk like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Fields stone</td><td>Marks the land within 20 m as the Fields district: farms, orchards, the mill, bakery, brewery and pastures there work a tenth faster, and halflings, rabbitfolk, fauns like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Greenwood stone</td><td>Marks the land within 20 m as the Greenwood district: woodcutters, foresters, herbalists, hunters and the sawmill there work a tenth faster, and elves, foxfolk, dryads, bearfolk like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Stonedeep stone</td><td>Marks the land within 20 m as the Stonedeep district: quarries, mines, smithies, forges and the potter there work a tenth faster, and dwarves, gnomes, kobolds, stone trolls like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Fen stone</td><td>Marks the land within 20 m as the Fen district: clay pits, tanneries and herbalists there work a tenth faster, and bog trolls, lizardfolk, frogfolk, sporelings like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Arcane stone</td><td>Marks the land within 20 m as the Arcane district: the library, mapmaker and scout lodge there work a tenth faster, and owlfolk, ravenfolk, gnomes, wisps, ghosts like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Hallowed stone</td><td>Marks the land within 20 m as the Hallowed district: the chapel, shrine, infirmary, healer and bathhouse there work a tenth faster, and elves, wisps (not imps!) like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Steppe stone</td><td>Marks the land within 20 m as the Steppe district: barracks, training yards, archery ranges, the tannery and kennel there work a tenth faster, and orcs, hobgoblins, ogres, minotaurs, centaurs, giants like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
+<tr><td>Undercroft stone</td><td>Marks the land within 20 m as the Undercroft district: warrens, the bone crypt and mines there work a tenth faster, and dwarves, kobolds, molefolk, ratfolk, sporelings, goblins like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
 </tbody></table></div>
       </section>
 
@@ -969,7 +982,7 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.27.0).</p>
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.28.0).</p>
     </main>
   </div>
 

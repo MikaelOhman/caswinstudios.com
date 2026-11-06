@@ -116,6 +116,7 @@ td:first-child { font-weight: 600; }
       <a href="#village">The village</a>
       <a href="#peoples">The peoples</a>
       <a href="#food">Food and water</a>
+      <a href="#studies">Studies</a>
       <a href="#buildings">Buildings</a>
       <a href="#trade">Trade and gold</a>
       <a href="#gear">Gear</a>
@@ -137,10 +138,10 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.32.0</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.35.0</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
-        <div class="facts"><div><b>3</b> classes</div><div><b>90</b> buildings to order</div><div><b>58</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
+        <div class="facts"><div><b>3</b> classes</div><div><b>91</b> buildings to order</div><div><b>58</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
         <div class="spoilerbar">
           <p id="sp-state">Spoilers are hidden. Story secrets sit in purple boxes and stay hidden until you ask, with a warning first.</p>
           <button type="button" id="sp-all">Show all spoilers</button>
@@ -173,7 +174,7 @@ td:first-child { font-weight: 600; }
           <li>The <b>joystick</b> (left) walks; <b>Attack</b> aims itself at the nearest foe; four <b>skill buttons</b>; a <b>Potion</b> button; <b>Dodge</b> rolls you where you're steering (Shift or Q on a keyboard).</li>
           <li>The <b>action button</b> (E on a keyboard) talks, searches, trades, opens doors and trashes goblin camps.</li>
           <li><b>Village plan</b> switches to the bird's-eye view: tap a building, then where it should go. Tap a building or a villager for their card.</li>
-          <li><b>Goods and mood</b> shows the stores, the mood, the people, and the ledger of what was made and eaten yesterday. Tap <b>Mood</b> in the village panel for what makes people happy or unhappy. <b>Map</b> shows where you've been.</li>
+          <li><b>Goods and mood</b> shows the stores, the mood, the people, and the ledger of what was made and eaten yesterday. Tap <b>Mood</b> in the village panel for what makes people happy or unhappy, and for the <b>village log</b>. <b>Studies</b> (next to Village plan) is the village's research. <b>Map</b> shows where you've been.</li>
           <li>The corners of the screen glow when foes are near: calm green or blue for an easy fight, amber for an even one, orange for hard, pulsing blood red for deadly.</li>
           <li>The game saves by itself every five minutes and when you come home; <b>Save</b> saves now.</li>
         </ul>
@@ -276,6 +277,16 @@ td:first-child { font-weight: 600; }
           <li>− 4 for each person without a bed; − 3 for each person hungry or thirsty; − 8 while the village grieves a death; − bound skeletons about, up to −8; − peoples living in districts they'd rather not, up to −8</li>
         </ul>
         <p>Tap <b>Mood</b> in the village panel to see every part of it: what it's worth now, who it's about (who has no bed, who's hungry) and what would help.</p>
+        <h3>The village log</h3>
+        <p>The Mood window's other tabs are the <b>village log</b>: what has happened to your people, newest first, by day and hour. <b>Village log</b> shows everything, <b>Deaths and trouble</b> only the bad news, <b>Comings and goings</b> who arrived, who went out and who changed work. It keeps:</p>
+        <ul>
+          <li><b>Deaths</b>, with what the person was doing and how much water or food was left at that moment (so you can see why), and a count of the deaths by cause at the top.</li>
+          <li>Who got <b>badly thirsty or hungry</b> (and what they were doing about it), and who started wasting away.</li>
+          <li><b>Wounds</b>: struck down (and by what), helped back up, carried to the healer, healed and back at work; wounded home from a raid or a goblin attack.</li>
+          <li><b>Comings and goings</b>: newcomers, who went with you on a raid, soldiers marching on a goblin camp, workers who ran home from a work party; new builders; gear taken from the armoury.</li>
+          <li><b>The village</b>: water running short (and plentiful again), studies begun and learned, old books found.</li>
+        </ul>
+        <p>The log keeps the last 300 entries and is saved with the game.</p>
         <p>Newcomers settle when there are free beds, the mood is 45 or better, and there's food for everyone. An inn and a scout lodge bring more.</p>
         <h3>What a building should make, and who makes it</h3>
         <p>Every building that makes something shows its <b>Expected</b> output on its card, next to what it really <b>made yesterday</b>, for example:</p>
@@ -306,6 +317,60 @@ td:first-child { font-weight: 600; }
         <h3>Hurt and downed villagers</h3>
         <p>Every villager has a <b>fighting role</b> (their card: tap to choose Shield, Fighter, Archer, Spellcaster or Healer; until you do, it comes from their work and people). It sets what they do in raids and what they take from the armoury.</p>
         <p>A villager at zero health is <b>down</b>: you have 30 seconds to reach them and stand by them to help them up (a red arrow points the way). Otherwise they're carried to the healer, badly hurt, for a day. With no food or water for too long, people die.</p>
+      </section>
+
+      <section id="studies">
+        <h2>Studies</h2>
+        <p>The village's research. A <b>scholar</b> gathers <b>lore</b>: about 3 a day at a <b>Scribe's desk</b> (15 people), about 8 a day at the <b>Library</b> (40 people), more if their people are good at it. Old books in raid hoards (twice the raid's level in lore) and in chests underground give lore too.</p>
+        <ul>
+          <li>Tap <b>Studies</b> next to Village plan. Pick one study: it costs lore and some goods, paid at the start, and takes 1 to 3 days while a scholar works (with no scholar at work, it waits). Then it lasts for good.</li>
+          <li>One study at a time. Each branch goes tier by tier (20, 60 and 150 lore); the third tier needs the library. Every study can be learned in the end.</li>
+          <li>"Faster" means that building's workers work that much faster, like better tools: more of what it makes, and the Goods window's expected food counts it.</li>
+          <li>Learned studies go into the village log.</li>
+        </ul>
+        <h3>Food and water</h3>
+<div class="scroll"><table class=""><thead><tr><th>Branch</th><th>Tier</th><th>Study</th><th>Costs</th><th>Takes</th><th>What it does</th></tr></thead><tbody>
+<tr><td>Fields</td><td>1</td><td><b>Crop rotation</b></td><td>20 lore, 10 grain</td><td>1 day</td><td>Beans one year, grain the next: farm fields give a quarter more.</td></tr>
+<tr><td></td><td>2</td><td><b>Heavy plough</b></td><td>60 lore, 4 iron tools, 6 planks</td><td>2 days</td><td>An iron share that turns the heavy soil: farm fields a quarter more again.</td></tr>
+<tr><td></td><td>3</td><td><b>Irrigation</b></td><td>150 lore, 20 stone, 10 planks</td><td>3 days</td><td>Ditches from the streams: fields and orchards give a fifth more.</td></tr>
+<tr><td>Mill and oven</td><td>1</td><td><b>Better millstones</b></td><td>20 lore, 12 stone</td><td>1 day</td><td>Dressed, grooved stones: the windmill grinds a third faster.</td></tr>
+<tr><td></td><td>2</td><td><b>Bread ovens</b></td><td>60 lore, 10 bricks, 6 stone</td><td>2 days</td><td>A brick oven that holds its heat: the bakery bakes 40% more.</td></tr>
+<tr><td></td><td>3</td><td><b>Sourdough</b></td><td>150 lore, 20 flour, 6 honey</td><td>3 days</td><td>A living starter: better loaves that fill more (bread 60 -&gt; 75), and a bit more of them.</td></tr>
+<tr><td>The sea</td><td>1</td><td><b>Bigger nets</b></td><td>20 lore, 6 wool, 10 wood</td><td>1 day</td><td>Wider nets of twisted wool: the fishing huts catch a quarter more.</td></tr>
+<tr><td></td><td>2</td><td><b>Salt curing</b></td><td>60 lore, 12 salt</td><td>2 days</td><td>Brine and racks: the salt pans and smokehouse work a third faster.</td></tr>
+<tr><td></td><td>3</td><td><b>Deep-sea fishing</b></td><td>150 lore, 20 planks, 4 iron tools</td><td>3 days</td><td>Longlines and sturdier boats for the deep water: the fishing huts catch 30% more again.</td></tr>
+<tr><td>Orchard and herds</td><td>1</td><td><b>Grafting</b></td><td>20 lore, 10 fruit</td><td>1 day</td><td>Good branches on hardy roots: the orchards give a third more.</td></tr>
+<tr><td></td><td>2</td><td><b>Better breeds</b></td><td>60 lore, 10 milk, 10 grain</td><td>2 days</td><td>The best rams and nannies kept for breeding: more milk and wool, and the butcher gets more from each beast.</td></tr>
+<tr><td></td><td>3</td><td><b>Bee skeps</b></td><td>150 lore, 10 honey, 10 wood</td><td>3 days</td><td>Woven skeps that can be split each spring: the apiary gives 60% more honey.</td></tr>
+<tr><td>Kitchen</td><td>1</td><td><b>The stew pot</b></td><td>20 lore, 10 fish</td><td>1 day</td><td>One big pot that&#x27;s always on: the tavern&#x27;s cook makes 40% more hot meals.</td></tr>
+<tr><td></td><td>2</td><td><b>Preserves</b></td><td>60 lore, 12 salt, 4 honey</td><td>2 days</td><td>Salting, drying and honey: smoked fish, meat and fruit fill more.</td></tr>
+<tr><td></td><td>3</td><td><b>Hearty cooking</b></td><td>150 lore, 10 ale, 10 meat</td><td>3 days</td><td>Herbs, roasts and pies: hot meals fill more (70 -&gt; 85), and the cook is quicker.</td></tr>
+<tr><td>Water</td><td>1</td><td><b>Deeper wells</b></td><td>20 lore, 12 stone</td><td>1 day</td><td>Dig down to the deeper water: the wells fill half again as fast.</td></tr>
+<tr><td></td><td>2</td><td><b>Water carts</b></td><td>60 lore, 10 planks, 10 wood</td><td>2 days</td><td>Barrels on a cart: water carriers bring twice as much to the stores each trip.</td></tr>
+<tr><td></td><td>3</td><td><b>Cisterns</b></td><td>150 lore, 30 stone, 10 bricks</td><td>3 days</td><td>Lined cisterns by every well: a well holds twice as much, and fills a quarter faster.</td></tr>
+</tbody></table></div>
+<h3>Crafts</h3>
+<div class="scroll"><table class=""><thead><tr><th>Branch</th><th>Tier</th><th>Study</th><th>Costs</th><th>Takes</th><th>What it does</th></tr></thead><tbody>
+<tr><td>Wood, stone and clay</td><td>1</td><td><b>Two-man saws</b></td><td>20 lore, 2 iron tools, 10 wood</td><td>1 day</td><td>Long saws with a handle at each end: woodcutters and the sawmill work a quarter faster.</td></tr>
+<tr><td></td><td>2</td><td><b>Stone dressing</b></td><td>60 lore, 4 iron tools, 10 stone</td><td>2 days</td><td>Wedges, feathers and a mason&#x27;s eye: the quarry and clay pit 30% faster, the mine a fifth.</td></tr>
+<tr><td></td><td>3</td><td><b>Hot kilns</b></td><td>150 lore, 20 bricks, 10 charcoal</td><td>3 days</td><td>Kilns that burn hotter on less: the charcoal kiln 30% faster, bricks and pottery 40%.</td></tr>
+<tr><td>The forge</td><td>1</td><td><b>Great bellows</b></td><td>20 lore, 6 hides, 6 planks</td><td>1 day</td><td>Leather bellows worked by foot: the smithy forges tools 30% faster.</td></tr>
+<tr><td></td><td>2</td><td><b>Tempering</b></td><td>60 lore, 10 ore, 10 charcoal</td><td>2 days</td><td>Quench and draw: the toolwright and the armourer work 30% faster.</td></tr>
+<tr><td></td><td>3</td><td><b>Master patterns</b></td><td>150 lore, 20 planks, 4 iron tools</td><td>3 days</td><td>Jigs and patterns for every piece: the carpenter, bowyer and shipwright work 30% faster.</td></tr>
+<tr><td>Cloth and leather</td><td>1</td><td><b>Spinning wheel</b></td><td>20 lore, 8 wool, 4 planks</td><td>1 day</td><td>Thread by the wheel, not the spindle: the weaver works 30% faster.</td></tr>
+<tr><td></td><td>2</td><td><b>Tanning pits</b></td><td>60 lore, 10 hides, 10 stone</td><td>2 days</td><td>Bark-lined pits: the tannery 30% faster, and the trappers bring in a fifth more.</td></tr>
+<tr><td></td><td>3</td><td><b>Tailors&#x27; patterns</b></td><td>150 lore, 10 cloth, 6 leather</td><td>3 days</td><td>Cut once, sew many: the tailor makes 40% more clothes, the weaver a bit more too.</td></tr>
+</tbody></table></div>
+<h3>Defence</h3>
+<div class="scroll"><table class=""><thead><tr><th>Branch</th><th>Tier</th><th>Study</th><th>Costs</th><th>Takes</th><th>What it does</th></tr></thead><tbody>
+<tr><td>Walls and watch</td><td>1</td><td><b>Iron-banded gates</b></td><td>20 lore, 2 iron tools, 10 planks</td><td>1 day</td><td>Iron straps and studs: the gates take 60% longer to break down.</td></tr>
+<tr><td></td><td>2</td><td><b>Signal fires</b></td><td>60 lore, 20 wood, 6 charcoal</td><td>2 days</td><td>Beacons on the towers: raiders are seen sooner, and the towers shoot a fifth farther.</td></tr>
+<tr><td></td><td>3</td><td><b>Tower crossbows</b></td><td>150 lore, 6 iron tools, 10 planks</td><td>3 days</td><td>Heavy crossbows on the towers: the guards hit 30% harder.</td></tr>
+<tr><td>Arms and care</td><td>1</td><td><b>Drill manuals</b></td><td>20 lore, 2 weapons</td><td>1 day</td><td>Written drills for the trainer: soldiers, guards and your party hit 15% harder.</td></tr>
+<tr><td></td><td>2</td><td><b>Field medicine</b></td><td>60 lore, 12 herbs, 6 cloth</td><td>2 days</td><td>Splints, poultices and stretchers: the wounded heal half again as fast, and more of the fallen are saved.</td></tr>
+<tr><td></td><td>3</td><td><b>Shield-wall tactics</b></td><td>150 lore, 4 weapons, 4 armour</td><td>3 days</td><td>Lock shields, strike together: soldiers and party fighters hit a fifth harder, the towers a tenth.</td></tr>
+</tbody></table></div>
+        <p class="note">Tip: short of water? A scribe's desk and <b>Deeper wells</b> (tier 1) is the quickest fix. Short of food? <b>The stew pot</b> and <b>Bigger nets</b> pay back fastest.</p>
       </section>
 
       <section id="peoples">
@@ -366,6 +431,7 @@ td:first-child { font-weight: 600; }
           <li>Hunger runs out in 36 hours, thirst in 24. People eat and drink at mealtimes, and whenever they get low.</li>
           <li>A person uses about 66.7 hunger a day: about <b>1 hot meal</b>, or 1.5 fish. The cook at the Salty Gull turns fish and grain into meals one for one, so cooking makes food go about half as far again.</li>
           <li>Each person drinks 3 buckets a day. A well holds 40 and refills 2 an hour (48 a day): one well for about 15 people. The water carrier takes the extra to the stores.</li>
+          <li><b>Water short</b>: when the wells give less in a day than people would drink having a drink at every meal, the top panel shows Water in red ("short!") and people drink only when they're thirsty, so the thirsty always find water. The badly thirsty get up in the night for a drink at a well or the stores. Build another well, or study <b>Deeper wells</b>.</li>
           <li>The <b>Goods and mood</b> window shows the expected food a day against what the village needs, and yesterday's food made and eaten, by building.</li>
         </ul>
         <div class="scroll"><table class="narrow"><thead><tr><th>Food</th><th>Fills (hunger)</th><th>Eaten in this order</th><th>A person needs about this many a day</th></tr></thead><tbody>
@@ -453,7 +519,8 @@ td:first-child { font-weight: 600; }
 <tr><td>Infirmary</td><td>Many beds for the wounded: they get well twice as fast.<br><span class="note">boosts: healing +100%</span></td><td>1 healer</td><td>–</td><td>20 stone, 15 planks<br><span class="note">10 h to build; 40 people</span></td></tr>
 <tr><td>Dovecote</td><td>Doves bring news and requests from other villages: send what they ask for and they pay well.<br><span class="note">mood +1</span></td><td>1 dovekeeper</td><td>a dove with a request every 6 h</td><td>12 wood, 4 stone<br><span class="note">4 h to build; 15 people</span></td></tr>
 <tr><td>Mapmaker&#x27;s house</td><td>Draws maps from travellers&#x27; tales. Maps sell for a lot.</td><td>1 mapmaker</td><td>1 maps per 4 h: about 2.2 maps</td><td>15 wood, 4 planks<br><span class="note">5 h to build; 15 people</span></td></tr>
-<tr><td>Library</td><td>Old books and new ideas. You learn a tenth faster while a scholar works here.<br><span class="note">boosts: xp +10%; mood +3; one only</span></td><td>1 scholar</td><td>–</td><td>20 bricks, 15 planks<br><span class="note">12 h to build; 40 people</span></td></tr>
+<tr><td>Scribe&#x27;s desk</td><td>A scholar copies old almanacs and asks the farmers and fishers what works: about 3 lore a day for Studies (better crops, bread, catches, wells).<br><span class="note">one only</span></td><td>1 scholar</td><td>–</td><td>15 wood, 4 planks<br><span class="note">5 h to build; 15 people</span></td></tr>
+<tr><td>Library</td><td>Old books and new ideas. You learn a tenth faster while a scholar works here, the scholar gathers about 8 lore a day, and the hardest Studies need it.<br><span class="note">boosts: xp +10%; mood +3; one only</span></td><td>1 scholar</td><td>–</td><td>20 bricks, 15 planks<br><span class="note">12 h to build; 40 people</span></td></tr>
 <tr><td>Lighthouse</td><td>Guides the boats home (more fish) and spots raiders early. By the shore.<br><span class="note">boosts: fishing +25%, warning +1; mood +1; by the shore; one only</span></td><td>1 lighthouse keeper</td><td>–</td><td>30 stone, 10 wood<br><span class="note">10 h to build; 25 people</span></td></tr>
 </tbody></table></div>
 <h3 id="b-defence">Defence</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
@@ -1053,7 +1120,7 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.32.0).</p>
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.35.0).</p>
     </main>
   </div>
 

@@ -120,6 +120,7 @@ td:first-child { font-weight: 600; }
       <a href="#trade">Trade and gold</a>
       <a href="#gear">Gear</a>
       <a href="#danger">Raids and monsters</a>
+      <a href="#raids">Raid areas</a>
       <a href="#missions">Missions</a>
       <a href="#travel">Getting about</a>
       <a href="#explore">Exploring</a>
@@ -136,7 +137,7 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.28.0</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.32.0</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
         <div class="facts"><div><b>3</b> classes</div><div><b>90</b> buildings to order</div><div><b>58</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
@@ -169,10 +170,11 @@ td:first-child { font-weight: 600; }
         </ul>
         <h3>Controls (phone)</h3>
         <ul>
-          <li>The <b>joystick</b> (left) walks; <b>Attack</b> aims itself at the nearest foe; four <b>skill buttons</b>; a <b>Potion</b> button.</li>
+          <li>The <b>joystick</b> (left) walks; <b>Attack</b> aims itself at the nearest foe; four <b>skill buttons</b>; a <b>Potion</b> button; <b>Dodge</b> rolls you where you're steering (Shift or Q on a keyboard).</li>
           <li>The <b>action button</b> (E on a keyboard) talks, searches, trades, opens doors and trashes goblin camps.</li>
           <li><b>Village plan</b> switches to the bird's-eye view: tap a building, then where it should go. Tap a building or a villager for their card.</li>
-          <li><b>Goods and mood</b> shows the stores, the mood, the people, and the ledger of what was made and eaten yesterday. <b>Map</b> shows where you've been.</li>
+          <li><b>Goods and mood</b> shows the stores, the mood, the people, and the ledger of what was made and eaten yesterday. Tap <b>Mood</b> in the village panel for what makes people happy or unhappy. <b>Map</b> shows where you've been.</li>
+          <li>The corners of the screen glow when foes are near: calm green or blue for an easy fight, amber for an even one, orange for hard, pulsing blood red for deadly.</li>
           <li>The game saves by itself every five minutes and when you come home; <b>Save</b> saves now.</li>
         </ul>
         <h3>Day and night</h3>
@@ -212,7 +214,35 @@ td:first-child { font-weight: 600; }
     <button type="button" class="sp-hide">Hide this again</button>
   </div>
 </div>
-        <p>Kill monsters for experience. Every level gives a skill point. Levels need 40, 110, 210, 340, 500, 700… experience in total.</p>
+        <h3>Levels</h3>
+        <p>Kill monsters for experience. Every level gives a skill point, more life and more damage. Levels go up to <b>30</b>; they need 40, 110, 210, 340, 500, 700… experience in total, 36200 for level 30. Past it, every 4000 experience is a point of <b>Renown</b>: +1% damage and +1% life each.</p>
+        <p>How dangerous the island is depends on <b>where you are</b>, not on the day. Every land has its levels, rising the further you go from Saltmere. A monster is never weaker than its own kind (a goblin is a goblin anywhere), and the land makes it tougher for every level it stands above that. The days only stir the world a little (at most a quarter more health).</p>
+        <div class="scroll"><table class="narrow"><thead><tr><th>Land</th><th>Levels (nearest Saltmere – far side)</th></tr></thead><tbody>
+<tr><td>The Old Forest</td><td>1–6</td></tr>
+<tr><td>The Green Hills</td><td>5–11</td></tr>
+<tr><td>Mirefen</td><td>8–14</td></tr>
+<tr><td>Elderwood</td><td>10–16</td></tr>
+<tr><td>The Crownlands</td><td>11–17</td></tr>
+<tr><td>The Greyfells</td><td>14–20</td></tr>
+<tr><td>The Lindholm Lakes</td><td>16–22</td></tr>
+<tr><td>The Ember Steppes</td><td>17–23</td></tr>
+<tr><td>The Northmarch</td><td>19–25</td></tr>
+<tr><td>The Barrow Downs</td><td>21–27</td></tr>
+<tr><td>Ironpeak</td><td>22–28</td></tr>
+<tr><td>The Dragonspine</td><td>27–30</td></tr>
+</tbody></table></div>
+        <p>Experience follows how a foe compares to you: up to twice as much for one far above you, less for one below, and almost nothing for one six or more levels below (grey). Items drop at the level of what dropped them, so a rat never drops good gear; bosses drop a few levels higher and sometimes a legendary. A hero at level 30 in good gear can take on anything out in the open world; the harder fights are what raids are for.</p>
+        <h3>Paths</h3>
+        <p>At level 10, choose a <b>path</b> at the top of the Skills window (tap once to read it, again to take it). The first is free; changing later costs gold from the stores. Each trades one thing for another, so none is simply best:</p>
+        <div class="scroll"><table class=""><thead><tr><th>Path</th><th>Life</th><th>Damage</th><th>Threat</th><th>What it means</th></tr></thead><tbody>
+<tr><td>Bulwark</td><td>160%</td><td>65%</td><td>x3</td><td>A wall: +60% life, +10% less damage taken, foes come for you (threat x3), carry more plate. -35% damage. Bring damage dealers.</td></tr>
+<tr><td>Duelist</td><td>85%</td><td>100%</td><td>x1</td><td>Never where the blow lands: 25% of blows miss, the roll is ready twice as fast, and each roll gives +40% damage for 3 s. -15% life.</td></tr>
+<tr><td>Glass cannon</td><td>60%</td><td>175%</td><td>x0.5</td><td>All-out: +75% damage (your creatures&#x27; too), foes overlook you (threat x0.5). -40% life. Bring shields.</td></tr>
+</tbody></table></div>
+        <h3>Dodging</h3>
+        <p><b>Dodge</b> rolls you a few metres where you're steering; nothing can touch you for a moment. It's ready again after 5 seconds (2.5 for a Duelist). Big hitters (trolls, golems, bosses) wind up their blow first: a red ring grows under them; roll or step out of reach and it misses. Leather gear and the Duelist's path give a <b>dodge chance</b>: that share of blows simply misses.</p>
+        <h3>Threat</h3>
+        <p>Monsters go for whoever draws them most, not simply the nearest: whoever hurts them most, times how much they draw foes. A Bulwark draws three times as much, a shield companion three times, a summoner's creatures half again (a turret hardly at all), a glass cannon half as much. Monsters lean towards those close by and stick with whoever they're fighting. So a glass-cannon summoner can let her creatures take the blows; a Bulwark holds them himself and wants damage dealers beside him.</p>
       </section>
 
       <section id="skills">
@@ -231,6 +261,7 @@ td:first-child { font-weight: 600; }
           <li>The village gives out the work by itself: people without a job take whatever needs hands, food first.</li>
           <li>Every building with workers has a <b>work priority</b>: Paused, Low, Normal or High. When food runs low, food buildings count one step higher.</li>
           <li>The <b>Workers</b> window (the button by Goods and Map) works like Timberborn's: at the top, how many people are at work, building or have nothing to do, and how many places stand empty; then a row for every job, with workers / wanted and how many places it has. The − and + buttons change how many workers a job wants, and the arrow opens its workplaces one by one, each with its own − and +, and its priority (Paused, Normal or High). Want fewer at a workplace and the rest go to other work; want more and free hands (or people from less important work) come.</li>
+          <li>Each job's row in the Workers window also has a <b>priority</b> button (Normal, High, Low, Paused) that sets it for all its workplaces at once.</li>
           <li><b>Bring a worker here</b> (on a building's card) fetches someone from the least important work. They stay there: <b>Stays at this job</b> on a person's card keeps the village from moving them.</li>
           <li>You can order a building or a wall <b>without the materials</b>: it waits as a plan, and the builders start when the stores have what it needs. The stores' materials go to the sites in turn (a site marked <b>Build this first</b>, then those already begun, then the oldest), so a little wood isn't spread over a dozen sites none of which can be finished.</li>
           <li>Builders spread out over the sites that can go on (a long wall gets several at once). A site waiting for something the stores don't have says so on its card, and the builders work elsewhere meanwhile. A building's card lists who's working on it.</li>
@@ -241,8 +272,10 @@ td:first-child { font-weight: 600; }
         <p>All work goes at <b>75% to 125%</b> speed, by the village's mood (0 to 100). The mood starts from 45 and moves towards:</p>
         <ul>
           <li>+ services (tavern, chapel, bard, inn…) up to +30; + varied food up to +10; + ale or wine at the tavern +6; + warm clothes for everyone +4</li>
-          <li>− 4 for each person without a bed; − 3 for each person hungry or thirsty; − 8 while the village grieves a death</li>
+          <li>+ the peoples living in districts they like, up to +6; + good news (a victory, a quest done) +6; + a trophy for each raid won +3, up to +12</li>
+          <li>− 4 for each person without a bed; − 3 for each person hungry or thirsty; − 8 while the village grieves a death; − bound skeletons about, up to −8; − peoples living in districts they'd rather not, up to −8</li>
         </ul>
+        <p>Tap <b>Mood</b> in the village panel to see every part of it: what it's worth now, who it's about (who has no bed, who's hungry) and what would help.</p>
         <p>Newcomers settle when there are free beds, the mood is 45 or better, and there's food for everyone. An inn and a scout lodge bring more.</p>
         <h3>What a building should make, and who makes it</h3>
         <p>Every building that makes something shows its <b>Expected</b> output on its card, next to what it really <b>made yesterday</b>, for example:</p>
@@ -271,6 +304,7 @@ td:first-child { font-weight: 600; }
         <p>The longhouse, storehouses and warehouses hold four kinds of goods: <b>food</b>, <b>water</b>, <b>materials</b> (wood, stone, ore, clay, hides…) and <b>goods</b> (planks, tools, cloth, ale…). Tap one and switch the kinds it takes on and off, for example a storehouse by the pier for food only. People carry things to the nearest store that takes them, and eat and drink at stores that take food and water. The Goods and mood window shows the room left for each kind. When there's no room for fish, the fishers have nowhere to put their catch, and their card says so. Water in the stores can be drunk at any storehouse, whatever it's set to take.</p>
         <p><b>Stock limits</b> (Goods, "Stock limits and the market"): set the most of each good to keep. At its limit a good's makers stop bringing more, which leaves room for what you need. The same list sets what the market sells: only what's above its line, and never what a building site still waits for.</p>
         <h3>Hurt and downed villagers</h3>
+        <p>Every villager has a <b>fighting role</b> (their card: tap to choose Shield, Fighter, Archer, Spellcaster or Healer; until you do, it comes from their work and people). It sets what they do in raids and what they take from the armoury.</p>
         <p>A villager at zero health is <b>down</b>: you have 30 seconds to reach them and stand by them to help them up (a red arrow points the way). Otherwise they're carried to the healer, badly hurt, for a day. With no food or water for too long, people die.</p>
       </section>
 
@@ -502,32 +536,37 @@ td:first-child { font-weight: 600; }
 
       <section id="gear">
         <h2>Gear</h2>
-        <p>Monsters, camps, chests and landmarks drop gear. Wear it, sell it (at a market, or to the Gilded Wheel's caravan when it comes), salvage it at a smithy, or <b>donate it to the armoury</b>: guards and soldiers come first and take whatever beats what they wear; then working villagers (those outside the walls first) take light gear: a sword, axe or dagger, a hood, tunic or robe, gloves and boots, nothing legendary. An armed villager stands and fights one or two beasts, a wolf, a lynx, rats, instead of running (never a raid or a boss), then picks up whatever it dropped (hide, meat, gold, gear) and carries it to the stores; gear goes to the armoury. (Potions stay on the ground for you.) Tap a piece (in your bag or on the caravan's table) to see its stats, and stat by stat what it would change against what you wear.</p>
-        <h3>Rarities</h3><p>Common · Magic · Rare · Legendary: the rarer, the more bonuses. Bonuses grow with the level of the monster that dropped it.</p><h3>Kinds of gear</h3><div class="scroll"><table class=""><thead><tr><th>Item</th><th>Slot</th><th>Base stats</th><th>Who can use it</th></tr></thead><tbody>
-<tr><td>Sword</td><td>Weapon</td><td>attack 10</td><td>Warrior</td></tr>
-<tr><td>Axe</td><td>Weapon</td><td>attack 12, crit 2%</td><td>Warrior</td></tr>
-<tr><td>Greatsword</td><td>Weapon</td><td>attack 16</td><td>Warrior</td></tr>
-<tr><td>Great Axe</td><td>Weapon</td><td>attack 17, crit 2%</td><td>Warrior</td></tr>
-<tr><td>Dagger</td><td>Weapon</td><td>attack 7, crit 4%</td><td>anyone</td></tr>
-<tr><td>Staff</td><td>Weapon</td><td>attack 12, regen 6%</td><td>Wizard, Summoner</td></tr>
-<tr><td>Wand</td><td>Weapon</td><td>attack 9, cdr 2%</td><td>Wizard, Summoner</td></tr>
-<tr><td>Round Shield</td><td>Off hand</td><td>armour 14</td><td>Warrior</td></tr>
-<tr><td>Kite Shield</td><td>Off hand</td><td>armour 18</td><td>Warrior</td></tr>
-<tr><td>Spiked Shield</td><td>Off hand</td><td>armour 12, thorns 8%</td><td>Warrior</td></tr>
-<tr><td>Tower Shield</td><td>Off hand</td><td>armour 22</td><td>Warrior</td></tr>
-<tr><td>Tome</td><td>Off hand</td><td>regen 10%</td><td>Wizard, Summoner</td></tr>
-<tr><td>Grimoire</td><td>Off hand</td><td>minion dmg 8%</td><td>Summoner</td></tr>
-<tr><td>Helm</td><td>Head</td><td>armour 10</td><td>anyone</td></tr>
-<tr><td>Hood</td><td>Head</td><td>armour 5, regen 5%</td><td>anyone</td></tr>
-<tr><td>Mail Coat</td><td>Body</td><td>armour 20</td><td>anyone</td></tr>
-<tr><td>Leather Tunic</td><td>Body</td><td>armour 12, speed 3%</td><td>anyone</td></tr>
-<tr><td>Robe</td><td>Body</td><td>armour 6, regen 8%</td><td>anyone</td></tr>
-<tr><td>Gloves</td><td>Hands</td><td>armour 5</td><td>anyone</td></tr>
-<tr><td>Gauntlets</td><td>Hands</td><td>armour 8</td><td>anyone</td></tr>
-<tr><td>Boots</td><td>Feet</td><td>armour 5, speed 2%</td><td>anyone</td></tr>
-<tr><td>Greaves</td><td>Feet</td><td>armour 8</td><td>anyone</td></tr>
-<tr><td>Ring</td><td>Ring</td><td>–</td><td>anyone</td></tr>
-<tr><td>Amulet</td><td>Amulet</td><td>–</td><td>anyone</td></tr>
+        <p><b>Anyone can wear anything.</b> A weapon or off-hand made for another class does 60% of its damage. Armour comes in three kinds: <b>plate</b> (much armour, heavy), <b>leather</b> (some armour, and a chance to dodge) and <b>cloth</b> (little armour, more damage). Every piece has a <b>weight</b>; each class carries some without trouble (a warrior 14, a full suit of plate and a shield; a wizard 4; a summoner 5; a Bulwark 6 more). Every point over that makes you 4% slower to walk, attack and cast, at most 60%. A summoner in plate is fine, just a slow one.</p>
+        <p>The <b>Gear</b> window (after Diablo's and Path of Exile's): what you wear as tiles on the left, your bag in the middle (each piece marked <b>+</b> or <b>−</b> against what you wear, counting off-class damage and the weight; faded if it isn't made for your class; <b>Sort bag</b> puts it in order), and your whole <b>character sheet</b> on the right: damage a second, damage, critical strikes, attack and cast speed, cooldowns, the elements, life, armour, dodge, the roll, movement, load and threat. Tap a piece to see it side by side with what it would replace, then stat by stat what wearing it would change.</p>
+        <p>Monsters, camps, chests and landmarks drop gear. Wear it, sell it (at a market, or to the Gilded Wheel's caravan when it comes), salvage it at a smithy, <b>give it</b> to one of your people (Give to…: they're listed by how much better it is for their fighting role, and they keep it), or <b>donate it to the armoury</b>: guards and soldiers come first and take what suits their role best (shields armour and life; archers and spellcasters damage, and nothing heavy; healers healing); then working villagers (those outside the walls first) take light gear: a sword, axe or dagger, a hood, tunic or robe, gloves and boots, nothing legendary. An armed villager stands and fights one or two beasts, a wolf, a lynx, rats, instead of running (never a raid or a boss), then picks up whatever it dropped (hide, meat, gold, gear) and carries it to the stores; gear goes to the armoury. (Potions stay on the ground for you.) Tap a piece (in your bag or on the caravan's table) to see its stats, and stat by stat what it would change against what you wear.</p>
+        <h3>Rarities</h3><p>Common · Magic · Rare · Legendary: the rarer, the more bonuses. An item's level is the level of the monster that dropped it (a boss's a few levels more); bonuses grow 8% a level, up to item level 34.</p><h3>Kinds of gear</h3><div class="scroll"><table class=""><thead><tr><th>Item</th><th>Slot</th><th>Kind</th><th>Weight</th><th>Base stats</th><th>Made for</th></tr></thead><tbody>
+<tr><td>Sword</td><td>Weapon</td><td>Blade</td><td>1</td><td>attack 10</td><td>Warrior</td></tr>
+<tr><td>Axe</td><td>Weapon</td><td>Blade</td><td>1</td><td>attack 12, crit 2%</td><td>Warrior</td></tr>
+<tr><td>Greatsword</td><td>Weapon</td><td>Heavy blade</td><td>3</td><td>attack 16</td><td>Warrior</td></tr>
+<tr><td>Great Axe</td><td>Weapon</td><td>Heavy blade</td><td>3</td><td>attack 17, crit 2%</td><td>Warrior</td></tr>
+<tr><td>Dagger</td><td>Weapon</td><td>Blade</td><td>0</td><td>attack 7, crit 4%</td><td>anyone</td></tr>
+<tr><td>Staff</td><td>Weapon</td><td>Focus</td><td>1</td><td>attack 12, regen 6%</td><td>Wizard, Summoner</td></tr>
+<tr><td>Wand</td><td>Weapon</td><td>Focus</td><td>0</td><td>attack 9, cdr 2%</td><td>Wizard, Summoner</td></tr>
+<tr><td>Round Shield</td><td>Off hand</td><td>Plate</td><td>2</td><td>armour 14</td><td>Warrior</td></tr>
+<tr><td>Kite Shield</td><td>Off hand</td><td>Plate</td><td>3</td><td>armour 18</td><td>Warrior</td></tr>
+<tr><td>Spiked Shield</td><td>Off hand</td><td>Plate</td><td>2</td><td>armour 12, thorns 8%</td><td>Warrior</td></tr>
+<tr><td>Tower Shield</td><td>Off hand</td><td>Plate</td><td>4</td><td>armour 22</td><td>Warrior</td></tr>
+<tr><td>Tome</td><td>Off hand</td><td>Cloth</td><td>0</td><td>regen 10%</td><td>Wizard, Summoner</td></tr>
+<tr><td>Grimoire</td><td>Off hand</td><td>Cloth</td><td>0</td><td>minion dmg 8%</td><td>Summoner</td></tr>
+<tr><td>Helm</td><td>Head</td><td>Plate</td><td>2</td><td>armour 14</td><td>anyone</td></tr>
+<tr><td>Hood</td><td>Head</td><td>Leather</td><td>0</td><td>armour 6, dodge 2%</td><td>anyone</td></tr>
+<tr><td>Circlet</td><td>Head</td><td>Cloth</td><td>0</td><td>armour 2, dmg 4%, regen 4%</td><td>anyone</td></tr>
+<tr><td>Mail Coat</td><td>Body</td><td>Plate</td><td>4</td><td>armour 28</td><td>anyone</td></tr>
+<tr><td>Leather Tunic</td><td>Body</td><td>Leather</td><td>1</td><td>armour 12, dodge 4%, speed 3%</td><td>anyone</td></tr>
+<tr><td>Robe</td><td>Body</td><td>Cloth</td><td>0</td><td>armour 4, dmg 6%, regen 8%</td><td>anyone</td></tr>
+<tr><td>Gloves</td><td>Hands</td><td>Leather</td><td>0</td><td>armour 5, dodge 2%</td><td>anyone</td></tr>
+<tr><td>Silk Gloves</td><td>Hands</td><td>Cloth</td><td>0</td><td>armour 1, dmg 4%, cdr 2%</td><td>anyone</td></tr>
+<tr><td>Gauntlets</td><td>Hands</td><td>Plate</td><td>2</td><td>armour 11</td><td>anyone</td></tr>
+<tr><td>Boots</td><td>Feet</td><td>Leather</td><td>0</td><td>armour 5, dodge 2%, speed 2%</td><td>anyone</td></tr>
+<tr><td>Slippers</td><td>Feet</td><td>Cloth</td><td>0</td><td>armour 1, dmg 3%, speed 3%</td><td>anyone</td></tr>
+<tr><td>Greaves</td><td>Feet</td><td>Plate</td><td>2</td><td>armour 11</td><td>anyone</td></tr>
+<tr><td>Ring</td><td>Ring</td><td>Jewellery</td><td>0</td><td>–</td><td>anyone</td></tr>
+<tr><td>Amulet</td><td>Amulet</td><td>Jewellery</td><td>0</td><td>–</td><td>anyone</td></tr>
 </tbody></table></div><h3>Bonuses (magic and rare items)</h3><div class="scroll"><table class="narrow"><thead><tr><th>Prefix</th><th>Bonus</th><th>Range</th><th>Rolls for</th></tr></thead><tbody>
 <tr><td>Sharp</td><td>dmg</td><td>4–8%</td><td>anyone</td></tr>
 <tr><td>Sturdy</td><td>life</td><td>10–25</td><td>anyone</td></tr>
@@ -548,6 +587,7 @@ td:first-child { font-weight: 600; }
 <tr><td>Wide</td><td>radius</td><td>4–8%</td><td>Wizard, Summoner, Warrior</td></tr>
 <tr><td>Soul-eating</td><td>mana kill</td><td>1–3</td><td>anyone</td></tr>
 <tr><td>Blessed</td><td>heal power</td><td>8–15%</td><td>anyone</td></tr>
+<tr><td>Nimble</td><td>dodge</td><td>2–4%</td><td>anyone</td></tr>
 </tbody></table></div><h3>Legendaries</h3><div class="scroll"><table class=""><thead><tr><th>Name</th><th>Item</th><th>Power</th></tr></thead><tbody>
 <tr><td>Grubnak&#x27;s Cleaver</td><td>Great Axe</td><td>Every kill heals you</td></tr>
 <tr><td>The Salt Wall</td><td>Tower Shield</td><td>Hurt back half the damage you take</td></tr>
@@ -637,10 +677,11 @@ td:first-child { font-weight: 600; }
           <li><b>Wolves</b> roam the woods; out in the forest a <b>black wolf</b> leads some packs (wolves near it hit harder; badly hurt, it runs and the pack scatters). A <b>warg</b> roams the deep forest far from Saltmere, and its bite throws you back.</li>
           <li>A <b>lynx</b> lies still in the undergrowth and springs when you come close: its first strike hits twice as hard.</li>
           <li><b>Bandits</b> hold up travellers on the King's Road beyond Askeby, in bands of three or four with an archer. Their chief has a camp off the road between Hollowbrook and Stenhamn (on your map once seen); break it for its loot, and it stands empty for three days.</li>
-          <li><b>Soldiers</b> (from a barracks) hold the gate the raiders come at, and fight those who reach the walls or get in. In the afternoon they drill at a training yard or archery range, which makes them hit harder. From the Map window, <b>Clear a camp</b> sends them against the nearest known goblin camp: first you see the chance, worked out from the fight itself (their health and damage against the goblins', who grow tougher every day), then send or cancel. They bring home the camp's plunder and what the goblins they cut down carried, or come back hurt.</li>
+          <li><b>Soldiers</b> (from a barracks) hold the gate the raiders come at, and fight those who reach the walls or get in. In the afternoon they drill at a training yard or archery range, which makes them hit harder. From the Map window, <b>Clear a camp</b> sends them against the nearest known goblin camp: first you see the chance, worked out from the fight itself (their health and damage against the goblins', as tough as the land they're camped in), then send or cancel. They bring home the camp's plunder and what the goblins they cut down carried, or come back hurt.</li>
           <li>After a fight, soldiers and people with nothing to do gather what the fallen dropped in and round the village: coin and goods to the stores, gear to the armoury. Village dogs bark when something comes near and chase rats and foxes out; the healer runs to anyone knocked down; the scout goes on rounds and reports every camp within 2 km.</li>
           <li><b>Rats</b> swarm in the Green Hills, and on about one night in five, when the stores hold grain and Saltmere isn't resting after an attack, a swarm makes for Saltmere's stores and eats it.</li>
-          <li>On a <b>moonless night</b> (every sixth) <b>drowned sailors</b> rise from the surf below Saltmere and walk the beach till dawn; their grip slows you.</li>
+          <li>On a <b>moonless night</b> (every sixth) <b>drowned sailors</b> rise from the surf below Saltmere, outside the walls, and come in like raiders till dawn; their grip slows you.</li>
+          <li><b>Outlaw camps</b> come and go in the lands (300 m to 1.6 km from Saltmere, a new one every day or two): bandits, slavers, cultists, smugglers, deserters, orc raiders, kobold diggers and goblin raiding parties, each with its own name. Most hold <b>captives</b> of the peoples such a band would take. Beat the band and free a captive (E): some come to live in Saltmere, some pay you back (their family's reward, or something they'd hidden), and some ask for your help with something (a new request). They're on your map once seen; a beaten, emptied camp fades away.</li>
           <li><b>The lands beyond</b> have creatures of their own. <b>Mirefen</b>: bog trolls (they mend as they fight), leeches and Mire hags with their hexes. <b>The Greyfells</b>: werewolves, only by night, drinking the life they take. <b>Elderwood</b>: corrupted treants, giant spiders whose webs slow you, and wisps. <b>The Barrow Downs</b>: wights. <b>The Lindholm Lakes</b>: drowners and lake spirits. <b>The Northmarch</b>: the Duke's patrols and flocks of ravens. <b>Ironpeak</b>: kobold packs, cave trolls and stone golems. <b>The Ember Steppes</b>: orc raiders, war boars and fire spirits. <b>The Crownlands</b>: deserters. <b>The Dragonspine</b>: drakes, and a lair east of Veilwatch (on your map once seen).</li>
           <li><b>Hideouts</b>, each its own kind of trouble (on your map once seen; broken, each stands empty for a few days):
             <b>the smugglers' cove</b> on the coast near Hornvik (crossbowmen and Red Annet, their captain);
@@ -672,6 +713,35 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
+      <section id="raids">
+        <h2>Raid areas</h2>
+        <p>Some places are too much for one hero, however strong: you take a party of villagers in. Two are dungeons (you and 4: packed halls), two are open areas ringed with red war-banners (you and 9: room to spread out). Walk into one and it asks first: it's a raid. Then you pick who comes with you from Saltmere: each with their fighting role, life, damage and gear, and what the end fight looks like with them and without them. The picker also says who the boss will go for (your best shield, or you).</p>
+        <div class="scroll"><table class=""><thead><tr><th>Raid</th><th>Where</th><th>Level</th><th>Party</th><th>At the end</th><th>What it is</th></tr></thead><tbody>
+<tr><td>The Corsair Landing</td><td>outdoors</td><td>14</td><td>you + 9</td><td>Captain Blackwake</td><td>Corsairs have run their ships up on the beach and dug in behind the dunes: three crews and their captain, Blackwake, who&#x27;s burned half the coast.</td></tr>
+<tr><td>The Spider Queen&#x27;s Nest</td><td>indoors</td><td>17</td><td>you + 4</td><td>Ixyth, the Spider Queen</td><td>Deep under Elderwood, the webs go on for miles. Whatever spins them has eaten three woodcutters&#x27; camps this year.</td></tr>
+<tr><td>The Deep Forge</td><td>indoors</td><td>25</td><td>you + 4</td><td>The Forge Colossus</td><td>A dwarf forge that was sealed for a reason. The fires have lit themselves again, and something huge walks the anvil-halls.</td></tr>
+<tr><td>The Drake Roost</td><td>outdoors</td><td>29</td><td>you + 9</td><td>Cindermaw, the drake mother</td><td>High on the Dragonspine the drakes nest on the warm rocks, and their mother is older than the Wardens&#x27; wall.</td></tr>
+</tbody></table></div>
+        <ul>
+          <li>Your party follows you like a summoner's creatures and fights at your level (with their gear, drill and veteran ranks). The raid bar has three orders: <b>Follow</b> (G), <b>Hold here</b> (H) and <b>Attack my target</b> (T).</li>
+          <li>Outdoors the foes come at you in three waves before the boss; indoors the halls are packed.</li>
+          <li>The boss marks the ground under you (a red circle: step out before it strikes), calls more help at two-thirds and one-third health, and grows enraged after four minutes.</li>
+          <li>A companion at no health goes <b>down</b>, never dies: stand by them (or let a healer) to help them up. Whoever's still down at the end comes home wounded and rests at the healer two or three days.</li>
+          <li>While they're away, their work at home waits. No saving during a raid; if you fall, the raid is lost and everyone comes home.</li>
+          <li>The boss's hoard: items above the raid's level, often rare, now and then legendary; gold; a lot of experience. Everyone still standing gains a <b>veteran</b> rank (up to 5: they fight harder in raids and at home). The first win of each raid hangs its trophy in Saltmere (+3 mood).</li>
+          <li>Won, a raid is quiet for 3 days, and it can then be taken on <b>Heroic</b>: four levels harder, more and better loot.</li>
+          <li>With plain villagers a raid's end fight is hard; better gear from the armoury and veterans make it easier. Alone, it's deadly.</li>
+        </ul>
+        <h3>Fighting roles</h3>
+        <div class="scroll"><table class=""><thead><tr><th>Role</th><th>Life (level 1)</th><th>Blow</th><th>Who and how</th></tr></thead><tbody>
+<tr><td>Shield</td><td>150</td><td>8 every 1.1 s</td><td>Soldiers, guards, trainers and the big peoples. Draws the foes onto themselves (threat x3) and taunts what&#x27;s near.</td></tr>
+<tr><td>Fighter</td><td>110</td><td>10 every 1 s</td><td>Everyone else who fights up close.</td></tr>
+<tr><td>Archer</td><td>80</td><td>9 every 1.3 s</td><td>Hunters, scouts, lookouts, and peoples good with a bow (elves). Shoots from 13 m.</td></tr>
+<tr><td>Spellcaster</td><td>75</td><td>12 every 1.6 s</td><td>Peoples of learning (gnomes) and scholars. A small blast that hits all round its target.</td></tr>
+<tr><td>Healer</td><td>85</td><td>4 every 1.4 s</td><td>Healers, priests, herbalists, and peoples good at healing. Mends the most hurt near (you too) and helps the fallen up.</td></tr>
+</tbody></table></div>
+      </section>
+
       <section id="missions">
         <h2>Missions and difficulty</h2>
         <p>Once Saltmere stands on its own feet, its people ask for help: up to three requests at a time, a new one a day or so. They show under the goal at the top of the screen, on your map (a violet diamond), and the arrow points to the nearest one when the story has nothing for you.</p>
@@ -701,6 +771,7 @@ td:first-child { font-weight: 600; }
         <h2>Exploring</h2>
         <ul>
           <li><b>The Old Barrow</b>, a burial mound by the road west of the crossroads: a crypt full of risen skeletons, with its king and his treasure at the far end. Once he's beaten, the dead rest for three days.</li>
+          <li><b>Ways down</b> all over the island: 22 more dungeons besides the Barrow and the Warren. Eight have names (the Ruined manor cellar, the Collapsed chapel crypt, the Abandoned mine, the Smugglers' grotto, the Webbed Hollow, the Drowned Shrine, the Old dwarf hall, the Wizard's tower vault) and fourteen are small (two halls): cellars under burnt farms and inns, family crypts, quarry tunnels, spider holes, sea caves, a hidden cult cellar. Each has its own beasts or band, its own look, and something nasty in its last room guarding a chest; the further from Saltmere, the higher its level. Beaten, it's quiet for a few days. On your map once found (grey while quiet).</li>
           <li><b>Landmarks</b> to find, most with something to search once: a ruined watchtower, a hunter's lean-to and the Fallen Giant in the Old Forest; a shipwreck on the eastern beach and an old lighthouse on the western headland; a ring of stones and an abandoned farmstead in the Green Hills; the witch's hut in Mirefen; the Great Oak and elven ruins round a moonwell in Elderwood; waystones and shrines along the roads.</li>
           <li><b>Askeby</b>, the market town on the King's Road (about 3.7 km east), and <b>Stenhamn</b>, the capital on the east coast, are real towns (on flat ground; out in the wilds the land rolls in hills, higher toward the mountains of the north and low in the bogs): a wall round each (a timber palisade, at Stenhamn grey stone with towers) with a gate on every road, the roads straight through to a paved square with a fountain, the houses round it between the streets, an inn and a market; the Gilded Wheel's waystation stands just inside the gate on the Saltmere road (look for its banner, a gold wheel on crimson; it's on your map too). Every faction flies its own banner: the kingdom a gold crown on royal blue (on Stenhamn's gatehouse and the palace), the Tidewrights a ship over waves (by each pier), Askeby an ash tree, Gullbo a gull, Hornvik a hunting horn, Saltmere a herring, and the other peoples theirs where their banners stand (a raven for Ravnsund, a crescent moon for the elves, an anvil for the dwarves, a round door for the halflings, a flame for the orcs, and so on). Stenhamn has a harbour, the guild hall and the Queen's palace. <b>Gullbo</b> and <b>Hornvik</b> are small harbours where the boat calls. <b>Ravnsund</b>, the Duke's city, has grey stone walls and his castle in red; <b>Lindholm</b> lies by the lake under the Spire; <b>Fjallmark</b> is a mining town with mine mouths in the hill behind it. The other peoples have their own homes: <b>Durnhold</b>, the dwarves' keep, is a great bronze gate cut into the mountain between two stone kings, with a forge and a stall in the yard before it (the gate stays shut until the Thane trusts you; knock with E); <b>Hollowbrook</b> is the halflings' village of round-doored burrows, gardens and a mill pond, with a Gilded Wheel waystation; <b>Lirael</b>, the elves' city of great silver trees, is closed by a gate of shining vines; the orcs' <b>Ashkar</b> is a barred war camp of yurts and a fighting pit; the trolls' <b>Gnarlroot</b> stands on stilts over a black pool. And the island's other places: the Conclave's <b>Spire</b> on its lake island, <b>Lantern Abbey</b> with its ever-burning lantern tower, the Grey Hounds' lodge at <b>Wolfscar</b>, the stones and the antlered oak of the <b>Antler Circle</b>, the hag's hut on chicken legs in the <b>Hag's Hollow</b>, the sealed <b>Barrow of Kings</b> and the ruins of <b>Veilwatch</b> in the snow (the last two held by the dead).</li>
           <li><b>Hunting</b>: deer and stags bolt, boars fight back when hurt. Their kills give hide and meat.</li>
@@ -982,7 +1053,7 @@ td:first-child { font-weight: 600; }
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.28.0).</p>
+      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.32.0).</p>
     </main>
   </div>
 

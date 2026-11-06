@@ -2,7 +2,8 @@
 
 The CasWin Studios website: plain HTML and CSS, no build step. Hosted on GitHub Pages with the custom domain in `CNAME`.
 
-- `index.html`: home (games, about us, contact)
+- `index.html`: home (games, apps, about us, contact)
+- `saltmere/`, `brainquest/`, `brainup/`, `caspitalki/`: each one's page, with its privacy policy in `privacy/` (the URL the stores link to)
 - `driftwood/`: the Driftwood page, and `driftwood/privacy/` (the privacy policy linked from Google Play)
 - `privacy/`: the website's own privacy note
 - `saltmere/wiki/`: the Saltmere wiki. Made by `tools/make_wiki.py` in the Saltmere repository from the game's own data (run `godot --headless --path . -s tools/wiki_data.gd` there first), so edit it there, not here. Story secrets sit in spoiler boxes that ask before they open.

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>Concept Catalog</title>
+<style>
+:root { --paper:#10171b; --panel:#172228; --card:#1b272e; --ink:#e4e0d4; --muted:#93a2a6; --brass:#d6a54c; --line:#2a3b42; --pick:#7cbcd0; --bad:#e08272;
+  --display: Georgia, "Times New Roman", serif; --body: Georgia, "Times New Roman", serif; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.5 var(--body); }
+main { max-width: 1320px; margin: 0 auto; padding: 24px 16px 64px; }
+h1, h2 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacing: .02em; }
+h1 { font-size: clamp(28px, 5vw, 42px); }
+h2 { font-size: 25px; }
+#lock { max-width: 380px; margin: 18vh auto 0; padding: 24px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+#lock input { width: 100%; font: 17px var(--body); padding: 9px 10px; margin: 12px 0; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); }
+#lock button, .bar button, .act button { font: 600 14px var(--body); border: 1px solid var(--line); color: var(--ink); background: var(--panel); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+#lock .msg { color: var(--bad); min-height: 1.4em; font-size: 15px; }
+.lede { color: var(--muted); max-width: 75ch; margin: 6px 0 16px; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; padding: 10px 12px; background: var(--panel); border-radius: 10px; margin-bottom: 24px; position: sticky; top: 0; z-index: 5; }
+.bar select, .bar input { font: 15px var(--body); background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; max-width: 100%; }
+.bar .sp { flex: 1; } .bar small { color: var(--muted); }
+section.entry { margin-bottom: 34px; }
+.entry header { display: flex; flex-wrap: wrap; gap: 2px 12px; align-items: baseline; }
+.entry .grp { color: var(--brass); font-size: 14px; }
+.entry .status { font-size: 13px; color: var(--muted); } .entry .status.ok { color: var(--pick); font-weight: 600; } .entry .status.redo { color: var(--bad); font-weight: 600; }
+.entry p.story { margin: 2px 0 10px; color: var(--muted); max-width: 85ch; }
+.imgs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 12px; }
+figure { margin: 0; background: var(--card); border: 2px solid var(--line); border-radius: 10px; overflow: hidden; position: relative; }
+figure.fav { border-color: var(--pick); } figure.rej { opacity: .38; }
+figure .ph { aspect-ratio: 2 / 1; background: var(--panel); }
+figure img { display: block; width: 100%; height: auto; cursor: zoom-in; }
+.badge { position: absolute; top: 8px; left: 8px; background: #000a; color: #fff; font: 600 11px system-ui, sans-serif; letter-spacing: .06em; padding: 3px 7px; border-radius: 4px; }
+.act { display: flex; gap: 6px; padding: 7px 9px; align-items: center; flex-wrap: wrap; }
+.act .seed { margin-left: auto; color: var(--muted); font-size: 12px; }
+.act button.fav.on { background: var(--pick); color: var(--card); border-color: var(--pick); }
+.act button.rej.on { background: var(--bad); color: var(--card); border-color: var(--bad); }
+.rv { padding: 6px 10px 2px; font-size: 13px; border-top: 1px solid var(--line); }
+.rv b { color: var(--bad); } .rv.fix b { color: var(--brass); } .rv.minor b { color: var(--muted); }
+.rv ul { margin: 2px 0 4px; padding-left: 18px; color: var(--muted); }
+.redo-row { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; margin-top: 10px; font-size: 14px; color: var(--muted); }
+.redo-row button { font: 600 14px var(--body); border: 1px solid var(--bad); color: var(--bad); background: transparent; border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.redo-row button.on { background: var(--bad); color: var(--card); }
+textarea { width: 100%; min-height: 46px; font: 15px var(--body); background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; margin-top: 8px; }
+details { margin: 6px 0 10px; } details summary { cursor: pointer; color: var(--muted); font-size: 14px; } details p { font-size: 14px; color: var(--muted); margin: 4px 0; }
+.empty { color: var(--muted); font-style: italic; padding: 18px; background: var(--card); border-radius: 10px; border: 1px dashed var(--line); }
+#lb { position: fixed; inset: 0; background: #000d; display: none; align-items: center; justify-content: center; z-index: 20; cursor: zoom-out; }
+#lb img { max-width: 96vw; max-height: 94vh; } #lb.on { display: flex; }
+#app { display: none; }
+</style>
+</head>
+<body>
+<div id="lock">
+  <h2>Concept Catalog</h2>
+  <form id="f"><input id="pw" type="password" autocomplete="current-password" placeholder="Password" autofocus>
+  <button>Open</button><div class="msg" id="msg"></div></form>
+</div>
+<main id="app">
+  <h1 id="title">Concept Catalog</h1>
+  <p class="lede">Concept art for every person, place and building in the story. These pictures are made by AI (marked
+    <b>AI concept</b>) and are only for deciding how things should look. Star the ones you like, cross out the ones you don't,
+    write notes, then press <b>Download my picks</b> and send the file.</p>
+  <div class="bar" id="bar"></div>
+  <div id="list"></div>
+</main>
+<div id="lb"><img alt=""></div>
+<script>
+"use strict";
+const SALT = "PM2i7n2tjnhoUbOa7QzvLA==", ITER = 600000;
+let KEY = null, D = null;
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function derive(pw) {
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(SALT), iterations: ITER, hash: "SHA-256" }, base,
+    { name: "AES-GCM", length: 256 }, true, ["decrypt"]);
+}
+async function open(path) {
+  const buf = new Uint8Array(await (await fetch(path, { cache: "no-cache" })).arrayBuffer());
+  return crypto.subtle.decrypt({ name: "AES-GCM", iv: buf.slice(0, 12) }, KEY, buf.slice(12));
+}
+async function unlock(key) {
+  KEY = key;
+  D = JSON.parse(new TextDecoder().decode(await open("data.bin")));
+  try { sessionStorage.setItem("ck", btoa(String.fromCharCode(...new Uint8Array(await crypto.subtle.exportKey("raw", KEY))))); } catch (e) {}
+  document.getElementById("lock").style.display = "none";
+  document.getElementById("app").style.display = "block";
+  document.getElementById("title").textContent = (D.game || "") + " Concept Catalog";
+  start();
+}
+document.getElementById("f").onsubmit = async ev => {
+  ev.preventDefault();
+  const msg = document.getElementById("msg");
+  msg.textContent = "Opening...";
+  try { await unlock(await derive(document.getElementById("pw").value)); }
+  catch (e) { msg.textContent = "Wrong password."; }
+};
+(async () => {
+  try {
+    const raw = sessionStorage.getItem("ck");
+    if (raw) await unlock(await crypto.subtle.importKey("raw", b64(raw), "AES-GCM", true, ["decrypt"]));
+  } catch (e) { try { sessionStorage.removeItem("ck"); } catch (_) {} }
+})();
+
+const urls = {};
+async function blobURL(name) {
+  if (!urls[name]) urls[name] = open("d/" + name).then(b => URL.createObjectURL(new Blob([b], { type: "image/jpeg" })));
+  return urls[name];
+}
+const io = new IntersectionObserver(es => es.forEach(async en => {
+  if (!en.isIntersecting) return;
+  io.unobserve(en.target);
+  const img = document.createElement("img");
+  img.alt = en.target.dataset.alt;
+  img.src = await blobURL(en.target.dataset.thumb);
+  img.onclick = async () => { const lb = document.getElementById("lb"); lb.querySelector("img").src = await blobURL(en.target.dataset.full); lb.classList.add("on"); };
+  en.target.replaceWith(img);
+}), { rootMargin: "600px" });
+document.getElementById("lb").onclick = () => document.getElementById("lb").classList.remove("on");
+
+const KEYS = "concepts-web-v1";
+let S = {};
+try { S = JSON.parse(localStorage.getItem(KEYS)) || {}; } catch (e) {}
+const save = () => { try { localStorage.setItem(KEYS, JSON.stringify(S)); } catch (e) {} };
+const st = id => (S[id] ??= { fav: [], rej: [], note: "" });
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+let filter = "All", query = "";
+
+function start() { drawBar(); drawList(); }
+function drawBar() {
+  const groups = ["All", ...new Set(D.entries.map(e => e.group))];
+  const n = D.entries.reduce((a, e) => a + e.images.length, 0);
+  document.getElementById("bar").innerHTML =
+    `<select id="grp" aria-label="Group">${groups.map(g => `<option${g === filter ? " selected" : ""}>${esc(g)}</option>`).join("")}</select>` +
+    `<input id="q" type="search" placeholder="Search names and stories" value="${esc(query)}">` +
+    `<span class="sp"></span><small>${D.entries.length} entries · ${n} pictures</small><button id="dl">Download my picks</button>`;
+  document.getElementById("grp").onchange = ev => { filter = ev.target.value; drawList(); };
+  document.getElementById("q").oninput = ev => { query = ev.target.value; drawList(); };
+  document.getElementById("dl").onclick = () => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([JSON.stringify({ game: D.game, saved: new Date().toISOString(), picks: S }, null, 1)], { type: "application/json" }));
+    a.download = "saltmere_concept_picks.json"; a.click();
+  };
+}
+function drawList() {
+  const ql = query.trim().toLowerCase();
+  const shown = D.entries.filter(e => (filter === "All" || e.group === filter) && (!ql || (e.name + " " + e.story + " " + e.group).toLowerCase().includes(ql)));
+  const list = document.getElementById("list");
+  list.innerHTML = (shown.length ? "" : `<div class="empty">Nothing matches.</div>`) + shown.map(e => {
+    const s = st(e.id);
+    const status = s.redo ? `<span class="status redo">↻ new pictures wanted</span>` : s.fav.length ? `<span class="status ok">★ ${s.fav.length} chosen</span>` : `<span class="status">draft</span>`;
+    const imgs = e.images.length ? `<div class="imgs">${e.images.map(p => {
+      const f = s.fav.includes(p.seed), r = s.rej.includes(p.seed), rv = e.review && e.review[p.seed];
+      return `<figure class="${f ? "fav" : ""} ${r ? "rej" : ""}"><span class="badge">AI CONCEPT</span>` +
+        `<div class="ph" data-thumb="${p.thumb}" data-full="${p.full}" data-alt="${esc(e.name)}"></div>` +
+        (rv ? `<div class="rv ${rv.verdict}${rv.class === "rules" ? " minor" : ""}"><b>${rv.verdict === "reject" && rv.class === "logic" ? "⚠ Logic fault" : rv.class === "logic" ? "⚠ Small logic fault" : "• Minor (detail rules)"}</b><ul>${rv.issues.map(i => `<li>${esc(i)}</li>`).join("")}</ul></div>` : "") +
+        `<div class="act"><button class="fav ${f ? "on" : ""}" data-e="${e.id}" data-s="${p.seed}">★ Like</button>` +
+        `<button class="rej ${r ? "on" : ""}" data-e="${e.id}" data-s="${p.seed}">✕ No</button><span class="seed">#${p.seed}</span></div></figure>`;
+    }).join("")}</div>` : `<div class="empty">No pictures yet.</div>`;
+    return `<section class="entry"><header><h2>${esc(e.name)}</h2><span class="grp">${esc(e.group)} · ${esc(e.kind)}</span>${status}</header>` +
+      `<p class="story">${esc(e.story)}</p><details><summary>Design brief</summary><p>${esc(e.prompt)}</p></details>${imgs}` +
+      `<div class="redo-row"><button class="redo ${s.redo ? "on" : ""}" data-e="${e.id}">↻ None of these – make new ones</button>` +
+      `<span>Say what's wrong or what you want instead in the notes.</span></div>` +
+      `<textarea data-e="${e.id}" placeholder="Notes for ${esc(e.name)}...">${esc(s.note)}</textarea></section>`;
+  }).join("");
+  list.querySelectorAll(".ph").forEach(el => io.observe(el));
+  list.querySelectorAll("button.fav, button.rej").forEach(b => b.onclick = () => {
+    const s = st(b.dataset.e), k = b.classList.contains("fav") ? "fav" : "rej", o = k === "fav" ? "rej" : "fav", seed = b.dataset.s;
+    s[k] = s[k].includes(seed) ? s[k].filter(x => x !== seed) : [...s[k], seed]; s[o] = s[o].filter(x => x !== seed); save(); drawList();
+  });
+  list.querySelectorAll("button.redo").forEach(b => b.onclick = () => { const s = st(b.dataset.e); s.redo = !s.redo; save(); drawList(); });
+  list.querySelectorAll("textarea").forEach(t => t.oninput = () => { st(t.dataset.e).note = t.value; save(); });
+}
+</script>
+</body>
+</html>

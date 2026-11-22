@@ -138,10 +138,10 @@ td:first-child { font-weight: 600; }
 
     <main>
       <header class="hero-wiki" style="display:grid;gap:12px">
-        <div class="eyebrow">Saltmere · the wiki · game version 0.35.0</div>
+        <div class="eyebrow">Saltmere · the wiki · game version 0.52.0</div>
         <h1>Saltmere</h1>
         <p class="lead" style="margin:0;max-width:62ch">A fisherman pulls you out of the sea on the isle of Caldra. You remember nothing. That night goblins come over the fence, and you fight them off. Now you are Saltmere's hero: go out and fight, bring home what you find, and grow a village that feeds, houses and defends itself.</p>
-        <div class="facts"><div><b>3</b> classes</div><div><b>91</b> buildings to order</div><div><b>58</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
+        <div class="facts"><div><b>3</b> classes</div><div><b>82</b> buildings to order</div><div><b>58</b> village jobs</div><div><b>26 × 17 km</b> island</div><div><b>Free</b>, no ads, plays offline</div></div>
         <div class="spoilerbar">
           <p id="sp-state">Spoilers are hidden. Story secrets sit in purple boxes and stay hidden until you ask, with a warning first.</p>
           <button type="button" id="sp-all">Show all spoilers</button>
@@ -178,6 +178,14 @@ td:first-child { font-weight: 600; }
           <li>The corners of the screen glow when foes are near: calm green or blue for an easy fight, amber for an even one, orange for hard, pulsing blood red for deadly.</li>
           <li>The game saves by itself every five minutes and when you come home; <b>Save</b> saves now.</li>
         </ul>
+        <h3>Keyboard and mouse</h3>
+        <p>On a TV or a monitor (a phone with Samsung DeX, say) the game plays with a keyboard and mouse. The controls follow what you used last: a key or the mouse hides the joystick, and a finger on the screen brings it back.</p>
+        <ul>
+          <li><b>Mouse</b>: hold the left button to attack where the pointer is, the right button to dodge, the wheel to zoom. Skills aim at the pointer, and hovering over people and foes names them.</li>
+          <li><b>Keys</b>: each button shows its key. E or Space talks and acts, 1 to 9 picks an answer in talks, + and − zoom, F5 saves, and F1 lists every key (also under Settings).</li>
+        </ul>
+        <h3>Settings</h3>
+        <p><b>Picture</b>: Sharp, Balanced or Light. Light draws at a lower resolution and turns off the glow and the swaying capes and tails, to spare the phone. There's also a 30 fps battery saver, a frame meter, <b>Text and buttons</b> (Small, Normal, Large), and separate music and effects volumes.</p>
         <h3>Day and night</h3>
         <p>A day lasts 8 minutes. Night is 21:00 to 05:00: people sleep, and raiders come. Villagers work from 7:00 to 18:00, with meals around 7:00, 12:00 and 18:00, and spend evenings at the tavern.</p>
         <h3>If you fall</h3>
@@ -206,7 +214,7 @@ td:first-child { font-weight: 600; }
         <li>You are <b>the last Warden of the Veil</b>, of an old order sworn to keep <em>the Hollow</em> shut: the grey realm between death and rest.</li>
         <li>Three years ago the order fell at <b>Veilwatch</b> in one night. Its own High Warden, <b>Veyra</b>, betrayed it.</li>
         <li>You were Veyra's second and her apprentice. You carry <b>the Veil Key</b>, the last seal on the Hollow, bound into your blood.</li>
-        <li>Your ship, <em>the Grey Gull</em>, carried the last Wardens south. Veyra's storm sank it.</li>
+        <li>Your ship, <em>the Veilrunner</em>, under Warden-Captain Aslak, carried you south. Veyra's storm sank it.</li>
         <li><b>The Forgetting</b>, Veyra's curse, took your memory so you would not remember how to stop her.</li>
         <li>That is why goblins grow bolder near you, the dead stir in the barrows, and the sea gives back drowned men on moonless nights. The Hollow is calling the Key.</li>
       </ul>
@@ -273,8 +281,8 @@ td:first-child { font-weight: 600; }
         <p>All work goes at <b>75% to 125%</b> speed, by the village's mood (0 to 100). The mood starts from 45 and moves towards:</p>
         <ul>
           <li>+ services (tavern, chapel, bard, inn…) up to +30; + varied food up to +10; + ale or wine at the tavern +6; + warm clothes for everyone +4</li>
-          <li>+ the peoples living in districts they like, up to +6; + good news (a victory, a quest done) +6; + a trophy for each raid won +3, up to +12</li>
-          <li>− 4 for each person without a bed; − 3 for each person hungry or thirsty; − 8 while the village grieves a death; − bound skeletons about, up to −8; − peoples living in districts they'd rather not, up to −8</li>
+          <li>+ people whose home has neighbours their people likes, +0.5 each up to +6; + good news (a victory, a quest done) +6; + a trophy for each raid won +3, up to +12</li>
+          <li>− 4 for each person without a bed; − 3 for each person hungry or thirsty; − 8 while the village grieves a death; − bound skeletons about, up to −8; − 1 for each whose home has more nearby that their people minds, up to −8; − 1 for each waiting over a day for their people's own kind of home, up to −8</li>
         </ul>
         <p>Tap <b>Mood</b> in the village panel to see every part of it: what it's worth now, who it's about (who has no bed, who's hungry) and what would help.</p>
         <h3>The village log</h3>
@@ -376,51 +384,95 @@ td:first-child { font-weight: 600; }
       <section id="peoples">
         <h2>The peoples of Saltmere</h2>
         <p>Every villager belongs to a people. Their people sets how fast they do each job (good at it: about 40% faster; not their thing: about 30% slower), what they never do (the village never gives anyone such work) and what gear they won't wear. A person's card shows their people and how good they are at the work they're doing. Folk of a people come to live in Saltmere once you're <b>friends</b> with them (two at once if there are beds, more now and then after), and settle in their own people's home if there's one with room: there they work a tenth faster. Big folk need big homes, and some fit in no house at all.</p>
-        <div class="scroll"><table class="wide"><thead><tr><th>People</th><th>Size</th><th>Good at (about 40% faster)</th><th>Never</th><th>Comes to Saltmere</th><th>Home, and rules</th></tr></thead><tbody>
-<tr><td><b>Human</b><br><span class="small">the all-rounders: the measure every other people is held to</span></td><td>medium</td><td>(none: all as usual)</td><td>nothing</td><td>anyone may come</td><td>a cottage or house</td></tr>
-<tr><td><b>Elf</b><br><span class="small">never fells a living tree, never mines; hunters, herbalists, scouts and musicians</span></td><td>medium</td><td>ranged, hunting, herbalism, scouting, music</td><td>woodcutting, mining</td><td>friends with the elves</td><td>Elven lodge</td></tr>
-<tr><td><b>Dwarf</b><br><span class="small">never fishes (dwarves sink); miners, masons, smiths and brewers</span></td><td>small</td><td>mining, masonry, smithing, brewing, guarding, melee</td><td>fishing</td><td>friends with the dwarves</td><td>Dwarven stone hall</td></tr>
-<tr><td><b>Halfling</b><br><span class="small">farmers, cooks, brewers and quiet scouts; no heavy armour</span></td><td>small</td><td>farming, cooking, brewing, herbalism, scouting</td><td>nothing</td><td>friends with the halflings</td><td>Halfling burrow</td></tr>
-<tr><td><b>Orc</b><br><span class="small">warriors, herders, hunters and leatherworkers</span></td><td>medium</td><td>melee, herding, hunting, guarding, tailoring</td><td>nothing</td><td>friends with the orcs</td><td>Orc yurt camp</td></tr>
-<tr><td><b>Bog troll</b><br><span class="small">huge, strong and slow; great haulers and fishers; wears no armour; never at a desk, a loom or a market stall</span></td><td>large</td><td>hauling, fishing, guarding</td><td>tailoring, lore, trade, music, healing</td><td>friends with the bog trolls</td><td>Troll wallow</td></tr>
-<tr><td><b>Gnome</b><br><span class="small">tinkerers and scholars; too small to haul</span></td><td>small</td><td>tinkering, lore, smithing</td><td>hauling</td><td>friends with the dwarves</td><td>Dwarven stone hall</td></tr>
-<tr><td><b>Kobold</b><br><span class="small">miners and trap-makers who adore anything dragon</span></td><td>small</td><td>mining, tinkering, scouting</td><td>hauling</td><td>friends with the dwarves</td><td>Warren</td></tr>
-<tr><td><b>Molefolk</b><br><span class="small">diggers and root farmers, nearly blind; never shoots</span></td><td>small</td><td>mining, farming, masonry</td><td>ranged</td><td>friends with the dwarves</td><td>Warren</td></tr>
-<tr><td><b>Stone troll</b><br><span class="small">mountain muscle that works only at night (sunlight makes it stiff and slow)</span></td><td>large</td><td>mining, hauling, masonry, guarding</td><td>tailoring, tinkering, lore, music, trade, healing, cooking</td><td>friends with the dwarves</td><td>Troll wallow<br>works by night, sleeps by day</td></tr>
-<tr><td><b>Hobgoblin</b><br><span class="small">disciplined soldiers and weaponsmiths</span></td><td>medium</td><td>guarding, melee, smithing</td><td>nothing</td><td>friends with the orcs</td><td>Orc yurt camp</td></tr>
-<tr><td><b>Ogre</b><br><span class="small">big appetite, big arms; no books, no needles, no bows</span></td><td>large</td><td>hauling, woodcutting, melee</td><td>lore, tinkering, tailoring, ranged</td><td>friends with the orcs</td><td>Orc yurt camp</td></tr>
-<tr><td><b>Minotaur</b><br><span class="small">builders of great stone halls and fearsome guards</span></td><td>large</td><td>melee, guarding, masonry, hauling</td><td>ranged, tailoring</td><td>friends with the orcs</td><td>Dwarven stone hall</td></tr>
-<tr><td><b>Hill giant</b><br><span class="small">gentle and enormous: works outdoors only and fits in no house</span></td><td>huge</td><td>hauling, woodcutting, masonry, guarding</td><td>ranged, tailoring, tinkering, lore</td><td>friends with the orcs</td><td>Giant&#x27;s lean-to<br>outdoor work only</td></tr>
-<tr><td><b>Centaur</b><br><span class="small">archers, scouts and star-readers; never under the ground</span></td><td>large</td><td>ranged, scouting, hunting, hauling</td><td>mining</td><td>friends with the orcs</td><td>Orc yurt camp</td></tr>
-<tr><td><b>Wolffolk</b><br><span class="small">trackers and pack fighters; the sheep won&#x27;t have them</span></td><td>medium</td><td>hunting, scouting, melee</td><td>herding</td><td>friends with the orcs</td><td>Orc yurt camp</td></tr>
-<tr><td><b>Foxfolk</b><br><span class="small">clever traders; the chickens object to them</span></td><td>small</td><td>trade, scouting</td><td>herding</td><td>friends with the elves</td><td>Elven lodge</td></tr>
-<tr><td><b>Owlfolk</b><br><span class="small">night scholars and sentries</span></td><td>small</td><td>lore, scouting</td><td>mining, hauling</td><td>friends with the elves</td><td>Elven lodge</td></tr>
-<tr><td><b>Bearfolk</b><br><span class="small">woodcutters, beekeepers and walls of fur</span></td><td>large</td><td>woodcutting, hauling, guarding, brewing</td><td>tinkering, tailoring, ranged</td><td>friends with the elves</td><td>Dwarven stone hall</td></tr>
-<tr><td><b>Rabbitfolk</b><br><span class="small">fast, peaceful gardeners: they never hunt or fight</span></td><td>small</td><td>farming, scouting, herbalism</td><td>hunting, melee</td><td>friends with the halflings</td><td>Halfling burrow</td></tr>
-<tr><td><b>Faun</b><br><span class="small">musicians, herders and winemakers</span></td><td>medium</td><td>music, herding, brewing</td><td>mining, smithing</td><td>friends with the halflings</td><td>Halfling burrow</td></tr>
-<tr><td><b>Lizardfolk</b><br><span class="small">hunters, fishers and guards of the wetlands; they eat everything raw</span></td><td>medium</td><td>fishing, hunting, guarding, herbalism</td><td>cooking</td><td>friends with the bog trolls</td><td>Stilt house</td></tr>
-<tr><td><b>Frogfolk</b><br><span class="small">potion-brewers and leapers; forge heat dries their skin</span></td><td>small</td><td>fishing, herbalism, scouting</td><td>smithing</td><td>friends with the bog trolls</td><td>Stilt house</td></tr>
-<tr><td><b>Merfolk</b><br><span class="small">sea traders and singers: they work only by the water</span></td><td>medium</td><td>fishing, scouting, trade, music</td><td>smithing, mining, woodcutting, farming</td><td>friends with the Tidewrights</td><td>Tide house<br>works only by the water</td></tr>
-<tr><td><b>Selkie</b><br><span class="small">seal-folk: fishers, singers and healers</span></td><td>medium</td><td>fishing, music, healing</td><td>smithing</td><td>friends with the Tidewrights</td><td>Tide house</td></tr>
-<tr><td><b>Shellfolk</b><br><span class="small">slow, patient and wise; their shell is all the armour they need</span></td><td>medium</td><td>lore, masonry, guarding, fishing</td><td>scouting</td><td>friends with the Tidewrights</td><td>Tide house</td></tr>
-<tr><td><b>Catfolk</b><br><span class="small">curious traders, scouts and nimble fighters; animals don&#x27;t trust them</span></td><td>medium</td><td>scouting, hunting, fishing, melee</td><td>herding</td><td>friends with the Gilded Wheel</td><td>a cottage or house</td></tr>
-<tr><td><b>Ratfolk</b><br><span class="small">scavengers, tinkers and dealers</span></td><td>small</td><td>scouting, trade, tinkering</td><td>nothing</td><td>friends with the Velvet Hand</td><td>Warren</td></tr>
-<tr><td><b>Ravenfolk</b><br><span class="small">messengers, collectors and riddle-keepers</span></td><td>small</td><td>scouting, trade, lore</td><td>mining, hauling</td><td>friends with the Velvet Hand</td><td>Ravens&#x27; perch</td></tr>
-<tr><td><b>Dryad</b><br><span class="small">healer and grower, bound to the green: she works only with growing things</span></td><td>medium</td><td>herbalism, healing, farming</td><td>woodcutting, smithing, mining</td><td>friends with the elves</td><td>Fairy grove<br>no iron</td></tr>
-<tr><td><b>Treant</b><br><span class="small">a walking tree: slow, strong and very old; never near fire or an axe, never indoors</span></td><td>huge</td><td>guarding, hauling, farming</td><td>woodcutting, smithing, cooking, brewing, mining</td><td>friends with the elves</td><td>Fairy grove<br>outdoor work only; no iron</td></tr>
-<tr><td><b>Pixie</b><br><span class="small">a tiny enchanter and messenger; no iron, nothing heavy</span></td><td>small</td><td>scouting, herbalism</td><td>hauling, mining, smithing, melee, guarding</td><td>friends with the elves</td><td>Fairy grove<br>no iron</td></tr>
-<tr><td><b>Brownie</b><br><span class="small">a house spirit: keeps homes and kitchens perfect, working unseen at night</span></td><td>small</td><td>cooking, tailoring, carpentry</td><td>melee, ranged, guarding, smithing</td><td>friends with the halflings</td><td>a cottage or house<br>works by night, sleeps by day; no iron</td></tr>
-<tr><td><b>Wisp</b><br><span class="small">a floating light: lights the way and soothes the hurt; no work with hands</span></td><td>small</td><td>scouting, healing</td><td>nothing</td><td>friends with the bog trolls</td><td>Quiet house</td></tr>
-<tr><td><b>Ghost</b><br><span class="small">a friendly spirit of someone long gone: remembers everything, works only by night, touches nothing</span></td><td>medium</td><td>lore, scouting, music</td><td>nothing</td><td>friends with the Order of the Lantern</td><td>Quiet house<br>works by night, sleeps by day</td></tr>
-<tr><td><b>Sporeling</b><br><span class="small">mushroom folk, gardeners of the dark; they shun fire and bright days</span></td><td>small</td><td>farming, herbalism</td><td>smithing, cooking</td><td>friends with the bog trolls</td><td>Warren<br>works by night, sleeps by day</td></tr>
-<tr><td><b>Imp</b><br><span class="small">mischievous and fire-loving, good with forges and contracts; never at a holy place</span></td><td>small</td><td>smithing, trade</td><td>healing, fishing, lore</td><td>friends with the Azure Conclave</td><td>Quiet house</td></tr>
-<tr><td><b>Goblin</b><br><span class="small">reformed, mostly: scavengers, scouts and scrap-tinkers; never let one near the sick</span></td><td>small</td><td>scouting, tinkering, mining</td><td>healing</td><td>once the Goblin King has fallen</td><td>Warren</td></tr>
-<tr><td><b>Clockwork automaton</b><br><span class="small">built at the clockwork forge: tireless, works day and night</span></td><td>medium</td><td>hauling, smithing, guarding</td><td>music, lore, healing, trade</td><td>built or raised (see below)</td><td>a cottage or house<br>no food, drink, bed or mood</td></tr>
-<tr><td><b>Stone golem</b><br><span class="small">shaped at the rune forge: slow and mighty, works day and night; sinks like a stone</span></td><td>large</td><td>mining, masonry, guarding, hauling</td><td>fishing, tailoring, tinkering, cooking, brewing, music, lore, healing, trade</td><td>built or raised (see below)</td><td>a cottage or house<br>no food, drink, bed or mood</td></tr>
-<tr><td><b>Bound skeleton</b><br><span class="small">raised in the bone crypt: never tires; the living find it a bit creepy</span></td><td>medium</td><td>hauling, mining, guarding</td><td>healing, cooking, music, trade, lore</td><td>built or raised (see below)</td><td>a cottage or house<br>no food, drink, bed or mood</td></tr>
+        <div class="scroll"><table class="wide"><thead><tr><th>People</th><th>Size</th><th>Good at (about 40% faster)</th><th>Never</th><th>Comes to Saltmere</th><th>Home, and rules</th><th>Likes near home</th></tr></thead><tbody>
+<tr><td><b>Human</b><br><span class="small">the all-rounders: the measure every other people is held to</span></td><td>medium</td><td>(none: all as usual)</td><td>nothing</td><td>anyone may come</td><td>a cottage or house</td><td>doesn't mind</td></tr>
+<tr><td><b>Elf</b><br><span class="small">never fells a living tree, never mines; hunters, herbalists, scouts and musicians</span></td><td>medium</td><td>ranged, hunting, herbalism, scouting, music</td><td>woodcutting, mining</td><td>friends with the elves</td><td>Elven lodge</td><td>woodland trades, learning, holy places<br><span class="small">minds stone and forge, dark places</span></td></tr>
+<tr><td><b>Dwarf</b><br><span class="small">never fishes (dwarves sink); miners, masons, smiths and brewers</span></td><td>small</td><td>mining, masonry, smithing, brewing, guarding, melee</td><td>fishing</td><td>friends with the dwarves</td><td>Dwarven stone hall</td><td>stone and forge, dark places<br><span class="small">minds wet places</span></td></tr>
+<tr><td><b>Halfling</b><br><span class="small">farmers, cooks, brewers and quiet scouts; no heavy armour</span></td><td>small</td><td>farming, cooking, brewing, herbalism, scouting</td><td>nothing</td><td>friends with the halflings</td><td>Halfling burrow</td><td>fields and farms, homely places<br><span class="small">minds stone and forge</span></td></tr>
+<tr><td><b>Orc</b><br><span class="small">warriors, herders, hunters and leatherworkers</span></td><td>medium</td><td>melee, herding, hunting, guarding, tailoring</td><td>nothing</td><td>friends with the orcs</td><td>Orc yurt camp</td><td>soldiers and beasts<br><span class="small">minds learning, holy places</span></td></tr>
+<tr><td><b>Bog troll</b><br><span class="small">huge, strong and slow; great haulers and fishers; wears no armour; never at a desk, a loom or a market stall</span></td><td>large</td><td>hauling, fishing, guarding</td><td>tailoring, lore, trade, music, healing</td><td>friends with the bog trolls</td><td>Troll wallow</td><td>wet places<br><span class="small">minds learning, holy places</span></td></tr>
+<tr><td><b>Gnome</b><br><span class="small">tinkerers and scholars; too small to haul</span></td><td>small</td><td>tinkering, lore, smithing</td><td>hauling</td><td>friends with the dwarves</td><td>Dwarven stone hall</td><td>learning, stone and forge<br><span class="small">minds soldiers and beasts</span></td></tr>
+<tr><td><b>Kobold</b><br><span class="small">miners and trap-makers who adore anything dragon</span></td><td>small</td><td>mining, tinkering, scouting</td><td>hauling</td><td>friends with the dwarves</td><td>Warren</td><td>dark places, stone and forge<br><span class="small">minds soldiers and beasts</span></td></tr>
+<tr><td><b>Molefolk</b><br><span class="small">diggers and root farmers, nearly blind; never shoots</span></td><td>small</td><td>mining, farming, masonry</td><td>ranged</td><td>friends with the dwarves</td><td>Warren</td><td>dark places, fields and farms<br><span class="small">minds the harbour's trades</span></td></tr>
+<tr><td><b>Stone troll</b><br><span class="small">mountain muscle that works only at night (sunlight makes it stiff and slow)</span></td><td>large</td><td>mining, hauling, masonry, guarding</td><td>tailoring, tinkering, lore, music, trade, healing, cooking</td><td>friends with the dwarves</td><td>Troll wallow<br>works by night, sleeps by day</td><td>stone and forge, dark places<br><span class="small">minds fields and farms</span></td></tr>
+<tr><td><b>Hobgoblin</b><br><span class="small">disciplined soldiers and weaponsmiths</span></td><td>medium</td><td>guarding, melee, smithing</td><td>nothing</td><td>friends with the orcs</td><td>Orc yurt camp</td><td>soldiers and beasts, dark places<br><span class="small">minds holy places</span></td></tr>
+<tr><td><b>Ogre</b><br><span class="small">big appetite, big arms; no books, no needles, no bows</span></td><td>large</td><td>hauling, woodcutting, melee</td><td>lore, tinkering, tailoring, ranged</td><td>friends with the orcs</td><td>Orc yurt camp</td><td>soldiers and beasts, wet places<br><span class="small">minds learning</span></td></tr>
+<tr><td><b>Minotaur</b><br><span class="small">builders of great stone halls and fearsome guards</span></td><td>large</td><td>melee, guarding, masonry, hauling</td><td>ranged, tailoring</td><td>friends with the orcs</td><td>Dwarven stone hall</td><td>soldiers and beasts, stone and forge<br><span class="small">minds wet places</span></td></tr>
+<tr><td><b>Hill giant</b><br><span class="small">gentle and enormous: works outdoors only and fits in no house</span></td><td>huge</td><td>hauling, woodcutting, masonry, guarding</td><td>ranged, tailoring, tinkering, lore</td><td>friends with the orcs</td><td>Giant&#x27;s lean-to<br>outdoor work only</td><td>soldiers and beasts<br><span class="small">minds dark places</span></td></tr>
+<tr><td><b>Centaur</b><br><span class="small">archers, scouts and star-readers; never under the ground</span></td><td>large</td><td>ranged, scouting, hunting, hauling</td><td>mining</td><td>friends with the orcs</td><td>Orc yurt camp</td><td>soldiers and beasts, woodland trades<br><span class="small">minds dark places, stone and forge</span></td></tr>
+<tr><td><b>Wolffolk</b><br><span class="small">trackers and pack fighters; the sheep won&#x27;t have them</span></td><td>medium</td><td>hunting, scouting, melee</td><td>herding</td><td>friends with the orcs</td><td>Orc yurt camp</td><td>woodland trades, soldiers and beasts<br><span class="small">minds fields and farms</span></td></tr>
+<tr><td><b>Foxfolk</b><br><span class="small">clever traders; the chickens object to them</span></td><td>small</td><td>trade, scouting</td><td>herding</td><td>friends with the elves</td><td>Elven lodge</td><td>woodland trades, fields and farms<br><span class="small">minds soldiers and beasts</span></td></tr>
+<tr><td><b>Owlfolk</b><br><span class="small">night scholars and sentries</span></td><td>small</td><td>lore, scouting</td><td>mining, hauling</td><td>friends with the elves</td><td>Elven lodge</td><td>learning<br><span class="small">minds dark places</span></td></tr>
+<tr><td><b>Bearfolk</b><br><span class="small">woodcutters, beekeepers and walls of fur</span></td><td>large</td><td>woodcutting, hauling, guarding, brewing</td><td>tinkering, tailoring, ranged</td><td>friends with the elves</td><td>Dwarven stone hall</td><td>woodland trades, stone and forge<br><span class="small">minds the harbour's trades</span></td></tr>
+<tr><td><b>Rabbitfolk</b><br><span class="small">fast, peaceful gardeners: they never hunt or fight</span></td><td>small</td><td>farming, scouting, herbalism</td><td>hunting, melee</td><td>friends with the halflings</td><td>Halfling burrow</td><td>fields and farms<br><span class="small">minds soldiers and beasts</span></td></tr>
+<tr><td><b>Faun</b><br><span class="small">musicians, herders and winemakers</span></td><td>medium</td><td>music, herding, brewing</td><td>mining, smithing</td><td>friends with the halflings</td><td>Halfling burrow</td><td>woodland trades, fields and farms<br><span class="small">minds stone and forge</span></td></tr>
+<tr><td><b>Lizardfolk</b><br><span class="small">hunters, fishers and guards of the wetlands; they eat everything raw</span></td><td>medium</td><td>fishing, hunting, guarding, herbalism</td><td>cooking</td><td>friends with the bog trolls</td><td>Stilt house</td><td>wet places, the harbour's trades</td></tr>
+<tr><td><b>Frogfolk</b><br><span class="small">potion-brewers and leapers; forge heat dries their skin</span></td><td>small</td><td>fishing, herbalism, scouting</td><td>smithing</td><td>friends with the bog trolls</td><td>Stilt house</td><td>wet places<br><span class="small">minds soldiers and beasts, stone and forge</span></td></tr>
+<tr><td><b>Merfolk</b><br><span class="small">sea traders and singers: they work only by the water</span></td><td>medium</td><td>fishing, scouting, trade, music</td><td>smithing, mining, woodcutting, farming</td><td>friends with the Tidewrights</td><td>Tide house<br>works only by the water</td><td>the harbour's trades<br><span class="small">minds stone and forge, soldiers and beasts, fields and farms</span></td></tr>
+<tr><td><b>Selkie</b><br><span class="small">seal-folk: fishers, singers and healers</span></td><td>medium</td><td>fishing, music, healing</td><td>smithing</td><td>friends with the Tidewrights</td><td>Tide house</td><td>the harbour's trades<br><span class="small">minds stone and forge, soldiers and beasts</span></td></tr>
+<tr><td><b>Shellfolk</b><br><span class="small">slow, patient and wise; their shell is all the armour they need</span></td><td>medium</td><td>lore, masonry, guarding, fishing</td><td>scouting</td><td>friends with the Tidewrights</td><td>Tide house</td><td>the harbour's trades, wet places</td></tr>
+<tr><td><b>Catfolk</b><br><span class="small">curious traders, scouts and nimble fighters; animals don&#x27;t trust them</span></td><td>medium</td><td>scouting, hunting, fishing, melee</td><td>herding</td><td>friends with the Gilded Wheel</td><td>a cottage or house</td><td>homely places, woodland trades<br><span class="small">minds wet places</span></td></tr>
+<tr><td><b>Ratfolk</b><br><span class="small">scavengers, tinkers and dealers</span></td><td>small</td><td>scouting, trade, tinkering</td><td>nothing</td><td>friends with the Velvet Hand</td><td>Warren</td><td>dark places, the harbour's trades</td></tr>
+<tr><td><b>Ravenfolk</b><br><span class="small">messengers, collectors and riddle-keepers</span></td><td>small</td><td>scouting, trade, lore</td><td>mining, hauling</td><td>friends with the Velvet Hand</td><td>Ravens&#x27; perch</td><td>learning<br><span class="small">minds holy places</span></td></tr>
+<tr><td><b>Dryad</b><br><span class="small">healer and grower, bound to the green: she works only with growing things</span></td><td>medium</td><td>herbalism, healing, farming</td><td>woodcutting, smithing, mining</td><td>friends with the elves</td><td>Fairy grove<br>no iron</td><td>woodland trades<br><span class="small">minds stone and forge, soldiers and beasts, dark places</span></td></tr>
+<tr><td><b>Treant</b><br><span class="small">a walking tree: slow, strong and very old; never near fire or an axe, never indoors</span></td><td>huge</td><td>guarding, hauling, farming</td><td>woodcutting, smithing, cooking, brewing, mining</td><td>friends with the elves</td><td>Fairy grove<br>outdoor work only; no iron</td><td>woodland trades, fields and farms<br><span class="small">minds stone and forge</span></td></tr>
+<tr><td><b>Pixie</b><br><span class="small">a tiny enchanter and messenger; no iron, nothing heavy</span></td><td>small</td><td>scouting, herbalism</td><td>hauling, mining, smithing, melee, guarding</td><td>friends with the elves</td><td>Fairy grove<br>no iron</td><td>woodland trades, learning, fields and farms<br><span class="small">minds stone and forge</span></td></tr>
+<tr><td><b>Brownie</b><br><span class="small">a house spirit: keeps homes and kitchens perfect, working unseen at night</span></td><td>small</td><td>cooking, tailoring, carpentry</td><td>melee, ranged, guarding, smithing</td><td>friends with the halflings</td><td>a cottage or house<br>works by night, sleeps by day; no iron</td><td>homely places<br><span class="small">minds soldiers and beasts</span></td></tr>
+<tr><td><b>Wisp</b><br><span class="small">a floating light: lights the way and soothes the hurt; no work with hands</span></td><td>small</td><td>scouting, healing</td><td>nothing</td><td>friends with the bog trolls</td><td>Quiet house</td><td>learning, holy places, wet places<br><span class="small">minds stone and forge</span></td></tr>
+<tr><td><b>Ghost</b><br><span class="small">a friendly spirit of someone long gone: remembers everything, works only by night, touches nothing</span></td><td>medium</td><td>lore, scouting, music</td><td>nothing</td><td>friends with the Order of the Lantern</td><td>Quiet house<br>works by night, sleeps by day</td><td>learning</td></tr>
+<tr><td><b>Sporeling</b><br><span class="small">mushroom folk, gardeners of the dark; they shun fire and bright days</span></td><td>small</td><td>farming, herbalism</td><td>smithing, cooking</td><td>friends with the bog trolls</td><td>Warren<br>works by night, sleeps by day</td><td>dark places, wet places<br><span class="small">minds soldiers and beasts</span></td></tr>
+<tr><td><b>Imp</b><br><span class="small">mischievous and fire-loving, good with forges and contracts; never at a holy place</span></td><td>small</td><td>smithing, trade</td><td>healing, fishing, lore</td><td>friends with the Azure Conclave</td><td>Quiet house</td><td>learning, stone and forge<br><span class="small">minds holy places, the harbour's trades</span></td></tr>
+<tr><td><b>Goblin</b><br><span class="small">reformed, mostly: scavengers, scouts and scrap-tinkers; never let one near the sick</span></td><td>small</td><td>scouting, tinkering, mining</td><td>healing</td><td>once the Goblin King has fallen</td><td>Warren</td><td>dark places, wet places<br><span class="small">minds holy places</span></td></tr>
+<tr><td><b>Clockwork automaton</b><br><span class="small">built at the clockwork forge: tireless, works day and night</span></td><td>medium</td><td>hauling, smithing, guarding</td><td>music, lore, healing, trade</td><td>built or raised (see below)</td><td>a cottage or house<br>no food, drink, bed or mood</td><td>(doesn't count)</td></tr>
+<tr><td><b>Stone golem</b><br><span class="small">shaped at the rune forge: slow and mighty, works day and night; sinks like a stone</span></td><td>large</td><td>mining, masonry, guarding, hauling</td><td>fishing, tailoring, tinkering, cooking, brewing, music, lore, healing, trade</td><td>built or raised (see below)</td><td>a cottage or house<br>no food, drink, bed or mood</td><td>(doesn't count)</td></tr>
+<tr><td><b>Bound skeleton</b><br><span class="small">raised in the bone crypt: never tires; the living find it a bit creepy</span></td><td>medium</td><td>hauling, mining, guarding</td><td>healing, cooking, music, trade, lore</td><td>built or raised (see below)</td><td>a cottage or house<br>no food, drink, bed or mood</td><td>(doesn't count)</td></tr>
 </tbody></table></div>
-        <h3>Districts</h3>
-        <p>A <b>district stone</b> (the Districts tab in the village plan) marks the land within 20 m as one kind of quarter: Harbor, Fields, Greenwood, Stonedeep, Fen, Arcane, Hallowed, Steppe or Undercroft; everywhere else is Commons. A building whose trade fits its district works a tenth faster (a fishing dock in the Harbor, a mine in Stonedeep, a farm in the Fields), and its card tells you which district would suit it. The peoples are happier living in the districts they like, and less happy in those they'd rather avoid (dwarves love Stonedeep, elves the Greenwood and would rather not live in Stonedeep). The districts' land shows in their colours in the village plan.</p>
+        <h3>Homes and neighbours</h3>
+        <p>There are no districts to mark out: quarters grow from where you build. Each people likes some kinds of building near home and minds others. What stands within 16 m of someone's home makes them happier or less happy (see <b>Mood</b>). Halflings like the fields and the mill and mind a smithy's noise; dwarves like the forge and the quarry; elves the woodland trades and the library. Humans don't mind anything. The <b>Likes near home</b> column above says what each people cares about; these are the kinds:</p>
+        <div class="scroll"><table class="narrow"><thead><tr><th>Kind</th><th>Buildings</th></tr></thead><tbody>
+<tr><td><b>Homely places</b></td><td>The Salty Gull, Inn, Market square, Trading post, Notice board, Healer&#x27;s hut, Cottage, House, Bard&#x27;s hall, Barber-surgeon, Dovecote</td></tr>
+<tr><td><b>The harbour&#x27;s trades</b></td><td>Fishing hut, Salt pans, Smokehouse, Shipwright, Lighthouse, Tide house</td></tr>
+<tr><td><b>Fields and farms</b></td><td>Farm field, Orchard, Windmill, Bakery, Brewery, Winery, Apiary, Pasture and barn, Stables, Halfling burrow</td></tr>
+<tr><td><b>Woodland trades</b></td><td>Woodcutter&#x27;s lodge, Forester&#x27;s hut, Herbalist&#x27;s hut, Hunting lodge, Trapper&#x27;s cabin, Bowyer, Elven lodge, Fairy grove</td></tr>
+<tr><td><b>Stone and forge</b></td><td>Quarry, Mine, Smithy, Armourer, Toolwright, Charcoal kiln, Dwarven stone hall, Rune forge, Clockwork forge</td></tr>
+<tr><td><b>Wet places</b></td><td>Clay pit, Stilt house, Troll wallow, Tannery</td></tr>
+<tr><td><b>Learning</b></td><td>Library, Scribe&#x27;s desk, Mapmaker&#x27;s house, Quiet house, Ravens&#x27; perch, Scout lodge</td></tr>
+<tr><td><b>Holy places</b></td><td>Chapel, Shrine, Infirmary, Bathhouse, Graveyard</td></tr>
+<tr><td><b>Soldiers and beasts</b></td><td>Barracks, Training yard, Archery range, Orc yurt camp, Giant&#x27;s lean-to, Kennel</td></tr>
+<tr><td><b>Dark places</b></td><td>Warren, Bone crypt</td></tr>
+</tbody></table></div>
+        <p>The <b>Liking</b> button in the village plan shows the <b>Liking map</b> for one people at a time (it goes round the peoples living in Saltmere): green where they'd like to live, red where they wouldn't. Placing a people's own kind of home shows that people's map by itself, and the build line says what they'd make of the spot.</p>
+        <p>Each people (humans aside) wants <b>its own kind of home</b>: the first of them comes alone and asks for one, and more follow once there's room in it. Without one they complain after two days and leave after a week; a home going up stops the clock.</p>
+        <p>And a trade works <b>a tenth faster</b> beside the trade it lives off (within 24 m): the building's card says when it has its partner.</p>
+        <div class="scroll"><table class="narrow"><thead><tr><th>Trade</th><th>Works a tenth faster beside</th></tr></thead><tbody>
+<tr><td>Windmill</td><td>Farm field</td></tr>
+<tr><td>Bakery</td><td>Windmill</td></tr>
+<tr><td>Brewery</td><td>Farm field or Orchard</td></tr>
+<tr><td>Winery</td><td>Orchard</td></tr>
+<tr><td>Smokehouse</td><td>Fishing hut or Hunting lodge</td></tr>
+<tr><td>Salt pans</td><td>Fishing hut</td></tr>
+<tr><td>Sawmill</td><td>Woodcutter&#x27;s lodge or Forester&#x27;s hut</td></tr>
+<tr><td>Carpenter</td><td>Sawmill</td></tr>
+<tr><td>Shipwright</td><td>Sawmill</td></tr>
+<tr><td>Charcoal kiln</td><td>Woodcutter&#x27;s lodge</td></tr>
+<tr><td>Smithy</td><td>Mine or Quarry</td></tr>
+<tr><td>Armourer</td><td>Smithy</td></tr>
+<tr><td>Toolwright</td><td>Smithy</td></tr>
+<tr><td>Potter and brickworks</td><td>Clay pit</td></tr>
+<tr><td>Tannery</td><td>Hunting lodge or Trapper&#x27;s cabin or Pasture and barn</td></tr>
+<tr><td>Butcher</td><td>Pasture and barn or Hunting lodge</td></tr>
+<tr><td>Weaver</td><td>Pasture and barn</td></tr>
+<tr><td>Bowyer</td><td>Woodcutter&#x27;s lodge or Forester&#x27;s hut</td></tr>
+<tr><td>Healer&#x27;s hut</td><td>Herbalist&#x27;s hut</td></tr>
+<tr><td>Infirmary</td><td>Herbalist&#x27;s hut</td></tr>
+<tr><td>Scribe&#x27;s desk</td><td>Library</td></tr>
+<tr><td>Mapmaker&#x27;s house</td><td>Library or Scout lodge</td></tr>
+<tr><td>Barracks</td><td>Training yard</td></tr>
+<tr><td>Archery range</td><td>Bowyer</td></tr>
+<tr><td>Kennel</td><td>Hunting lodge</td></tr>
+<tr><td>Stables</td><td>Pasture and barn</td></tr>
+<tr><td>Fishing hut</td><td>Smokehouse</td></tr>
+</tbody></table></div>
         <h3>The made</h3>
         <p>Clockwork automatons, stone golems and bound skeletons aren't born: a gnome's <b>clockwork forge</b> builds an automaton, a dwarf's <b>rune forge</b> wakes a golem, a <b>bone crypt</b> raises a skeleton, each from a couple of days' work and their materials (up to a few of each). They never eat, drink or sleep, need no bed, work day and night and don't count for mood. The living find skeletons a bit creepy.</p>
       </section>
@@ -547,17 +599,6 @@ td:first-child { font-weight: 600; }
 <tr><td>Market square</td><td>Traders sell what the village has too much of for gold: what&#x27;s above 12 of a kind, or what you set in the Goods window. Never what a building site still needs.<br><span class="note">mood +2</span></td><td>2 traders</td><td>up to 6 goods per 2 h: about 27 goods sold</td><td>25 wood, 5 stone<br><span class="note">6 h to build; from the start</span></td></tr>
 <tr><td>Trading post</td><td>Caravans from other lands stop here: the market gets a quarter more for everything.<br><span class="note">boosts: prices +25%; one only</span></td><td>1 trader</td><td>–</td><td>20 planks, 20 stone, 30 gold<br><span class="note">12 h to build; 40 people</span></td></tr>
 </tbody></table></div>
-<h3 id="b-districts">Districts</h3><div class="scroll"><table class="wide"><thead><tr><th>Building</th><th>What it does</th><th>Hands</th><th>One worker, a day at 100% work speed</th><th>Cost</th></tr></thead><tbody>
-<tr><td>Harbor stone</td><td>Marks the land within 20 m as the Harbor district: fishing docks, salt pans, smokehouses and shipwrights there work a tenth faster, and merfolk, selkies, lizardfolk like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
-<tr><td>Fields stone</td><td>Marks the land within 20 m as the Fields district: farms, orchards, the mill, bakery, brewery and pastures there work a tenth faster, and halflings, rabbitfolk, fauns like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
-<tr><td>Greenwood stone</td><td>Marks the land within 20 m as the Greenwood district: woodcutters, foresters, herbalists, hunters and the sawmill there work a tenth faster, and elves, foxfolk, dryads, bearfolk like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
-<tr><td>Stonedeep stone</td><td>Marks the land within 20 m as the Stonedeep district: quarries, mines, smithies, forges and the potter there work a tenth faster, and dwarves, gnomes, kobolds, stone trolls like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
-<tr><td>Fen stone</td><td>Marks the land within 20 m as the Fen district: clay pits, tanneries and herbalists there work a tenth faster, and bog trolls, lizardfolk, frogfolk, sporelings like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
-<tr><td>Arcane stone</td><td>Marks the land within 20 m as the Arcane district: the library, mapmaker and scout lodge there work a tenth faster, and owlfolk, ravenfolk, gnomes, wisps, ghosts like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
-<tr><td>Hallowed stone</td><td>Marks the land within 20 m as the Hallowed district: the chapel, shrine, infirmary, healer and bathhouse there work a tenth faster, and elves, wisps (not imps!) like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
-<tr><td>Steppe stone</td><td>Marks the land within 20 m as the Steppe district: barracks, training yards, archery ranges, the tannery and kennel there work a tenth faster, and orcs, hobgoblins, ogres, minotaurs, centaurs, giants like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
-<tr><td>Undercroft stone</td><td>Marks the land within 20 m as the Undercroft district: warrens, the bone crypt and mines there work a tenth faster, and dwarves, kobolds, molefolk, ratfolk, sporelings, goblins like living there.</td><td>–</td><td>–</td><td>6 stone, 2 wood<br><span class="note">1 h to build; from the start</span></td></tr>
-</tbody></table></div>
       </section>
 
       <section id="trade">
@@ -671,7 +712,7 @@ td:first-child { font-weight: 600; }
       <section id="danger">
         <h2>Raids and monsters</h2>
         <h3>Goblin camps</h3>
-        <p>Up to four goblin camps grow out on the island, a stage about every day. Kill a camp's goblins and trash it (the action button) to get its stolen goods, gold and gear; a new camp turns up somewhere else a day or two later.</p>
+        <p>Up to three goblin camps grow out on the island, a stage about every day. Kill a camp's goblins and trash it (the action button) to get its stolen goods, gold and gear; a new camp turns up somewhere else a day or two later.</p>
         <div class="scroll"><table class="narrow"><thead><tr><th>Stage</th><th>What's there</th></tr></thead><tbody>
 <tr><td>Scout camp</td><td>2 goblins, two tents</td></tr>
 <tr><td>Goblin camp</td><td>3 goblins and a totem</td></tr>
@@ -748,7 +789,7 @@ td:first-child { font-weight: 600; }
           <li>After a fight, soldiers and people with nothing to do gather what the fallen dropped in and round the village: coin and goods to the stores, gear to the armoury. Village dogs bark when something comes near and chase rats and foxes out; the healer runs to anyone knocked down; the scout goes on rounds and reports every camp within 2 km.</li>
           <li><b>Rats</b> swarm in the Green Hills, and on about one night in five, when the stores hold grain and Saltmere isn't resting after an attack, a swarm makes for Saltmere's stores and eats it.</li>
           <li>On a <b>moonless night</b> (every sixth) <b>drowned sailors</b> rise from the surf below Saltmere, outside the walls, and come in like raiders till dawn; their grip slows you.</li>
-          <li><b>Outlaw camps</b> come and go in the lands (300 m to 1.6 km from Saltmere, a new one every day or two): bandits, slavers, cultists, smugglers, deserters, orc raiders, kobold diggers and goblin raiding parties, each with its own name. Most hold <b>captives</b> of the peoples such a band would take. Beat the band and free a captive (E): some come to live in Saltmere, some pay you back (their family's reward, or something they'd hidden), and some ask for your help with something (a new request). They're on your map once seen; a beaten, emptied camp fades away.</li>
+          <li><b>Outlaw camps</b> come and go in the lands (300 m to 1.6 km from Saltmere, up to eight at a time, a new one every half day to a day): bandits, slavers, cultists, smugglers, deserters, orc raiders, kobold diggers and goblin raiding parties, each with its own name. Most hold <b>captives</b> of the peoples such a band would take. Beat the band and free a captive (E): some come to live in Saltmere, some pay you back (their family's reward, or something they'd hidden), and some ask for your help with something (a new request). They're on your map once seen; a beaten, emptied camp fades away.</li>
           <li><b>The lands beyond</b> have creatures of their own. <b>Mirefen</b>: bog trolls (they mend as they fight), leeches and Mire hags with their hexes. <b>The Greyfells</b>: werewolves, only by night, drinking the life they take. <b>Elderwood</b>: corrupted treants, giant spiders whose webs slow you, and wisps. <b>The Barrow Downs</b>: wights. <b>The Lindholm Lakes</b>: drowners and lake spirits. <b>The Northmarch</b>: the Duke's patrols and flocks of ravens. <b>Ironpeak</b>: kobold packs, cave trolls and stone golems. <b>The Ember Steppes</b>: orc raiders, war boars and fire spirits. <b>The Crownlands</b>: deserters. <b>The Dragonspine</b>: drakes, and a lair east of Veilwatch (on your map once seen).</li>
           <li><b>Hideouts</b>, each its own kind of trouble (on your map once seen; broken, each stands empty for a few days):
             <b>the smugglers' cove</b> on the coast near Hornvik (crossbowmen and Red Annet, their captain);
@@ -761,13 +802,14 @@ td:first-child { font-weight: 600; }
             Some keep <b>prisoners</b>: beat their captors, free them (E), and they come to live in Saltmere.</li>
           <li>Bigger goblin camps and later raids bring <b>goblin shamans</b>, who mend the goblins round them (kill them first), and <b>wolf riders</b>, who go for villagers caught outside the walls.</li>
         </ul>
-        <div class="spoiler" id="sp6">
-  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp6-body">Show spoiler: the bosses: their names and how strong they are</button>
-  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp6-w">
-    <p id="sp6-w"><b>Spoiler warning.</b> This gives away the bosses: their names and how strong they are. It's more fun to find out in the game. Show it anyway?</p>
+        <p class="note">Fallen goblins, bandits, skeletons and the drowned go limp and fall away from the blow that killed them; beasts and monsters tumble over. After a moment they sink into the ground.</p>
+        <div class="spoiler" id="sp10">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp10-body">Show spoiler: the bosses: their names and how strong they are</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp10-w">
+    <p id="sp10-w"><b>Spoiler warning.</b> This gives away the bosses: their names and how strong they are. It's more fun to find out in the game. Show it anyway?</p>
     <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
   </div>
-  <div class="sp-body" id="sp6-body" hidden>
+  <div class="sp-body" id="sp10-body" hidden>
 <div class="scroll"><table class=""><thead><tr><th>Creature</th><th>Kind</th><th>Life</th><th>Hits for</th><th>Experience</th><th>Gold</th></tr></thead><tbody>
 <tr><td>Morvane, the Hollow King</td><td>ranged</td><td>1500</td><td>30</td><td>600</td><td>150–220</td></tr>
 <tr><td>The Barrow King</td><td>melee</td><td>680</td><td>22</td><td>220</td><td>60–90</td></tr>
@@ -782,12 +824,16 @@ td:first-child { font-weight: 600; }
 
       <section id="raids">
         <h2>Raid areas</h2>
-        <p>Some places are too much for one hero, however strong: you take a party of villagers in. Two are dungeons (you and 4: packed halls), two are open areas ringed with red war-banners (you and 9: room to spread out). Walk into one and it asks first: it's a raid. Then you pick who comes with you from Saltmere: each with their fighting role, life, damage and gear, and what the end fight looks like with them and without them. The picker also says who the boss will go for (your best shield, or you).</p>
+        <p>Some places are too much for one hero, however strong: you take a party of villagers in. 4 are dungeons (packed halls), 4 are open areas ringed with red war-banners (room to spread out), from level 6 to 29. Walk into one and it asks first: it's a raid. Then you pick who comes with you from Saltmere: each with their fighting role, life, damage and gear, and what the end fight looks like with them and without them. The picker also says who the boss will go for (your best shield, or you).</p>
         <div class="scroll"><table class=""><thead><tr><th>Raid</th><th>Where</th><th>Level</th><th>Party</th><th>At the end</th><th>What it is</th></tr></thead><tbody>
 <tr><td>The Corsair Landing</td><td>outdoors</td><td>14</td><td>you + 9</td><td>Captain Blackwake</td><td>Corsairs have run their ships up on the beach and dug in behind the dunes: three crews and their captain, Blackwake, who&#x27;s burned half the coast.</td></tr>
 <tr><td>The Spider Queen&#x27;s Nest</td><td>indoors</td><td>17</td><td>you + 4</td><td>Ixyth, the Spider Queen</td><td>Deep under Elderwood, the webs go on for miles. Whatever spins them has eaten three woodcutters&#x27; camps this year.</td></tr>
 <tr><td>The Deep Forge</td><td>indoors</td><td>25</td><td>you + 4</td><td>The Forge Colossus</td><td>A dwarf forge that was sealed for a reason. The fires have lit themselves again, and something huge walks the anvil-halls.</td></tr>
 <tr><td>The Drake Roost</td><td>outdoors</td><td>29</td><td>you + 9</td><td>Cindermaw, the drake mother</td><td>High on the Dragonspine the drakes nest on the warm rocks, and their mother is older than the Wardens&#x27; wall.</td></tr>
+<tr><td>The Wolf Moot</td><td>outdoors</td><td>6</td><td>you + 5</td><td>Greymane, the pack lord</td><td>Every pack in the forest has come to one clearing, and they answer to one old grey wolf the size of a pony. The farms round about have stopped letting their sheep out.</td></tr>
+<tr><td>The Ashen Crypt</td><td>indoors</td><td>8</td><td>you + 3</td><td>Sir Aldric the Unburied</td><td>A knight was buried here with his whole household, and none of them stayed down. Sir Aldric still keeps his oath to guard the vault, from anyone at all.</td></tr>
+<tr><td>The Redcap Warcamp</td><td>outdoors</td><td>10</td><td>you + 6</td><td>Gutsnarl the Redcap</td><td>A goblin warlord who answers to no king has dug in on a hilltop with three bands, and dips his cap in the blood of whoever he catches.</td></tr>
+<tr><td>Old Mother Sedge&#x27;s Hollow</td><td>indoors</td><td>12</td><td>you + 3</td><td>Old Mother Sedge</td><td>Under a drowned willow in the fen there&#x27;s a door, and behind it the oldest hag on the island, and the fools who worship her. Children who go missing in the reeds go there.</td></tr>
 </tbody></table></div>
         <ul>
           <li>Your party follows you like a summoner's creatures and fights at your level (with their gear, drill and veteran ranks). The raid bar has three orders: <b>Follow</b> (G), <b>Hold here</b> (H) and <b>Attack my target</b> (T).</li>
@@ -814,7 +860,7 @@ td:first-child { font-weight: 600; }
         <p>Once Saltmere stands on its own feet, its people ask for help: up to three requests at a time, a new one a day or so. They show under the goal at the top of the screen, on your map (a violet diamond), and the arrow points to the nearest one when the story has nothing for you.</p>
         <ul>
           <li><b>Gather herbs</b>: five moonpetals from Mirefen, sunroot from the Green Hills, elderbark from Elderwood or frostcaps from the Greyfells. They glow where they grow; stand by one and press the action button (E) to pick it.</li>
-          <li><b>Hunt a beast</b>: Old Greyjaw, the Ashen Warg or Mother Sticklegs, with its pack.</li>
+          <li><b>Hunt a beast</b> with its pack: fourteen named beasts, from Old Greyjaw the black wolf in the forest to Cinderwing the drake below the Dragonspine. The village only asks about lands you're ready for, and not the same beast again soon.</li>
           <li><b>Find a lost child</b> who wandered into the forest or the hills: deal with the wolves round them, then go to them and they run home.</li>
           <li><b>Break a hideout</b> (see Raids and monsters).</li>
         </ul>
@@ -828,7 +874,7 @@ td:first-child { font-weight: 600; }
         <h2>Getting about</h2>
         <p>The island is big: about 45 minutes on foot from Saltmere to Stenhamn. Two services carry you between places you've already been to. Stand at a stop and press the action button (E) to see where you can go, the fare (paid from Saltmere's stores) and the hours on the way. The trip is a short scene: the hours pass (the camps grow, the wells fill) and you step off at the other end.</p>
         <ul>
-          <li><b>The Gilded Wheel's post-horses</b> run between its waystations: Askeby and Stenhamn have one, and Saltmere builds its own (Village tab: 24 wood, 6 stone). To ride home from a town, Saltmere needs its own waystation. About 12 km an hour along the roads; about 3 gold plus 2 a km.</li>
+          <li><b>The Gilded Wheel's post-horses</b> run between its waystations: every town, every people's home and the Spire has one (by the gate or the front), and Saltmere builds its own (Village tab: 24 wood, 6 stone). To ride home from a town, Saltmere needs its own waystation. About 12 km an hour along the roads; about 3 gold plus 2 a km.</li>
           <li><b>The Tidewrights' boat</b> sails along the coast between Saltmere's pier, Gullbo, Stenhamn's harbour and Hornvik. About 9 km an hour; about 2 gold plus 1.5 a km.</li>
           <li>A stop opens the first time you reach it on foot. Not with monsters about, and not while Saltmere is under attack.</li>
         </ul>
@@ -841,6 +887,8 @@ td:first-child { font-weight: 600; }
           <li><b>Ways down</b> all over the island: 22 more dungeons besides the Barrow and the Warren. Eight have names (the Ruined manor cellar, the Collapsed chapel crypt, the Abandoned mine, the Smugglers' grotto, the Webbed Hollow, the Drowned Shrine, the Old dwarf hall, the Wizard's tower vault) and fourteen are small (two halls): cellars under burnt farms and inns, family crypts, quarry tunnels, spider holes, sea caves, a hidden cult cellar. Each has its own beasts or band, its own look, and something nasty in its last room guarding a chest; the further from Saltmere, the higher its level. Beaten, it's quiet for a few days. On your map once found (grey while quiet).</li>
           <li><b>Landmarks</b> to find, most with something to search once: a ruined watchtower, a hunter's lean-to and the Fallen Giant in the Old Forest; a shipwreck on the eastern beach and an old lighthouse on the western headland; a ring of stones and an abandoned farmstead in the Green Hills; the witch's hut in Mirefen; the Great Oak and elven ruins round a moonwell in Elderwood; waystones and shrines along the roads.</li>
           <li><b>Askeby</b>, the market town on the King's Road (about 3.7 km east), and <b>Stenhamn</b>, the capital on the east coast, are real towns (on flat ground; out in the wilds the land rolls in hills, higher toward the mountains of the north and low in the bogs): a wall round each (a timber palisade, at Stenhamn grey stone with towers) with a gate on every road, the roads straight through to a paved square with a fountain, the houses round it between the streets, an inn and a market; the Gilded Wheel's waystation stands just inside the gate on the Saltmere road (look for its banner, a gold wheel on crimson; it's on your map too). Every faction flies its own banner: the kingdom a gold crown on royal blue (on Stenhamn's gatehouse and the palace), the Tidewrights a ship over waves (by each pier), Askeby an ash tree, Gullbo a gull, Hornvik a hunting horn, Saltmere a herring, and the other peoples theirs where their banners stand (a raven for Ravnsund, a crescent moon for the elves, an anvil for the dwarves, a round door for the halflings, a flame for the orcs, and so on). Stenhamn has a harbour, the guild hall and the Queen's palace. <b>Gullbo</b> and <b>Hornvik</b> are small harbours where the boat calls. <b>Ravnsund</b>, the Duke's city, has grey stone walls and his castle in red; <b>Lindholm</b> lies by the lake under the Spire; <b>Fjallmark</b> is a mining town with mine mouths in the hill behind it. The other peoples have their own homes: <b>Durnhold</b>, the dwarves' keep, is a great bronze gate cut into the mountain between two stone kings, with a forge and a stall in the yard before it (the gate stays shut until the Thane trusts you; knock with E); <b>Hollowbrook</b> is the halflings' village of round-doored burrows, gardens and a mill pond, with a Gilded Wheel waystation; <b>Lirael</b>, the elves' city of great silver trees, is closed by a gate of shining vines; the orcs' <b>Ashkar</b> is a barred war camp of yurts and a fighting pit; the trolls' <b>Gnarlroot</b> stands on stilts over a black pool. And the island's other places: the Conclave's <b>Spire</b> on its lake island, <b>Lantern Abbey</b> with its ever-burning lantern tower, the Grey Hounds' lodge at <b>Wolfscar</b>, the stones and the antlered oak of the <b>Antler Circle</b>, the hag's hut on chicken legs in the <b>Hag's Hollow</b>, the sealed <b>Barrow of Kings</b> and the ruins of <b>Veilwatch</b> in the snow (the last two held by the dead).</li>
+          <li><b>Homesteads</b>: 28 lone farms out in the lands, each with a family and a trouble: something in the cellar (a small way down through the hatch), an outlaw band camped close by, or a named beast taking the animals at night. Offer them a place in Saltmere until it's safe (they live and work in the village, go home once the trouble is gone, sometimes one stays, and they send a gift), or deal with it while they stay put and be thanked with what they have. On your map once seen: a red roof while in trouble.</li>
+          <li><b>Encounters</b> every minute or two out in the lands, each starting with something you hear or see and a "?" over the spot: someone crying (a lost child or a widow), a scream (a traveller set upon: be quick), smoke (a farmhouse burning, its raiders still about), a carter with a broken wheel to guard, a bandits' campfire, an ambush, or a wounded scout who marks a place on your map. Walk off and it's gone.</li>
           <li><b>Hunting</b>: deer and stags bolt, boars fight back when hurt. Their kills give hide and meat.</li>
         </ul>
       </section>
@@ -917,13 +965,13 @@ td:first-child { font-weight: 600; }
     <button type="button" class="sp-hide">Hide this again</button>
   </div>
 </div>
-        <div class="spoiler" id="sp8">
-  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp8-body">Show spoiler: the Goblin Warren</button>
-  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp8-w">
-    <p id="sp8-w"><b>Spoiler warning.</b> This gives away the Goblin Warren. It's more fun to find out in the game. Show it anyway?</p>
+        <div class="spoiler" id="sp12">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp12-body">Show spoiler: the Goblin Warren</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp12-w">
+    <p id="sp12-w"><b>Spoiler warning.</b> This gives away the Goblin Warren. It's more fun to find out in the game. Show it anyway?</p>
     <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
   </div>
-  <div class="sp-body" id="sp8-body" hidden>
+  <div class="sp-body" id="sp12-body" hidden>
 <p>The camps aren't natural: a <b>Goblin King</b> drives them from the <b>Goblin Warren</b>, a cave in a hillside far to the north. The way there turns up on a crude map in a trashed camp's plunder. Down in its tunnels, goblin camps in the dark, plunder stores and the King on his throne of junk. When he falls, every camp loses two stages, new ones grow at half the pace and raids are smaller, and some goblins, freed of him, come to live in Saltmere. A new king rises after ten days.</p>
     <button type="button" class="sp-hide">Hide this again</button>
   </div>
@@ -984,6 +1032,32 @@ td:first-child { font-weight: 600; }
     <button type="button" class="sp-hide">Hide this again</button>
   </div>
 </div>
+        <h3>Parts two and three, and the Lantern Pact</h3>
+        <p>A Friend's questline goes on: <b>part two</b> opens once part one is done and you're of the level for it (from about level 7 to 20), and goes deeper into their own trouble. <b>Part three</b> (about level 11 to 24) ends with them <b>swearing to the Lantern Pact</b>: their standing then reads "Sworn to the Lantern Pact". Both are offered by whoever gave you part one, or their leader. How many of the twelve peoples and guilds have sworn matters at the end of the story.</p>
+        <div class="spoiler" id="sp9">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp9-body">Show spoiler: parts two and three of each questline</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp9-w">
+    <p id="sp9-w"><b>Spoiler warning.</b> This gives away parts two and three of each questline. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp9-body" hidden>
+<div class="scroll"><table class=""><thead><tr><th>Who</th><th>Part two (level)</th><th>Part three (level): the pledge</th></tr></thead><tbody>
+<tr><td>The dwarves</td><td>The Anvil of Accord (20): find the lost peace-anvil, clear the Duke's men from the Ember Pass, and Brakka and Varrok make peace over it</td><td>The Wardens' forge (24): drake-fire from Emberjaw, break the Forge-Ward, light the Lantern-forge under Durnhold</td></tr>
+<tr><td>The orcs</td><td>The young bloods (16): turn Grashna Redmaw's war-band back (pay, or beat her in the circle), and catch Drogg Hotblood's riders by night</td><td>The Great Hunt (20): ember-sage by night, hunt Old Smoke the Steppe-King, meat for the feast</td></tr>
+<tr><td>The elves</td><td>The heart-tree (12): help Caelith heal the tree he poisoned, and drive off Veyra's watchers</td><td>The Old Oak's word (16): moonwell water, rest for the Burned One, the Queen's promise to Lirael. Two elf wardens move to Saltmere</td></tr>
+<tr><td>The halflings</td><td>The Duke's requisition (9): take back Hollowbrook's grain from the Duke's quartermaster, and get the Queen's writ</td><td>The Hag's last price (13): find Bramble in the mire and settle the Hag's interest (pay, or fight her bog-wife)</td></tr>
+<tr><td>The trolls</td><td>The washed-out bridges (10): planks and bog-iron, the Reed-Spinner, and Little Mudge</td><td>The Gnarl-stone (14): take the trolls' swearing-stone back from Skullnose Grob's goblins</td></tr>
+<tr><td>The Grey Hounds</td><td>Sigrun's last contract (15): find Sigrun, and kill the Hollow-touched Pale Alpha</td><td>The Warden's hunt (19): close a tear of the Hollow in the fells, with the Hounds watching</td></tr>
+<tr><td>The Order of the Lantern</td><td>The grey cough (13): the grey plague in Askeby and the Grey Physician</td><td>Light and learning (17): empty the Conclave's vault, and the Order and the Conclave stand together</td></tr>
+<tr><td>The Azure Conclave</td><td>The Hollow's echo (17): star-iron, silence the Hollow Echo on the lake, set a ward</td><td>The faithful (21): Apprentice Tam, and Magister Selka Vane's Veyra-faithful circle</td></tr>
+<tr><td>The Tidewrights</td><td>A boat for Gullbo (7): planks and pine-tar, and guard the new boat by night</td><td>The Duke's privateer (11): Red Annet under the Duke's flag, and a chart to Veilwatch</td></tr>
+<tr><td>The Gilded Wheel</td><td>Both sides of the ledger (10): the Duke's paymaster's ledgers, and repay the Duke honestly</td><td>The Pact's purse (14): clear the northern road, and wood for waystations</td></tr>
+<tr><td>The Iron Oath</td><td>The raven-priest (18): the source of the Raven Plague, and the Duke's pact in his own hand</td><td>The Oath remade (22): Lady Brenna, Captain Voss, and the Oath sworn anew to the realm</td></tr>
+<tr><td>The Velvet Hand</td><td>The new moon (20): watch the Barrow of Kings by night, and a letter: "Bring the Key to me alive"</td><td>Blood of Varr (22): stop the Duke's knife, and Rafe tells Isolde he's her brother</td></tr>
+</tbody></table></div>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
         <h3>People in great need</h3>
         <p>Now and then word reaches Saltmere of someone in trouble (a gold diamond on your map marks where). Help them and they may
         come to live in Saltmere, or send you a shipment that boosts what you can build:</p>
@@ -992,6 +1066,16 @@ td:first-child { font-weight: 600; }
           <li><b>The broken raft</b>: a timber raft broke on the rocks along the coast, and the drowned come up the beach at night. Protect the rafters: 250 logs.</li>
           <li><b>The stonemason's widow</b> in Askeby: pay her debt and clear the wolves from her husband's quarry, and she moves to Saltmere with 150 dressed stone.</li>
           <li><b>The wreck of the Seawren</b>: castaways beyond Hornvik, hungry and haunted at night. Feed and protect them, and four of them come to fish for you.</li>
+        </ul>
+        <p>Later, as the hero grows, word comes from further off (each once the day and your level are reached):</p>
+        <ul>
+          <li><b>The beekeeper's hives</b> near Saltmere: drive off Honeythief Snik's goblins and find wild combs. Linnea the beekeeper comes, with honey.</li>
+          <li><b>The peat-cutters</b> in Mirefen (level 7): kill the Fen Mother and bring planks. Osk and Ragnhild come, with charcoal.</li>
+          <li><b>The players' wagon</b> on the King's Road past Askeby (level 9): beat Captain Rook's deserters and find the masks. Two players come to play at the tavern.</li>
+          <li><b>The last flock</b> in the Greyfells (level 13): kill Old Frostjaw's wargs by night and bring grain. Two shepherds come, with wool.</li>
+          <li><b>The ferryman's oath</b> on the Lindholm Lakes (level 15): find a drowned girl's ring and lay the Weeping Water to rest by night. Old Tobias comes, with fish and nets.</li>
+          <li><b>The herder's son</b> on the Ember Steppes (level 16): find little Urzag in the burning grass and kill Redtusk. Mogha and Urzag, orcs, come, and the clans trust you more.</li>
+          <li><b>The cold forge</b> over Fjallmark (level 19): drive out Anvilback the cave troll and carry back the ore. Torvald the smith comes, with ore and his last blade.</li>
         </ul>
       </section>
 
@@ -1012,7 +1096,7 @@ td:first-child { font-weight: 600; }
 
       <section id="mentors">
         <h2>Mentors</h2>
-        <p>Where each class will learn special skills and earn unique items (coming in later versions).</p>
+        <p>The island's great teachers, and what each could teach a hero of your class. Learning from them isn't in the game yet.</p>
         <div class="scroll"><table class=""><thead><tr><th>Class</th><th>Mentor</th><th>Where</th><th>What they teach</th></tr></thead><tbody>
 <tr><td>Warrior</td><td>Marshal Hilde Brannock</td><td>Ravnsund</td><td>Oathkeeper stance skills (guard, counter) and the Iron Oath's plate</td></tr>
 <tr><td>Warrior</td><td>Khan Varrok Ashmane</td><td>Ashkar</td><td>Ash Roar, a War Cry that sets foes ablaze, if you win his respect in the Pit</td></tr>
@@ -1056,7 +1140,7 @@ td:first-child { font-weight: 600; }
   <div class="sp-body" id="sp4-body" hidden>
 <div class="scroll"><table class=""><thead><tr><th>Curse</th><th>Made by</th><th>How it's lifted</th></tr></thead><tbody>
 <tr><td>The Forgetting</td><td>Veyra</td><td>lift the others; each gives memories back</td></tr>
-<tr><td>The Drowning Tide</td><td>Veyra</td><td>find the wreck of the Grey Gull and lay the Wardens' dead to rest</td></tr>
+<tr><td>The Drowning Tide</td><td>Veyra</td><td>find the wreck of the Veilrunner and lay its drowned to rest</td></tr>
 <tr><td>Goblin Madness</td><td>the Goblin King Skarn, maddened by the Hollow</td><td>kill or free Skarn in the Goblin Warren</td></tr>
 <tr><td>The Restless Dead</td><td>Morvane, the Hollow King</td><td>break his phylactery in the Barrow of Kings</td></tr>
 <tr><td>The Hag's Bargains</td><td>Old Mother Gristle, Veyra's teacher</td><td>outbargain her, or burn her hollow</td></tr>
@@ -1076,14 +1160,20 @@ td:first-child { font-weight: 600; }
       <section id="story">
         <h2>The story</h2>
         <p>The crown war between Queen Isolde in Stenhamn and Duke Corvin in Ravnsund splits the realm. Dwarves and orcs feud over the Ember Pass, elves keep their borders shut, mages and priests quarrel over magic, and the halflings starve in the middle. And the goblin camps keep growing until they march on Saltmere.</p>
-        <p>Who you are, why the curses are spreading, and how it all ends is for you to find out. <b>Chapter One</b> (version 1.0) takes you from the beach to the capital.</p>
-        <div class="spoiler" id="sp7">
-  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp7-body">Show spoiler: how Chapter One goes, step by step</button>
-  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp7-w">
-    <p id="sp7-w"><b>Spoiler warning.</b> This gives away how Chapter One goes, step by step. It's more fun to find out in the game. Show it anyway?</p>
+        <p>Who you are, why the curses are spreading, and how it all ends is for you to find out. The story runs in three chapters, and the goal at the top of the screen always says what's next:</p>
+        <ul>
+          <li><b>Chapter One: the road to the capital.</b> From the beach to Queen Isolde in Stenhamn.</li>
+          <li><b>Chapter Two: the Drowned Warden</b> (levels about 12 to 22). The Queen offers it the day after Chapter One ends. Saltmere's coast, Wolfscar in the Greyfells, the Spire on the Lindholm Lakes and Ashkar on the Ember Steppes, and three of your memories come back.</li>
+          <li><b>Chapter Three: the Tower in the Snow</b> (from level 22). The Goblin Warren, the Barrow of Kings, the Duke, the Pale Dragon's chain and, at last, Veilwatch at the foot of the Dragonspine. It ends the story one of three ways, chosen by you, and the ending changes the island for good.</li>
+        </ul>
+        <p>After the story the island stays open: the village, the camps, missions and raids go on.</p>
+        <div class="spoiler" id="sp11">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp11-body">Show spoiler: how Chapter One goes, step by step</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp11-w">
+    <p id="sp11-w"><b>Spoiler warning.</b> This gives away how Chapter One goes, step by step. It's more fun to find out in the game. Show it anyway?</p>
     <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
   </div>
-  <div class="sp-body" id="sp7-body" hidden>
+  <div class="sp-body" id="sp11-body" hidden>
 
         <ul>
           <li>The morning after the watchtower is ordered, <b>Elder Maren</b> sends for you: the raids grow too fast to be natural, and the Queen must hear it from someone who has fought them. She tells you to show the Queen the mark on your arm.</li>
@@ -1094,33 +1184,87 @@ td:first-child { font-weight: 600; }
     <button type="button" class="sp-hide">Hide this again</button>
   </div>
 </div>
+        <div class="spoiler" id="sp7">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp7-body">Show spoiler: how Chapter Two goes</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp7-w">
+    <p id="sp7-w"><b>Spoiler warning.</b> This gives away how Chapter Two goes. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp7-body" hidden>
+
+        <ul>
+          <li><b>Maren</b> admits she knew the mark from the start. Your ship, the <b>Veilrunner</b>, lies wrecked west of the point, and her drowned are the dead of the moonless nights. Search the wreck, then by night lay the crew and <b>Warden-Captain Aslak</b> to rest.</li>
+          <li><b>Edric Thorne</b> at Wolfscar thought you drowned. He tells you of Veyra, the High Warden, and sends you to a grey cairn in the fells, where you close a seep of the Hollow with your marked hand and put down <b>the Veil-Wight</b> by night. He explains <b>the Veil Key</b> in your blood: why Veyra sank the ship rather than kill you.</li>
+          <li>At <b>the Spire</b>, Archmagister Wren admits Magister <b>Orrin Hale</b> wrote to Veilwatch for years. Catch him and his cultists by night: his letters show Veyra set the goblins on the Key, and the Duke carried her fire to the steppe.</li>
+          <li>With <b>Shara</b> at Ashkar, put out <b>the Undying Flame</b> at the Ashfire's heart.</li>
+          <li>Back with <b>the Queen</b>: her uncle is in league with Veyra. "Rest, Warden. Then we go north." (400 gold and the Warden's Lantern-Mark.)</li>
+        </ul>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
+        <div class="spoiler" id="sp8">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp8-body">Show spoiler: how Chapter Three goes</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp8-w">
+    <p id="sp8-w"><b>Spoiler warning.</b> This gives away how Chapter Three goes. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp8-body" hidden>
+
+        <ul>
+          <li><b>Maren</b> gives you Joren's Warden lantern. In <b>the Goblin Warren</b>, kill the Whisper in the Stone and free <b>Skarn</b>, the goblins' king, who leads his goblins away into the deep hills.</li>
+          <li><b>Maelis and Wren</b>, the Order and the Conclave together, show how to break <b>Morvane, the Hollow King</b>: face him in the Barrow of Kings by night and break his phylactery.</li>
+          <li><b>Duke Corvin</b>, at his last camp, and the choice over him.</li>
+          <li><b>Ysmirr's chain</b>: three anchors toward Durnhold; the Chain-Keeper guards the last, and wakes only at night.</li>
+          <li>The <b>muster</b> of the Lantern Pact, the gate of <b>Veilwatch</b> and Veyra's Grey Host, and <b>Veyra the Unmade</b> at the Hollow's door. Then the Queen, in Stenhamn (1000 gold and the Lantern of the Last Warden).</li>
+        </ul>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
         <div class="spoiler" id="sp5">
-  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp5-body">Show spoiler: the sides you can take and how the story can end</button>
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp5-body">Show spoiler: the choices and the three endings</button>
   <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp5-w">
-    <p id="sp5-w"><b>Spoiler warning.</b> This gives away the sides you can take and how the story can end. It's more fun to find out in the game. Show it anyway?</p>
+    <p id="sp5-w"><b>Spoiler warning.</b> This gives away the choices and the three endings. It's more fun to find out in the game. Show it anyway?</p>
     <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
   </div>
   <div class="sp-body" id="sp5-body" hidden>
 
     <ul>
-      <li><b>The crown.</b> Back the Queen: Tidecutter and the Velvet Hand, but the Iron Oath splits and Ravnsund burns. Back the Duke: the Iron Oath's armies, but you have helped a murderer. Or unite them through Lady Brenna, the hardest path: Corvin abdicates and the realm stays whole.</li>
-      <li><b>The Ember Pass.</b> Expose the Duke's lie, and dwarves and orcs make peace and march together.</li>
-      <li><b>Elderwood.</b> Reconcile Caelith and the elves join you; kill him and they join, but never forgive humans.</li>
-      <li><b>The Hag.</b> Bargain with her and she helps against Veyra, at a price you learn later.</li>
+      <li><b>The Duke.</b> Lady Brenna asks you to give her father the chance to kneel. At his last camp you take him to the Queen alive, or fight his Raven-Guard. The Raven Plague lifts either way.</li>
+      <li><b>The Pale Dragon.</b> Break the three anchors of Ysmirr's chain and he is freed: he no longer attacks you, and he comes to the last battle.</li>
+      <li><b>The Lantern Pact.</b> Everyone sworn to it musters at the foot of the Dragonspine, and the scene names and counts them. Few or many, it reads differently.</li>
+      <li><b>Veyra</b>, at the Hollow's door, offers you your name back for the Key. The Forgetting breaks, and your name comes back: the name you gave your hero.</li>
     </ul>
-    <p>Every people and guild you win over joins <b>the Lantern Pact</b>. The more who stand at Veilwatch for the last battle, the more endings open:</p>
+    <p>Then the last choice, before Liesl's shade:</p>
     <div class="endings">
-      <div class="ending"><b>The Mended Veil</b>You seal the Hollow with the Key. Veyra is lost in it with her daughter's shade, at peace at last.</div>
-      <div class="ending"><b>The Open Door</b>You let Veyra take Liesl back. The Hollow stays open, and the dead walk with the living forever.</div>
-      <div class="ending"><b>The Last Warden</b>You take Veyra's place, and become what she was.</div>
-      <div class="ending"><b>The Pale Dragon</b>Freed, Ysmirr carries you to the last battle. Slain, its heart forges the final seal.</div>
+      <div class="ending"><b>The Mended Veil</b>You seal the Hollow with the Key. Veyra goes through with Liesl, at peace at last.</div>
+      <div class="ending"><b>The Open Door</b>You let Liesl and the dead come home, and the dead walk with the living from then on. Only with at least 8 of the 12 peoples and guilds sworn to the Pact.</div>
+      <div class="ending"><b>The Last Warden</b>You take Veyra's place, and keep the door yourself.</div>
     </div>
+    <p>The closing scene is put together from what you did: the ending, how many stood at Veilwatch, the Duke's fate, the dragon and your name.</p>
+    <button type="button" class="sp-hide">Hide this again</button>
+  </div>
+</div>
+        <div class="spoiler" id="sp6">
+  <button type="button" class="sp-show" aria-expanded="false" aria-controls="sp6-body">Show spoiler: how the ending changes the island</button>
+  <div class="sp-warn" hidden role="alertdialog" aria-labelledby="sp6-w">
+    <p id="sp6-w"><b>Spoiler warning.</b> This gives away how the ending changes the island. It's more fun to find out in the game. Show it anyway?</p>
+    <div class="sp-buttons"><button type="button" class="sp-yes">Yes, show me</button><button type="button" class="sp-no">Keep it hidden</button></div>
+  </div>
+  <div class="sp-body" id="sp6-body" hidden>
+
+    <ul>
+      <li><b>The Warden's Stone</b> stands on Saltmere's beach by the harbour, with the banners of everyone sworn to the Pact round it. Read it for your name, who stood at Veilwatch and how it ended.</li>
+      <li><b>The Duke's war is over.</b> His patrols and the ravens are gone from the Northmarch (a few deserters roam it instead), and Lady Brenna rules Ravnsund. The Queen, Brenna and others have new words about the peace.</li>
+      <li><b>The Hollow is quiet.</b> No drowned on moonless nights, no wights on the Barrow Downs, and the dead no longer hold the Barrow of Kings and Veilwatch. Saltmere's mood gets a lift: +8 with the Veil mended, +6 with you keeping the door, +4 with the dead among the living.</li>
+      <li><b>The Open Door:</b> gentle shades walk Saltmere's lanes from dusk to dawn, and you can talk to them; on moonless nights the drowned come ashore to sit by the fires. <b>The Last Warden:</b> a pale Warden's light walks with you at night, and the stone's lantern burns blue.</li>
+      <li>If you freed <b>Ysmirr</b>, on most days the Pale Dragon flies high over you and dips a wing.</li>
+    </ul>
     <button type="button" class="sp-hide">Hide this again</button>
   </div>
 </div>
       </section>
 
-      <p class="note">Saltmere is an early version and grows with every update; parts of the story above are still to come. The tables on this page are made from the game's own data (version 0.35.0).</p>
+      <p class="note">Saltmere is an early version and grows with every update; the mentors and some of the story's other paths are still to come. The tables on this page are made from the game's own data (version 0.52.0).</p>
     </main>
   </div>
 

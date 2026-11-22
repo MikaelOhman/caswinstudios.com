@@ -70,6 +70,26 @@ details { margin: 6px 0 10px; } details summary { cursor: pointer; color: var(--
 #mv select { font: 15px var(--body); background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; }
 #mv .meta { color: var(--muted); font-size: 14px; }
 #mv textarea { margin: 6px 0 0; }
+.counts { display: flex; flex-wrap: wrap; gap: 8px; margin: -12px 0 14px; }
+.counts button { font: 15px var(--body); background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; cursor: pointer; text-align: left; }
+.counts button b { display: block; font-size: 22px; font-weight: 400; font-family: var(--display); }
+.counts button small { display: block; color: var(--muted); font-size: 12px; }
+.counts button.on { border-color: var(--brass); }
+.s-done { color: var(--pick); } .s-partial, .s-building { color: var(--brass); } .s-gap { color: var(--bad); }
+.brow { display: grid; grid-template-columns: 64px minmax(0, 2.2fr) minmax(0, 1.2fr) minmax(0, 1.4fr) minmax(0, 2.2fr); gap: 4px 14px; align-items: start;
+  padding: 10px 6px; border-bottom: 1px solid var(--line); }
+.brow.done { opacity: .62; }
+.brow .th { width: 64px; height: 64px; border-radius: 6px; overflow: hidden; background: var(--panel); }
+.brow .th img { width: 64px; height: 64px; object-fit: cover; display: block; }
+.brow .nm { font-size: 16px; } .brow .nm small, .brow .sub { display: block; color: var(--muted); font-size: 13px; }
+.brow label.chk { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; cursor: pointer; }
+.brow select, .brow input[type=text] { font: 14px var(--body); background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 7px; padding: 3px 6px; max-width: 100%; }
+.brow input[type=text] { width: 100%; margin-bottom: 4px; }
+.brow .lk { display: block; font: 13px var(--body); background: none; border: 0; color: var(--pick); padding: 0; cursor: pointer; text-decoration: underline; text-align: left; }
+.brow .links { display: flex; flex-wrap: wrap; gap: 2px 10px; margin-top: 3px; } .brow .links .lk { display: inline; }
+.bhead { color: var(--muted); font-size: 13px; padding: 4px 6px; }
+@media (max-width: 760px) { .brow { grid-template-columns: 56px minmax(0, 1fr); } .brow .th, .brow .th img { width: 56px; height: 56px; }
+  .brow > :nth-child(n+3) { grid-column: 2; } .bhead { display: none; } }
 </style>
 </head>
 <body>
@@ -83,8 +103,9 @@ details { margin: 6px 0 10px; } details summary { cursor: pointer; color: var(--
   <p class="lede">Concept art for every person, place and building in the story. These pictures are made by AI (marked
     <b>AI concept</b>) and are only for deciding how things should look. Star the ones you like, cross out the ones you don't,
     write notes, then press <b>Download my picks</b> and send the file. The <b>3D models</b> tab shows the models our games
-    use today; click one to turn it around and write notes on it.</p>
-  <div class="tabs"><button id="t-c" class="on">Concept art</button><button id="t-m">3D models</button></div>
+    use today; click one to turn it around and write notes on it. The <b>Build list</b> tab lists every concept entry and model
+    with how far its 3D model has come: mark what you take on or finish, then press <b>Download list</b> and send the file.</p>
+  <div class="tabs"><button id="t-c" class="on">Concept art</button><button id="t-m">3D models</button><button id="t-b">Build list</button></div>
   <div class="bar" id="bar"></div>
   <div id="list"></div>
 </main>
@@ -160,10 +181,12 @@ let tab = "c";
 function start() {
   document.getElementById("t-c").onclick = () => { tab = "c"; filter = "All"; query = ""; start(); };
   document.getElementById("t-m").onclick = () => { tab = "m"; filter = "All"; query = ""; start(); };
-  document.getElementById("t-c").classList.toggle("on", tab === "c");
-  document.getElementById("t-m").classList.toggle("on", tab === "m");
+  document.getElementById("t-b").onclick = () => { tab = "b"; filter = "All"; query = ""; start(); };
+  for (const t of "cmb") document.getElementById("t-" + t).classList.toggle("on", tab === t);
   document.getElementById("t-m").hidden = !(D.models && D.models.length);
-  if (tab === "m") { drawModelBar(); drawModels(); } else { drawBar(); drawList(); }
+  document.getElementById("t-b").hidden = !(D.build && D.build.length);
+  document.getElementById("counts")?.remove();
+  if (tab === "m") { drawModelBar(); drawModels(); } else if (tab === "b") { drawBuildBar(); drawBuild(); } else { drawBar(); drawList(); }
 }
 function download() {
   const a = document.createElement("a");
@@ -223,7 +246,7 @@ async function openModel(m) {
   v.removeAttribute("src"); old.replaceWith(v);
   const box = document.getElementById("mv"), note = document.getElementById("mv-note"), anim = document.getElementById("mv-anim");
   document.getElementById("mv-name").textContent = m.name;
-  document.getElementById("mv-meta").textContent = `${m.group} · used in ${m.games.join(", ")} · ${m.source}${m.licence === "CC0" ? " (CC0)" : ""}`;
+  document.getElementById("mv-meta").textContent = `${m.group} · ${m.games[0] === "not in a game yet" ? "not in a game yet" : "used in " + m.games.join(", ")} · ${m.source}${m.licence === "CC0" ? " (CC0)" : ""}`;
   note.value = (S["m:" + m.id] || {}).note || "";
   note.oninput = () => { (S["m:" + m.id] ??= { fav: [], rej: [], note: "" }).note = note.value; save(); };
   anim.hidden = true;
@@ -243,6 +266,105 @@ async function openModel(m) {
 }
 document.getElementById("mv-close").onclick = () => { document.getElementById("mv").classList.remove("on"); document.getElementById("mv-v").removeAttribute("src"); if (tab === "m") drawModels(); };
 document.addEventListener("keydown", ev => { if (ev.key === "Escape") { document.getElementById("mv-close").click(); document.getElementById("lb").classList.remove("on"); } });
+/* ---------- Build list ---------- */
+const STATUS = { gap: "Not started", building: "Being built", partial: "Partly done", done: "Done" };
+let bStatus = "All", bConcept = "All";
+const bst = r => S["b:" + r.id] || {};
+const effStatus = r => bst(r).status || r.status;
+const rank = r => { const s = effStatus(r); return s === "gap" ? (r.liked ? 0 : 3) : s === "building" ? 1 : s === "partial" ? 2 : 4; };
+function setB(r, k, v) { const o = (S["b:" + r.id] ??= {}); o[k] = v; o.t = new Date().toISOString(); save(); }
+function saveFile(name, text, type) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name; a.click();
+}
+function exportList(csv) {
+  const rows = {};
+  for (const r of D.build) { const o = bst(r); if (o.t) rows[r.id] = { status: o.status || "", who: o.who || "", note: o.note ?? "", t: o.t }; }
+  if (!csv) return saveFile("saltmere_build_list.json", JSON.stringify({ game: D.game, saved: new Date().toISOString(), rows }, null, 1), "application/json");
+  const q = v => '"' + String(v ?? "").replace(/"/g, '""') + '"';
+  const lines = [["number", "id", "name", "section", "group", "games", "liked pictures", "new pictures wanted", "3D status", "taken by", "note", "3D models"].map(q).join(",")];
+  for (const r of [...D.build].sort((a, b) => rank(a) - rank(b) || (a.num || 999) - (b.num || 999)))
+    lines.push([r.num || "", r.id, r.name, r.section, r.group, r.games.join("; "), r.liked, r.redo ? "yes" : "", STATUS[effStatus(r)] || effStatus(r),
+      bst(r).who || "", bst(r).note ?? r.note, r.models.join("; ")].map(q).join(","));
+  saveFile("saltmere_build_list.csv", "\ufeff" + lines.join("\r\n"), "text/csv");
+}
+function importList(file) {
+  file.text().then(t => {
+    let n = 0;
+    try {
+      const rows = JSON.parse(t).rows;
+      if (!rows) throw 0;
+      for (const [id, w] of Object.entries(rows)) {
+        const o = S["b:" + id] || {};
+        if (D.build.some(r => r.id === id) && (w.t || "") > (o.t || "")) { S["b:" + id] = { status: w.status || undefined, who: w.who, note: w.note, t: w.t }; n++; }
+      }
+      save(); alert(n + " rows updated from " + file.name + " (newer changes win)."); drawBuildBar(); drawBuild();
+    } catch (e) { alert("That file is not a build list (JSON) from this page."); }
+  });
+}
+function drawBuildBar() {
+  const sections = ["All", ...new Set(D.build.map(r => r.section))];
+  const c = { gap: 0, building: 0, partial: 0, done: 0 }; let ready = 0;
+  for (const r of D.build) { const s = effStatus(r); c[s] = (c[s] || 0) + 1; if (s === "gap" && r.liked) ready++; }
+  document.getElementById("bar").innerHTML =
+    `<select id="grp" aria-label="Section">${sections.map(g => `<option${g === filter ? " selected" : ""}>${esc(g)}</option>`).join("")}</select>` +
+    `<select id="bs" aria-label="3D status"><option value="All">Any 3D status</option>${Object.entries(STATUS).map(([k, v]) => `<option value="${k}"${k === bStatus ? " selected" : ""}>${v}</option>`).join("")}</select>` +
+    `<select id="bc" aria-label="Concept"><option value="All">Any concept</option>${[["liked", "Has a liked picture"], ["redo", "New pictures wanted"], ["none", "No concept entry"]].map(([k, v]) => `<option value="${k}"${k === bConcept ? " selected" : ""}>${v}</option>`).join("")}</select>` +
+    `<input id="q" type="search" placeholder="Search" value="${esc(query)}"><span class="sp"></span>` +
+    `<button id="dlj">Download list</button><button id="dlc">CSV</button><button id="imp">Import list</button><input id="impf" type="file" accept=".json,application/json" hidden>`;
+  const counts = document.createElement("div"); counts.className = "counts"; counts.id = "counts";
+  counts.innerHTML = [["ready", ready, "Ready to model", "liked picture, no 3D yet"], ["gap", c.gap, "Not started", "&nbsp;"], ["building", c.building, "Being built", "&nbsp;"],
+    ["partial", c.partial, "Partly done", "&nbsp;"], ["done", c.done, "Done", "&nbsp;"]].map(([k, n, label, sub]) =>
+    `<button data-k="${k}" class="${(k === "ready" ? bStatus === "gap" && bConcept === "liked" : bStatus === k && bConcept === "All") ? "on" : ""}"><b class="s-${k === "ready" ? "gap" : k}">${n}</b>${label}<small>${sub}</small></button>`).join("");
+  document.getElementById("counts")?.remove();
+  document.getElementById("bar").after(counts);
+  counts.querySelectorAll("button").forEach(b => b.onclick = () => {
+    const k = b.dataset.k, same = b.classList.contains("on");
+    [bStatus, bConcept] = same ? ["All", "All"] : k === "ready" ? ["gap", "liked"] : [k, "All"]; drawBuildBar(); drawBuild();
+  });
+  document.getElementById("grp").onchange = ev => { filter = ev.target.value; drawBuild(); };
+  document.getElementById("bs").onchange = ev => { bStatus = ev.target.value; drawBuildBar(); drawBuild(); };
+  document.getElementById("bc").onchange = ev => { bConcept = ev.target.value; drawBuildBar(); drawBuild(); };
+  document.getElementById("q").oninput = ev => { query = ev.target.value; drawBuild(); };
+  document.getElementById("dlj").onclick = () => exportList(false);
+  document.getElementById("dlc").onclick = () => exportList(true);
+  document.getElementById("imp").onclick = () => document.getElementById("impf").click();
+  document.getElementById("impf").onchange = ev => ev.target.files[0] && importList(ev.target.files[0]);
+}
+function drawBuild() {
+  const ql = query.trim().toLowerCase();
+  const shown = D.build.filter(r => (filter === "All" || r.section === filter) && (bStatus === "All" || effStatus(r) === bStatus) &&
+    (bConcept === "All" || (bConcept === "liked" ? r.liked > 0 : bConcept === "redo" ? r.redo : r.num == null)) &&
+    (!ql || (r.name + " " + r.group + " " + r.games.join(" ") + " " + (bst(r).who || "") + " " + (bst(r).note ?? r.note)).toLowerCase().includes(ql)))
+    .sort((a, b) => rank(a) - rank(b) || (a.num || 999) - (b.num || 999) || a.name.localeCompare(b.name));
+  const list = document.getElementById("list");
+  const head = `<div class="brow bhead"><span></span><span>Item · ${shown.length} shown</span><span>Concept art</span><span>3D model</span><span>Taken by · notes</span></div>`;
+  list.innerHTML = (shown.length ? head : `<div class="empty">Nothing matches.</div>`) + shown.map(r => {
+    const s = effStatus(r), o = bst(r);
+    const concept = r.num == null ? `<span class="sub">No concept entry</span>` :
+      (r.liked ? `<span class="s-done">★ ${r.liked} liked</span>` : r.redo ? `<span class="s-gap">↻ new pictures wanted</span>` : `<span class="sub">nothing chosen yet</span>`) +
+      `<button class="lk" data-c="${esc(r.name)}">Open in Concept art</button>`;
+    const links = r.models.map(id => D.models.find(m => m.id === id)).filter(Boolean)
+      .map(m => `<button class="lk" data-m="${esc(m.id)}">${esc(m.name)}</button>`).join("");
+    return `<div class="brow ${s === "done" ? "done" : ""}"><div class="th">${r.thumb ? `<div class="ph" data-model="1" data-thumb="${r.thumb}" data-alt="${esc(r.name)}"></div>` : ""}</div>` +
+      `<div class="nm">${r.num ? `<small>#${String(r.num).padStart(3, "0")}</small>` : ""}${esc(r.name)}<small>${esc(r.group)} · ${esc(r.games.join(", "))}</small></div>` +
+      `<div>${concept}</div>` +
+      `<div><label class="chk"><input type="checkbox" data-done="${esc(r.id)}"${s === "done" ? " checked" : ""}> Done</label> ` +
+      `<select data-st="${esc(r.id)}" aria-label="3D status for ${esc(r.name)}" class="s-${s}">${Object.entries(STATUS).map(([k, v]) => `<option value="${k}"${k === s ? " selected" : ""}>${v}</option>`).join("")}</select>` +
+      (links ? `<div class="links">${links}</div>` : "") + `</div>` +
+      `<div><input type="text" data-who="${esc(r.id)}" placeholder="Who is building it?" value="${esc(o.who || "")}">` +
+      `<input type="text" data-note="${esc(r.id)}" placeholder="Notes" value="${esc(o.note ?? r.note)}"></div></div>`;
+  }).join("");
+  list.querySelectorAll(".ph[data-thumb]").forEach(el => io.observe(el));
+  const row = id => D.build.find(r => r.id === id);
+  list.querySelectorAll("[data-st]").forEach(el => el.onchange = () => { setB(row(el.dataset.st), "status", el.value); drawBuildBar(); drawBuild(); });
+  list.querySelectorAll("[data-done]").forEach(el => el.onchange = () => {
+    const r = row(el.dataset.done); setB(r, "status", el.checked ? "done" : (r.status === "done" ? "gap" : r.status)); drawBuildBar(); drawBuild(); });
+  list.querySelectorAll("[data-who]").forEach(el => el.oninput = () => setB(row(el.dataset.who), "who", el.value));
+  list.querySelectorAll("[data-note]").forEach(el => el.oninput = () => setB(row(el.dataset.note), "note", el.value));
+  list.querySelectorAll("[data-c]").forEach(el => el.onclick = () => { tab = "c"; filter = "All"; query = el.dataset.c; start(); window.scrollTo(0, 0); });
+  list.querySelectorAll("[data-m]").forEach(el => el.onclick = () => openModel(D.models.find(m => m.id === el.dataset.m)));
+}
 function drawBar() {
   const groups = ["All", ...new Set(D.entries.map(e => e.group))];
   const n = D.entries.reduce((a, e) => a + e.images.length, 0);
@@ -256,7 +378,8 @@ function drawBar() {
 }
 function drawList() {
   const ql = query.trim().toLowerCase();
-  const shown = D.entries.filter(e => (filter === "All" || e.group === filter) && (!ql || (e.name + " " + e.story + " " + e.group).toLowerCase().includes(ql)));
+  const exact = ql ? D.entries.filter(e => e.name.toLowerCase() === ql) : [];   // "Open in Concept art" from the build list
+  const shown = exact.length ? exact : D.entries.filter(e => (filter === "All" || e.group === filter) && (!ql || (e.name + " " + e.story + " " + e.group).toLowerCase().includes(ql)));
   const list = document.getElementById("list");
   list.innerHTML = (shown.length ? "" : `<div class="empty">Nothing matches.</div>`) + shown.map(e => {
     const s = st(e.id);

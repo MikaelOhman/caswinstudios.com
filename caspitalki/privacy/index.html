@@ -31,7 +31,7 @@
     <section>
       <div class="wrap prose">
         <h1>CaspiTalki: Privacy policy</h1>
-        <p><em>Last updated: 6 November 2026</em></p>
+        <p><em>Last updated: 22 November 2026</em></p>
         <p>CaspiTalki is made by CasWin Studios, Sweden.</p>
         <ul class="features">
           <li>CaspiTalki is built to collect as little as possible. CasWin Studios runs no servers for the app and holds no personal data about you.</li>
@@ -39,20 +39,34 @@
           <li>No ads, no analytics, no crash reporting and no Google services.</li>
         </ul>
         <h2>What is stored, and where</h2>
-        <p><strong>On each phone only:</strong> your encryption keys (in the phone's secure storage), the group's member list, your chat history, the shared calendar and, on the main phone, the latest position of children who share their location. Nothing of this is sent to CasWin Studios.</p>
+        <p><strong>On each phone only:</strong> your encryption keys (in the phone's secure storage), the group's member list, your chat history, the shared calendar and, on the main phone, the latest position of children who share their location and, for each member, when their phone was last heard from and which CaspiTalki version it runs. Nothing of this is sent to CasWin Studios.</p>
         <p>Chat history and the calendar are kept until you leave the group or uninstall the app. Leaving the group in the app deletes your keys and history from your phone.</p>
         <p><strong>Chat backup:</strong> you can save your chat history to a backup file, encrypted with a passphrase you choose. It only goes where you save or send it.</p>
-        <p><strong>Photos</strong> you send are made smaller and re-saved before sending, which removes their location and other camera data.</p>
+        <p><strong>Photos</strong> you send are made smaller and re-saved before sending, which removes their location and other camera data. You can take a photo with the camera or pick one from the gallery through Android's own picker; CaspiTalki only sees the photo you pick.</p>
         <h2>What goes over the network</h2>
         <p><strong>Messages, call set-up, positions, member lists and calendar changes</strong> are end-to-end encrypted on the phone before they leave it. They pass through the public relay <strong>ntfy.sh</strong> (run by a third party), which only sees encrypted data under random channel names and deletes it after about 12 hours (photos after about 3 hours). ntfy.sh can see the IP address of the phones that use it and when they connect.</p>
-        <p><strong>Staying reachable:</strong> while you are in a group, CaspiTalki keeps its own connection to ntfy.sh, with a quiet notification, so messages and calls arrive when the app is closed.</p>
+        <p><strong>Staying reachable:</strong> while you are in a group, CaspiTalki keeps its own connection to ntfy.sh, with a quiet notification, so messages and calls arrive when the app is closed. After a restart of the phone or an app update, this connection starts again by itself (if it was on).</p>
+        <p><strong>Catching up:</strong> if a phone has been away longer than ntfy.sh keeps messages (about 12 hours), it asks the others to re-send what it missed. They re-send, encrypted as before, from their own copies on their phones.</p>
+        <p><strong>Contact and app version:</strong> each member's phone sends the main phone a small encrypted "hello" with its CaspiTalki version and its location-sharing state (off, asked, on or paused) when the app starts or wakes, at most every 30 minutes. The main phone keeps, for each member, when it last heard from their phone, so the parent can see whether a phone is reachable and up to date. With <em>Check connection</em> the main phone can wake a member's phone and ask it to answer at once. This stays on the phones; nothing is sent to CasWin Studios.</p>
         <p><strong>Voice calls</strong> go directly between the phones and are encrypted by WebRTC. To find a direct route, the phones ask public <strong>STUN</strong> servers (Cloudflare and Google) for their own public IP address. If the main phone has turned on a <strong>call relay</strong> (Cloudflare TURN or the family's own server), calls that can't connect directly pass through it, still encrypted.</p>
         <p><strong>Maps</strong> (main phone only) load map images from <strong>OpenStreetMap</strong>, which sees the map area being viewed and the phone's IP address.</p>
         <h2>Location sharing</h2>
-        <p>Only members the main phone (a parent) has marked as children can be asked to share their location; adults' location is never shared. A child's location is shared only after the child agrees on their own phone, only with the main phone, and only while a permanent notification is shown on the child's phone. The child can stop at any time, and stopping always tells the main. Sharing does not restart on its own after the phone restarts. Only the latest position is kept, on the main phone; there is no location history.</p>
+        <p>Only members the main phone (a parent) has marked as children can be asked to share their location; adults' location is never shared. A child's location is shared only after the child agrees on their own phone, only with the main phone, and only while a permanent notification is shown on the child's phone. The child can stop at any time, and stopping always tells the main. If sharing stops or resumes on its own (for example when Android pauses it), the child's phone tells the main too, and positions older than about 40 minutes are shown on the main phone as old, not as where the child is now. Sharing does not restart on its own after the phone restarts. Only the latest position is kept, on the main phone; there is no location history.</p>
         <p>The position comes from the phone's own location service. Your phone's maker may run its own network location service; that is outside CaspiTalki.</p>
         <h2>Permissions</h2>
-        <p>CaspiTalki asks for: the camera (to scan the invite QR code), the microphone (for calls), location (only on a child's phone, only while sharing), notifications, and permission to keep its connection running in the background. It does not ask for access to your files, contacts or background location outside sharing.</p>
+        <p>CaspiTalki asks for:</p>
+        <ul>
+          <li>the camera (to scan the invite QR code and to take photos for the chat),</li>
+          <li>the microphone (for calls),</li>
+          <li>location (only on a child's phone, only while sharing),</li>
+          <li>notifications, including full-screen notifications for incoming calls,</li>
+          <li>permission to keep its connection running in the background, to be exempted from battery optimisation (so messages and calls arrive) and to start again after the phone restarts,</li>
+          <li>exact alarms ("Alarms &amp; reminders"), so calendar reminders come on time,</li>
+          <li>biometrics, only if you turn on the app lock; the fingerprint or face check is done by Android, and CaspiTalki never sees it.</li>
+        </ul>
+        <p>It does not ask for access to your files, contacts or background location outside sharing. Gallery photos go through Android's own picker.</p>
+        <h2>Lock screen and app lock</h2>
+        <p>By default, message, location and missed-call notifications don't show on the lock screen; they appear once the phone is unlocked. You can turn previews on. You can also turn on an app lock, so opening CaspiTalki needs the phone's screen lock (fingerprint, face, PIN or pattern).</p>
         <h2>Children</h2>
         <p>CaspiTalki is meant to be set up by a parent for the family. A child's location is only shared when the child taps Allow on their own phone, and the child's phone always shows that it is sharing.</p>
         <h2>Your rights (GDPR)</h2>

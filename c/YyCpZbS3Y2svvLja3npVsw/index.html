@@ -54,6 +54,13 @@ details { margin: 6px 0 10px; } details summary { cursor: pointer; color: var(--
 .tabs button { font: 600 16px var(--body); border: 1px solid var(--line); color: var(--muted); background: transparent; border-radius: 999px; padding: 7px 18px; cursor: pointer; }
 .tabs button.on { background: var(--brass); border-color: var(--brass); color: var(--card); }
 .mgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr)); gap: 12px; }
+section.game h3 { font-family: var(--display); font-weight: 400; font-size: 20px; margin: 22px 0 8px; color: var(--brass); }
+section.game ul { margin: 0 0 0 1.2em; padding: 0; color: var(--ink); }
+.gcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.gcard { background: var(--card); border: 2px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 14px; line-height: 1.35; }
+.gcard p { margin: 6px 0; } .gcard .pro { color: #9fd08a; } .gcard .con { color: #e0a08a; } .gcard small { color: var(--muted); }
+.track { display: flex; gap: 12px; align-items: center; margin: 8px 0; flex-wrap: wrap; } .track span { color: var(--muted); font-size: 14px; flex: 1 1 260px; }
+.track audio { width: min(420px, 100%); }
 .mcard { background: var(--card); border: 2px solid var(--line); border-radius: 10px; overflow: hidden; cursor: pointer; text-align: left; padding: 0; color: var(--ink); font: inherit; }
 .mcard:hover, .mcard:focus-visible { border-color: var(--brass); }
 .mcard.noted { border-color: var(--pick); }
@@ -105,7 +112,7 @@ details { margin: 6px 0 10px; } details summary { cursor: pointer; color: var(--
     write notes, then press <b>Download my picks</b> and send the file. The <b>3D models</b> tab shows the models our games
     use today; click one to turn it around and write notes on it. The <b>Build list</b> tab lists every concept entry and model
     with how far its 3D model has come: mark what you take on or finish, then press <b>Download list</b> and send the file.</p>
-  <div class="tabs"><button id="t-c" class="on">Concept art</button><button id="t-m">3D models</button><button id="t-b">Build list</button></div>
+  <div class="tabs"><button id="t-c" class="on">Concept art</button><button id="t-m">3D models</button><button id="t-b">Build list</button><button id="t-g">Games</button></div>
   <div class="bar" id="bar"></div>
   <div id="list"></div>
 </main>
@@ -182,16 +189,44 @@ function start() {
   document.getElementById("t-c").onclick = () => { tab = "c"; filter = "All"; query = ""; start(); };
   document.getElementById("t-m").onclick = () => { tab = "m"; filter = "All"; query = ""; start(); };
   document.getElementById("t-b").onclick = () => { tab = "b"; filter = "All"; query = ""; start(); };
-  for (const t of "cmb") document.getElementById("t-" + t).classList.toggle("on", tab === t);
+  document.getElementById("t-g").onclick = () => { tab = "g"; filter = "All"; query = ""; start(); };
+  document.getElementById("t-g").hidden = !(D.games && D.games.length);
+  for (const t of "cmbg") document.getElementById("t-" + t).classList.toggle("on", tab === t);
   document.getElementById("t-m").hidden = !(D.models && D.models.length);
   document.getElementById("t-b").hidden = !(D.build && D.build.length);
   document.getElementById("counts")?.remove();
-  if (tab === "m") { drawModelBar(); drawModels(); } else if (tab === "b") { drawBuildBar(); drawBuild(); } else { drawBar(); drawList(); }
+  if (tab === "g") { drawGames(); } else if (tab === "m") { drawModelBar(); drawModels(); } else if (tab === "b") { drawBuildBar(); drawBuild(); } else { drawBar(); drawList(); }
 }
 function download() {
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob([JSON.stringify({ game: D.game, saved: new Date().toISOString(), picks: S }, null, 1)], { type: "application/json" }));
   a.download = "saltmere_concept_picks.json"; a.click();
+}
+
+/* ---------- Games ---------- */
+function drawGames() {
+  document.getElementById("bar").innerHTML = `<span class="sp"></span><small>${D.games.length} game${D.games.length === 1 ? "" : "s"} in the works</small>`;
+  const ul = a => `<ul>${(a || []).map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+  const list = document.getElementById("list");
+  list.innerHTML = D.games.map(g => `<section class="entry game"><header><h2>${esc(g.title)}</h2><span class="grp">${esc(g.status)}</span></header>` +
+    `<p class="story"><b>${esc(g.tagline)}</b></p>${(g.pitch || []).map(p => `<p class="story">${esc(p)}</p>`).join("")}` +
+    `<div class="imgs">${(g.images || []).map(i => `<figure><div class="ph" data-thumb="${i.thumb}" data-full="${i.full}" data-alt="${esc(i.caption)}"></div><div class="act"><span>${esc(i.caption)}</span></div></figure>`).join("")}</div>` +
+    ((g.music || []).length ? `<h3>Music</h3>` + g.music.map(m => `<div class="track"><button class="play" data-b="${m.blob}" data-m="${m.mime}">▶ ${esc(m.title)}</button><span>${esc(m.desc)}</span></div>`).join("") : "") +
+    `<h3>A day</h3>${ul(g.loop)}` +
+    `<h3>Peoples</h3><div class="gcards">${(g.races || []).map(r => `<div class="gcard"><b>${esc(r.name)}</b><p>${esc(r.desc)}</p><p class="pro">+ ${esc(r.pros.join(", "))}</p><p class="con">− ${esc(r.cons.join(", "))}</p><small>Own buildings: ${esc(r.special.join(", "))} · Elite: ${esc(r.elite)}</small></div>`).join("")}</div>` +
+    `<h3>Heroes</h3><div class="gcards">${(g.heroes || []).map(h => `<div class="gcard"><b>${esc(h.name)}</b><p>${esc(h.desc)}</p><small>Skills: ${esc(h.skills.join(", "))}<br>Village: ${esc(h.perk)}</small></div>`).join("")}</div>` +
+    `<h3>Artifacts</h3><div class="gcards">${(g.artifacts || []).map(a => `<div class="gcard"><b>${esc(a.name)}</b><p>${esc(a.desc)}</p></div>`).join("")}</div>` +
+    `<h3>Resources</h3><p class="story">${esc((g.resources || []).join(" · "))}</p>` +
+    `<h3>Host settings</h3>${ul(g.settings)}<h3>Next</h3>${ul(g.next)}<p class="story"><small>${esc(g.credits || "")}</small></p></section>`).join("");
+  list.querySelectorAll(".ph").forEach(el => io.observe(el));
+  list.querySelectorAll("button.play").forEach(b => b.onclick = async () => {
+    const t = b.textContent.slice(2);
+    b.textContent = "… " + t;
+    const a = document.createElement("audio");
+    a.controls = true; a.loop = true;
+    a.src = await blobURL(b.dataset.b, b.dataset.m);
+    b.replaceWith(a); a.play();
+  });
 }
 
 /* ---------- 3D models ---------- */
